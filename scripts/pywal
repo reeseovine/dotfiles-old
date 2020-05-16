@@ -1,0 +1,17 @@
+#!/bin/bash
+
+wppath=${1:-~/Pictures/Wallpapers/favorites/}
+
+wal -i $wppath --backend colorz
+
+# set keyboard color
+~/git/dotfiles/scripts/razer 5
+
+# compile discord theme
+sassc ~/git/discord-themes/bliss/pywal.scss ~/git/discord-themes/bliss/pywal.css -t compact
+
+# update firefox theme
+~/git/Pywalfox/daemon/pywalfox.py update
+
+# update atom theme
+touch ~/.atom/styles.less

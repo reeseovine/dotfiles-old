@@ -1,0 +1,36 @@
+#! /bin/bash
+
+SLEEP_TIME=5   # Default time between checks.
+SAFE_PERCENT=30  # Still safe at this level.
+DANGER_PERCENT=10  # Warn when battery at this level.
+CRITICAL_PERCENT=2  # Shut down when battery at this level.
+
+function notifyBattery
+{
+	notify-send -u critical "Battery level low!" "Please plug me in\!"
+}
+
+
+while [ true ]; do
+
+    if [[ -n $(acpi -b | grep -i discharging) ]]; then
+        rem_bat=$(acpi -b | grep -Eo "[0-9]+%" | grep -Eo "[0-9]+")
+
+        if [[ $rem_bat -gt $SAFE_PERCENT ]]; then
+            SLEEP_TIME=10
+        else
+            SLEEP_TIME=5
+            if [[ $rem_bat -le $DANGER_PERCENT ]]; then
+                notifyBattery
+            fi
+            if [[ $rem_bat -le $CRITICAL_PERCENT ]]; then
+                sudo poweroff
+            fi
+        fi
+    else
+        SLEEP_TIME=20
+    fi
+
+    sleep ${SLEEP_TIME}m
+
+done

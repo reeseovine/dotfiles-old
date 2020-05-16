@@ -1,0 +1,47 @@
+"*":
+  "autoclose-html-plus":
+    forceInline: [
+      "title"
+      "h1"
+      "h2"
+      "h3"
+      "h4"
+      "h5"
+      "h6"
+      "span"
+      "p"
+    ]
+    makeNeverCloseSelfClosing: false
+  core:
+    allowPendingPaneItems: false
+    audioBeep: false
+    autoHideMenuBar: true
+    disabledPackages: [
+      "background-tips"
+    ]
+    openEmptyEditorOnStart: false
+    telemetryConsent: "no"
+    themes: [
+      "atom-bliss-blur-ui"
+      "one-black-syntax"
+    ]
+  editor:
+    atomicSoftTabs: false
+    fontFamily: "Hack, Noto Color Emoji, monospace"
+    fontSize: 16
+    maxScreenLineLength: 10000000000000000000
+    scrollPastEnd: true
+    showIndentGuide: true
+    softTabs: false
+    softWrap: true
+    tabLength: 4
+    undoGroupingInterval: 500
+  "markdown-preview":
+    useGitHubStyle: true
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ignoreWhitespaceOnlyLines: true
+".ini.source":
+  editor:
+    autoIndent: false

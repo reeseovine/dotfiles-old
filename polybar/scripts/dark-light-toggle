@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+
+import os, re, ast
+
+# Modify Polybar's colors.ini
+def toggle_polybar(mode):
+	colors = {
+		'dark': {
+			'bg': 'cc000000',
+			'fg': 'ffffff',
+			'ac': '000000',
+			'mf': 'ffffff'
+		},
+		'light': {
+			'bg': '99ffffff',
+			'fg': '000000',
+			'ac': 'ccffffff',
+			'mf': '000000'
+		}
+	}
+	
+	polybar_conf = "/home/reese/.config/polybar/colors.ini"
+	with open(polybar_conf, 'r+') as f:
+		conf = f.read()
+		
+		for k,v in colors[mode].items():
+			start = conf.find(k+" = #") + 6
+			end = conf.find("\n", start)
+			conf = conf[:start] + v + conf[end:]
+		
+		f.seek(0)
+		f.write(conf)
+		f.truncate()
+		
+		os.system('sh ~/scripts/polybar')
+
+# Change gnome-terminal's default profile
+def toggle_gterm(mode):
+	profiles = {
+		'dark': 'b1dcc9dd-5262-4d8d-a863-c897e6d979b9',
+		'light': '1be49ca0-ac5d-42f3-9b8b-d33d93245825'
+	}
+	
+	os.system("gsettings set org.gnome.Terminal.ProfilesList default '"+profiles[mode]+"'")
+
+# Update atom's configuration
+def toggle_atom(mode):
+	themes = {
+		'dark': "\n      \"atom-bliss-blur-ui\"\n      \"one-black-syntax\"\n    ",
+		'light': "\n      \"one-light-ui\"\n      \"one-light-syntax\"\n    "
+	}
+	
+	atom_conf = "/home/reese/.atom/config.cson"
+	with open(atom_conf, 'r+') as f:
+		conf = f.read()
+		start = conf.find("themes: [") + 9
+		end = conf.find("]", start)
+		conf = conf[:start] + themes[mode] + conf[end:]
+		
+		f.seek(0)
+		f.write(conf)
+		f.truncate()
+		
+# def toggle_firefox(mode):
+	# extensions.activeThemeID
+	# firefox-compact-light@mozilla.org
+	# firefox-compact-dark@mozilla.org
+
+# def pywal():
+# 	os.system('bash ~/scripts/pywal update')
+		
+if __name__ == "__main__":
+	with open("/home/reese/.config/darkmode", 'r+') as f:
+		mode = f.read().strip()
+		if mode == 'dark':
+			mode = 'light'
+		else:
+			mode = 'dark'
+		
+		toggle_polybar(mode)
+		# toggle_gterm(mode)
+		toggle_atom(mode)
+		
+		f.seek(0)
+		f.write(mode)
+		f.truncate()
+	
+	# pywal()

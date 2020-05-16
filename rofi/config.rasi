@@ -1,0 +1,15 @@
+configuration {
+	theme: "~/.cache/wal/colors-rofi-dark";
+	modi: "window,drun,run";
+	width: 30;
+	lines: 10;
+	font: "Ubuntu mono 14";
+	show-icons: true;
+	hide-scrollbar: true;
+	terminal: "kitty";
+	ssh-client: "ssh";
+	ssh-command: "{terminal} {ssh-client} {host}";
+	run-command: "{cmd}";
+	run-shell-command: "{terminal} {cmd}";
+	sort: false;
+}

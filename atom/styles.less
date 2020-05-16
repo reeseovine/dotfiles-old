@@ -1,0 +1,19 @@
+@import '/home/reese/.cache/wal/colors.less';
+
+@bg-trans: fade(@background, 80%);
+@bg-light: lighten(@background, 10%);
+
+body {
+	background-color: @bg-trans;
+}
+
+.tab-bar,
+.tab-bar .tab:not(.active),
+.atom-dock-resize-handle,
+.panel-footer {
+	background-color: @background;
+}
+
+.tab-bar .tab.active {
+	background-color: @bg-light;
+}

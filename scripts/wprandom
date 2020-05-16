@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+const path = require('path');
+const fs = require('fs');
+const { exec } = require("child_process");
+
+const home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
+const wallsDir = path.join(home, 'Pictures', 'Wallpapers', 'favorites');
+
+const walls = fs.readdirSync(wallsDir);
+const choice = walls[Math.floor(Math.random() * walls.length)];
+const filePath = path.join(wallsDir, choice);
+
+fs.writeFile(path.join(home, '.config', 'wallpaper_path'), filePath, function(){
+	exec(`feh --bg-fill "${filePath}"`);
+});
