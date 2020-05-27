@@ -6,9 +6,6 @@ wal -i $wppath --backend colorz
 
 sleep 1
 
-# restart polybar
-~/scripts/polybar &
-
 # set keyboard color
 python3 ~/git/dotfiles/scripts/razer 5
 

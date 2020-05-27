@@ -21,9 +21,6 @@ synclient MaxTapTime=0
 ~/git/dotfiles/scripts/pywal &
 
 # Applications
-~/git/dotfiles/scripts/polybar &
 redshift &
 solaar &
-discord &
 duplicati &
-gtk-launch android-messages &

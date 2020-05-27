@@ -210,7 +210,7 @@ smart_borders on
 #smart_borders no_gaps
 
 # Set colors from Xresources
-# Change 'color7' and 'color2' to whatever colors you want i3 to use 
+# Change 'color7' and 'color2' to whatever colors you want i3 to use
 # from the generated scheme.
 # NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
 # it fails to get colors from Xresources.
@@ -234,5 +234,10 @@ gaps outer 0
 bindsym $mod+g gaps inner all toggle 18
 
 
-# Run startup programs
+# Startup scripts
 exec --no-startup-id ~/git/dotfiles/scripts/startup
+exec_always ~/git/dotfiles/scripts/polybar
+
+# Open applications
+exec --no-startup-id i3-msg 'workspace 3; exec firefox; workspace 4; exec discord; workspace 5; exec gtk-launch android-messages; workspace 1; exec kitty'
+for_window [class="Discord"] move container to workspace 4
