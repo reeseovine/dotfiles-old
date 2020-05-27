@@ -4,14 +4,22 @@ wppath=${1:-~/Pictures/Wallpapers/favorites/}
 
 wal -i $wppath --backend colorz
 
-# set keyboard color
-~/git/dotfiles/scripts/razer 5
+sleep 1
 
-# compile discord theme
-sassc ~/git/discord-themes/bliss/pywal.scss ~/git/discord-themes/bliss/pywal.css -t compact
+# restart polybar
+~/scripts/polybar &
+
+# set keyboard color
+python3 ~/git/dotfiles/scripts/razer 5
 
 # update firefox theme
-~/git/Pywalfox/daemon/pywalfox.py update
+pywalfox update
 
 # update atom theme
 touch ~/.atom/styles.less
+
+# compile discord theme
+sassc ~/git/discord-themes/bliss/pywal.scss ~/git/discord-themes/bliss/pywal.css
+
+# compile android messages theme
+sassc ~/.config/android-messages/css/user-style.scss ~/.config/android-messages/css/user-style.css

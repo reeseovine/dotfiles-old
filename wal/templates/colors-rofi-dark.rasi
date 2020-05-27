@@ -13,7 +13,7 @@
     alternate-urgent-background: @background;
     alternate-urgent-foreground: @foreground;
 
-    selected-active-background: {color1};
+    selected-active-background: {color2};
     selected-active-foreground: #ffffff;
     selected-normal-background: {color2};
     selected-normal-foreground: #ffffff;
@@ -73,6 +73,7 @@ listview {{
 }}
 
 element {{
+	spacing: 4px;
     border: 0;
 	border-radius: 3px;
     padding: 8px;

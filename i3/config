@@ -14,7 +14,7 @@ set $sup Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Roboto:sans-serif 9
+font pango:Roboto 14px
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -192,7 +192,7 @@ bindsym $mod+Shift+b exec firefox
 bindsym $mod+Shift+f exec gnome-terminal -- bash -ic ranger
 
 # rofi menus
-bindsym $sup+space exec rofi -show drun
+bindsym $sup+space exec rofi -show drun -drun-display-format {name}
 bindsym $sup+Tab exec rofi -show window
 bindsym $sup+r exec rofi -show run
 bindsym $sup+e exec rofimoji --rofi-args=" -no-show-icons" --prompt="emoji"
@@ -220,11 +220,11 @@ set_from_resource $ac i3wm.color1  #368CC9
 set_from_resource $ur i3wm.color2  #E03E56
 
 # Frame colors
-# class                 border	bground	text	indictr	child border
-client.focused          $ac		$ac		$fg		$ac		$ac
+# class                 border	bg		text	indi	child bdr
+client.focused          $ac		$ac		$bg		$ac		$ac
 client.focused_inactive $bg		$bg		$fg		$bg		$bg
 client.unfocused        $bg		$bg		$fg		$bg		$bg
-client.urgent           $ur		$ur		$fg		$ur		$ur
+client.urgent           $ur		$ur		$bg		$ur		$ur
 client.placeholder      $bg		$bg		$fg		$bg		$bg
 
 gaps inner 16

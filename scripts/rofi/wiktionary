@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# Get dictionary definitions from Wiktionary using Rofi
+# (c) 2020 katacarbix
+# Free to use and modify.
+
 import json
 import sys
 from subprocess import Popen, PIPE
@@ -22,6 +26,9 @@ POStable = {
 	'verb':			'(v) '
 }
 
+parser = WiktionaryParser()
+parser.set_default_language('english') # Change this to the language you want to use.
+
 def open_rofi(entries, prompt='define'):
 	rofi = Popen(
 		[
@@ -42,12 +49,8 @@ def copy(text):
 	Popen(args=['xsel', '-i', '-b'], stdin=PIPE) \
 		.communicate(input=text.encode('utf-8'))
 
-def lookup(query, lang='english'):
+def lookup(query):
 	query = query.decode('UTF-8').strip()
-	
-	parser = WiktionaryParser()
-	parser.set_default_language(lang)
-	
 	word = parser.fetch(query)
 	entries = []
 	

@@ -12,6 +12,8 @@
       "p"
     ]
     makeNeverCloseSelfClosing: false
+  "build-sassc":
+    customArguments: "--style compact {FILE_ACTIVE} {FILE_ACTIVE_NAME_BASE}.css"
   core:
     allowPendingPaneItems: false
     audioBeep: false
@@ -29,13 +31,15 @@
     atomicSoftTabs: false
     fontFamily: "Hack, Noto Color Emoji, monospace"
     fontSize: 16
-    maxScreenLineLength: 10000000000000000000
+    preferredLineLength: 8000
     scrollPastEnd: true
     showIndentGuide: true
     softTabs: false
     softWrap: true
     tabLength: 4
-    undoGroupingInterval: 500
+    undoGroupingInterval: 600
+  "exception-reporting":
+    userId: "3c20228a-6ff3-4069-a341-36a1fce2de05"
   "markdown-preview":
     useGitHubStyle: true
   welcome:
