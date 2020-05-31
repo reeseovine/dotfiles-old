@@ -22,5 +22,6 @@ synclient MaxTapTime=0
 
 # Applications
 redshift &
+nm-applet &
 solaar &
 duplicati &

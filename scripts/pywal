@@ -2,12 +2,9 @@
 
 wppath=${1:-~/Pictures/Wallpapers/favorites/}
 
-wal -i $wppath --backend colorz
+wal --backend colorz -i $wppath
 
 sleep 1
-
-# set keyboard color
-python3 ~/git/dotfiles/scripts/razer 5
 
 # update firefox theme
 pywalfox update
@@ -15,8 +12,15 @@ pywalfox update
 # update atom theme
 touch ~/.atom/styles.less
 
+# set keyboard color
+python3 ~/git/dotfiles/scripts/razer 5
+
+# relaunch dunst (notifications)
+killall dunst
+dunst &
+
 # compile discord theme
-sassc ~/git/discord-themes/bliss/pywal.scss ~/git/discord-themes/bliss/pywal.css
+sassc ~/git/discord-stuff/themes/bliss/pywal.scss ~/git/discord-stuff/themes/bliss/pywal.css
 
 # compile android messages theme
 sassc ~/.config/android-messages/css/user-style.scss ~/.config/android-messages/css/user-style.css
