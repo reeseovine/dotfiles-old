@@ -15,10 +15,6 @@ touch ~/.atom/styles.less
 # set keyboard color
 python3 ~/git/dotfiles/scripts/razer 5
 
-# relaunch dunst (notifications)
-killall dunst
-dunst &
-
 # compile discord theme
 sassc ~/git/discord-stuff/themes/bliss/pywal.scss ~/git/discord-stuff/themes/bliss/pywal.css
 
