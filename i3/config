@@ -221,7 +221,7 @@ set_from_resource $ur i3wm.color2  #E03E56
 
 # Frame colors
 # class                 border	bg		text	indi	child bdr
-client.focused          $ac		$ac		$bg		$ac		$ac
+client.focused          $ac		$ac		$fg		$ac		$ac
 client.focused_inactive $bg		$bg		$fg		$bg		$bg
 client.unfocused        $bg		$bg		$fg		$bg		$bg
 client.urgent           $ur		$ur		$bg		$ur		$ur
