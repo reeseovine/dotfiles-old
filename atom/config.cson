@@ -18,6 +18,10 @@
     allowPendingPaneItems: false
     audioBeep: false
     autoHideMenuBar: true
+    customFileTypes:
+        'source.java': [
+            'pde'
+        ]
     disabledPackages: [
       "background-tips"
     ]
@@ -40,8 +44,7 @@
     undoGroupingInterval: 600
   "exception-reporting":
     userId: "3c20228a-6ff3-4069-a341-36a1fce2de05"
-  "markdown-preview":
-    useGitHubStyle: true
+  "markdown-preview": {}
   welcome:
     showOnStartup: false
   whitespace:
