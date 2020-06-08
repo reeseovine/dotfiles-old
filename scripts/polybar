@@ -4,11 +4,7 @@
 killall -q polybar
 
 # wait
-sleep 2
-
-source ~/.cache/wal/colors.sh
-# export envar with alpha set.
-export bgtrans="#cc${color0/'#'}"
+sleep 1
 
 # Launch main bar
 polybar -q -c ~/.config/polybar/config.ini main &
