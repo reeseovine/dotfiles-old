@@ -1,36 +1,10 @@
-/* @import url('file:///home/reese/.cache/wal/colors.css'); */
-
 :root {
 	font-family: Roboto, sans-serif !important;
 	
-	/* Backgrounds */
-	/* --lwt-accent-color: var(--color4) !important; /* header */
-	/* --toolbar-bgcolor: var(--background) !important; /* active tab and toolbar */
-	/* --lwt-toolbar-field-background-color: #363636 !important; /* url box */
-	/* --autocomplete-popup-highlight-background: var(--color1) !important; /* autocomplete highlight */
-	/* --autocomplete-popup-highlight-color: #fff !important; /* autocomplete highlighted text */
-	
-	/* Text */
-	/* --lwt-text-color: #fff !important; /* header text
-	--toolbar-color: #fff !important; /* toolbar text
-	--lwt-toolbar-field-color: #fff !important; /* url box */
-	
 	/* Borders */
 	--tabs-border-color: transparent !important; /* border surrounding tab and toolbar */
-	/* --lwt-toolbar-field-border-color: #363636 !important; /* url box */
 	--lwt-background-tab-separator-color: transparent; /* tab separator */
 }
-
-/* #urlbar:not(.megabar),
-#urlbar.megabar > #urlbar-background,
-#searchbar {
-	border-color: #333 !important;
-}
-
-::-moz-selection {
-	background-color: var(--color1) !important;
-	color: #fff !important;
-} */
 
 /* get rid of ugly borders */
 .tab-background {

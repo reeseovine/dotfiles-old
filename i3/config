@@ -237,7 +237,3 @@ bindsym $alt+g gaps inner all toggle 18
 # Startup scripts
 exec --no-startup-id ~/git/dotfiles/scripts/startup
 exec_always ~/git/dotfiles/scripts/polybar
-
-# Open applications
-exec --no-startup-id i3-msg 'workspace 3; exec firefox; workspace 4; exec discord; workspace 5; exec gtk-launch android-messages; workspace 1; exec kitty'
-for_window [class="Discord"] move container to workspace 4

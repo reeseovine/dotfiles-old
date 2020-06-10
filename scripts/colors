@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Tool for displaying terminal colors.
-# (c) 2020 - Reese Jacobson
+# (c) 2020 - katacarbix
 # Free to use and modify.
 
 import sys

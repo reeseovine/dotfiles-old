@@ -19,9 +19,9 @@
     audioBeep: false
     autoHideMenuBar: true
     customFileTypes:
-        'source.java': [
-            'pde'
-        ]
+      "source.java": [
+        "pde"
+      ]
     disabledPackages: [
       "background-tips"
     ]

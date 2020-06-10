@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# Based on this script: https://bbs.archlinux.org/viewtopic.php?pid=1037160#p1037160
+
 SLEEP_TIME=5   # Default time between checks.
 SAFE_PERCENT=30  # Still safe at this level.
 DANGER_PERCENT=10  # Warn when battery at this level.
