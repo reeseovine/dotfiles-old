@@ -1,0 +1,1 @@
+xmodmap -e "keysym Insert = Multi_key"

@@ -192,6 +192,8 @@ bindsym XF86MonBrightnessDown exec light -U 5
 bindsym $alt+Shift+b exec firefox
 # Open ranger
 bindsym $alt+Shift+f exec kitty ranger
+# Open screenshot tool on PrtSc
+bindcode 107 exec gtk-launch org.gnome.Screenshot
 
 # rofi menus
 bindsym $sup+space exec rofi -show drun -drun-display-format {name}
@@ -202,6 +204,14 @@ bindsym $sup+e exec rofimoji --prompt="emoji" --rofi-args=" -no-show-icons"
 bindsym $sup+u exec rofimoji --prompt="unichr" --files all --rofi-args=" -no-show-icons"
 bindsym $sup+Escape exec ~/scripts/rofi/rofi-power
 bindsym $sup+equal exec ~/scripts/rofi/=
+
+# macOS-like screenshots
+bindsym $sup+Shift+2			exec --no-startup-id maim -i $(xdotool getactivewindow) ~/Pictures/Screenshots/$(date -Iseconds).png
+bindsym $sup+Control+Shift+2	exec --no-startup-id maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym $sup+Shift+3			exec --no-startup-id maim ~/Pictures/Screenshots/$(date -Iseconds).png
+bindsym $sup+Control+Shift+3	exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym $sup+Shift+4			exec --no-startup-id maim -s ~/Pictures/Screenshots/$(date -Iseconds).png
+bindsym $sup+Control+Shift+4	exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
 
 
 # Borders

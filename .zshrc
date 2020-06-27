@@ -95,4 +95,4 @@ alias python='python3'
 alias pip='sudo -H pip3'
 
 # Register SSH key(s)
-ssh-add ~/.ssh/git_ed35519
+ssh-add ~/.ssh/git_ed35519 &>/dev/null

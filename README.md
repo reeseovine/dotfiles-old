@@ -54,6 +54,10 @@ My basic configuration which uses pywal colors.
 
 The piece that arguably ties it all together. I made a few templates to get the results I want.
 
+## xsessionrc
+
+Binds `insert` as compose key.
+
 ## zshrc
 
 Nothing special. Uses [oh my zsh](https://github.com/ohmyzsh/ohmyzsh).

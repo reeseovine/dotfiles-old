@@ -6,6 +6,15 @@
 	--lwt-background-tab-separator-color: transparent; /* tab separator */
 }
 
+/* Transparency stuff, stolen from https://github.com/manilarome/blurredfox */
+#main-window {
+	/* background: #000000cc !important; */
+}
+
+toolbar {
+	background-image: none !important;
+}
+
 /* get rid of ugly borders */
 .tab-background {
 	border: none !important;
