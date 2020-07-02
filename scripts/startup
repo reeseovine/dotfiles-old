@@ -14,9 +14,6 @@ xset -dpms s off
 # ...and use xautolock instead
 xautolock -time 20 -locker "~/scripts/lock" &
 
-# Disable touchpad taps
-synclient MaxTapTime=0
-
 # Set wallpaper and colors
 ~/git/dotfiles/scripts/pywal &
 

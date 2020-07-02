@@ -24,7 +24,7 @@ Config file for the `dunst` notification handler
 
 ## firefox
 
-`userChrome.css` to remove some ugly borders and whatnot. I'm also using the [Pywalfox](https://github.com/frewacom/Pywalfox) extension.
+`userChrome.css` to remove some ugly borders and whatnot. I'm also using the extension [Pywalfox](https://github.com/frewacom/Pywalfox). I would include its config if there was a way to export it.
 
 ## i3
 
@@ -56,7 +56,7 @@ The piece that arguably ties it all together. I made a few templates to get the 
 
 ## xsessionrc
 
-Binds `insert` as compose key.
+A script that gets run when an X session starts.
 
 ## zshrc
 

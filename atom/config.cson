@@ -41,6 +41,7 @@
     showIndentGuide: true
     softTabs: false
     softWrap: true
+    tabLength: 4
     undoGroupingInterval: 600
   "exception-reporting":
     userId: "3c20228a-6ff3-4069-a341-36a1fce2de05"

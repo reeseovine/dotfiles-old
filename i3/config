@@ -140,6 +140,10 @@ bindsym $alt+Shift+8 move container to workspace number $ws8
 bindsym $alt+Shift+9 move container to workspace number $ws9
 bindsym $alt+Shift+0 move container to workspace number $ws10
 
+# switch to the previous or next workspace with [ and ]
+bindcode $alt+34 workspace prev
+bindcode $alt+35 workspace next
+
 # reload the configuration file
 bindsym $alt+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)

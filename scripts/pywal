@@ -1,8 +1,7 @@
 #!/bin/bash
 
 wppath=${1:-~/Pictures/Wallpapers/favorites/}
-
-wal --backend colorz -i $wppath
+wal --backend colorz -i "$wppath"
 
 sleep 1
 
