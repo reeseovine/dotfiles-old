@@ -4,8 +4,9 @@
 # (c) 2020 katacarbix
 # Free to use and modify.
 
-import json
 import sys
+import re
+import json
 from subprocess import Popen, PIPE
 from wiktionaryparser import WiktionaryParser
 
@@ -44,29 +45,32 @@ def open_rofi(entries, prompt='define'):
 	(stdout, _) = rofi.communicate(input=entries.encode('UTF-8'))
 	return rofi.returncode, stdout
 
-def copy(text):
+def copy(text): # Copy text to the clipboard
 	text = text.decode('UTF-8').strip().split(' ', 1)[1]
 	Popen(args=['xsel', '-i', '-b'], stdin=PIPE) \
 		.communicate(input=text.encode('utf-8'))
 
+def open(word): # Open link in browser
+	# TODO: replace 'en' with language specified at start
+	url = "https://en.wiktionary.org/wiki/" + re.sub(r'\s', '_', word)
+	Popen(args=['xdg-open', url]).communicate()
+
 def lookup(query):
 	query = query.decode('UTF-8').strip()
 	word = parser.fetch(query)
-	entries = []
 	
+	entries = []
 	for defn in word[0]['definitions']:
 		for text in defn['text']:
 			if text[:len(query)] != query:
 				entries.append(POStable[defn['partOfSpeech']] + text.rstrip(':'))
 	
-	(_, query) = open_rofi("\n".join(entries))
-	if len(query) > 0:
-		if query.decode('UTF-8')[0] != '(':
-			lookup(query)
+	(_, next) = open_rofi("\n".join(entries))
+	if len(next) > 0:
+		if next.decode('UTF-8')[0] != '(':
+			lookup(next)
 		else:
-			copy(query)
-	else:
-		return
+			open(query)
 
 if __name__ == '__main__':
 	if len(sys.argv) == 1:

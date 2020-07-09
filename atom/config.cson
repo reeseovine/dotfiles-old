@@ -19,10 +19,6 @@
     allowPendingPaneItems: false
     audioBeep: false
     autoHideMenuBar: true
-    customFileTypes:
-      "source.java": [
-        "pde"
-      ]
     disabledPackages: [
       "background-tips"
     ]
@@ -46,6 +42,10 @@
   "exception-reporting":
     userId: "3c20228a-6ff3-4069-a341-36a1fce2de05"
   "markdown-preview": {}
+  processing: {}
+  script:
+    cwdBehavior: "Directory of the script"
+    stopOnRerun: true
   welcome:
     showOnStartup: false
   whitespace:
