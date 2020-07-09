@@ -95,7 +95,7 @@ bindsym $alt+e layout toggle split
 bindsym $alt+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $alt+space focus mode_toggle
+#bindsym $alt+space focus mode_toggle
 
 # focus the parent container
 bindsym $alt+a focus parent
@@ -246,6 +246,9 @@ gaps outer 0
 
 # Toggle gaps
 bindsym $alt+g gaps inner all toggle 18
+
+# Sticky window
+bindsym $alt+space sticky toggle
 
 
 # Startup scripts
