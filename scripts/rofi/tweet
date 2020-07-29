@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# make tweets using rofi
+
+tweet_text=$(rofi -dmenu -p 'tweet')
+if [[ -z "$tweet_text" ]]; then
+	notify-send "tweet.sh" "Tweet empty"
+	exit 1
+fi
+
+output=$(~/scripts/tweet.sh post $tweet_text)
+#url="http://t.co/$(echo "$output" | jq -r '.id')"
+#echo "$url"
+
+notify-send "tweet.sh" "Tweet sent!"

@@ -211,6 +211,7 @@ bindsym $sup+space exec rofi -show drun -drun-display-format {name}
 bindsym $sup+Tab exec rofi -show window
 bindsym $sup+r exec rofi -show run
 bindsym $sup+d exec ~/scripts/rofi/wiktionary
+bindsym $sup+t exec ~/scripts/rofi/tweet
 bindsym $sup+e exec rofimoji --prompt="emoji" --rofi-args=" -no-show-icons"
 bindsym $sup+u exec rofimoji --prompt="unichr" --files all --rofi-args=" -no-show-icons"
 bindsym $sup+Escape exec ~/scripts/rofi/rofi-power
