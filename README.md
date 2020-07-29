@@ -40,7 +40,7 @@ Specifically, [i3-gaps](https://github.com/Airblader/i3/tree/gaps).
 
 ## polybar
 
-Started with theme 4 from [adi1090x/polybar-themes](https://github.com/adi1090x/polybar-themes) and heavily modified to taste.
+Started with theme 4 from [adi1090x/polybar-themes](https://github.com/adi1090x/polybar-themes) and heavily modified to taste. Could do with some cleaning up...
 
 ## ranger
 
@@ -48,7 +48,7 @@ Just some basic changes to the default config.
 
 ## rofi
 
-My basic configuration which uses pywal colors.
+My simple configuration which uses pywal colors.
 
 ## wal
 
