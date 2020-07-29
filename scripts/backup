@@ -1,0 +1,5 @@
+#!/bin/bash
+
+notify-send -u low -i drive-multidisk "Backup" "Started"
+rsync -a --exclude-from=/home/reese/git/dotfiles/rsync/excludelist /home rsync://192.168.0.253/sad-machine/
+notify-send -u low -i drive-multidisk "Backup" "Finished!"

@@ -95,7 +95,7 @@ bindsym $alt+e layout toggle split
 bindsym $alt+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-#bindsym $alt+space focus mode_toggle
+bindsym $alt+space focus mode_toggle
 
 # focus the parent container
 bindsym $alt+a focus parent
@@ -182,11 +182,18 @@ bindsym $alt+r mode "resize"
 # [L]ock
 bindsym $alt+Shift+l exec ~/scripts/lock
 
+# Kill misbehaving window
+bindcode --release $alt+70 exec xkill
+
+# Toggle gaps
+bindsym $alt+g gaps inner all toggle 18
+
+# Sticky window
+bindsym $alt+Shift+s sticky toggle
+
 ## Keyboard backlight control
-# Amount to increase/decrease brightness
-set $brightness_step 10
-bindsym XF86KbdBrightnessUp   exec ~/scripts/brightness -i $brightness_step
-bindsym XF86KbdBrightnessDown exec ~/scripts/brightness -d $brightness_step
+bindsym XF86KbdBrightnessUp   exec ~/scripts/brightness -i 10
+bindsym XF86KbdBrightnessDown exec ~/scripts/brightness -d 10
 
 ## Screen backlight control
 bindsym XF86MonBrightnessUp exec light -A 5
@@ -233,22 +240,19 @@ set_from_resource $fg i3wm.color15 #FFFFFF
 set_from_resource $ac i3wm.color1  #368CC9
 set_from_resource $ur i3wm.color2  #E03E56
 
+set $white #FFFFFF
+set $black #000000
+
 # Frame colors
 # class                 border	bg		text	indi	child bdr
-client.focused          $ac		$ac		$fg		$ac		$ac
-client.focused_inactive $bg		$bg		$fg		$bg		$bg
-client.unfocused        $bg		$bg		$fg		$bg		$bg
-client.urgent           $ur		$ur		$bg		$ur		$ur
-client.placeholder      $bg		$bg		$fg		$bg		$bg
+client.focused          $ac		$ac		$white	$ac		$ac
+client.focused_inactive $bg		$bg		$white	$bg		$bg
+client.unfocused        $bg		$bg		$white	$bg		$bg
+client.urgent           $ur		$ur		$black	$ur		$ur
+client.placeholder      $bg		$bg		$white	$bg		$bg
 
 gaps inner 16
 gaps outer 0
-
-# Toggle gaps
-bindsym $alt+g gaps inner all toggle 18
-
-# Sticky window
-bindsym $alt+space sticky toggle
 
 
 # Startup scripts
