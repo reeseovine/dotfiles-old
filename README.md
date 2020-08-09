@@ -22,10 +22,6 @@ Uses [my theme](https://github.com/katacarbix/atom-bliss-blur-ui) plus some cust
 
 Config file for the `dunst` notification handler
 
-## firefox
-
-`userChrome.css` to remove some ugly borders and whatnot. I'm also using the extension [Pywalfox](https://github.com/frewacom/Pywalfox). I would include its config if there was a way to export it.
-
 ## i3
 
 Specifically, [i3-gaps](https://github.com/Airblader/i3/tree/gaps).
@@ -49,6 +45,10 @@ Just some basic changes to the default config.
 ## rofi
 
 My simple configuration which uses pywal colors.
+
+## vivaldi
+
+I recently switched to Vivaldi from Firefox. I enabled custom CSS in `vivaldi://experiments` and set the directory to here.
 
 ## wal
 

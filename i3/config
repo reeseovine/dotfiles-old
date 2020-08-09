@@ -200,16 +200,17 @@ bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
 # Open web [b]rowser
-bindsym $alt+Shift+b exec firefox
+bindsym $alt+Shift+b exec vivaldi
 # Open ranger
 bindsym $alt+Shift+f exec kitty ranger
 # Open screenshot tool on PrtSc
-bindcode 107 exec gtk-launch org.gnome.Screenshot
+#bindcode 107 exec gtk-launch org.gnome.Screenshot
 
 # rofi menus
 bindsym $sup+space exec rofi -show drun -drun-display-format {name}
 bindsym $sup+Tab exec rofi -show window
 bindsym $sup+r exec rofi -show run
+bindsym $sup+s exec ~/scripts/rofi/userscripts
 bindsym $sup+d exec ~/scripts/rofi/wiktionary
 bindsym $sup+t exec ~/scripts/rofi/tweet
 bindsym $sup+e exec rofimoji --prompt="emoji" --rofi-args=" -no-show-icons"
@@ -254,6 +255,9 @@ client.placeholder      $bg		$bg		$white	$bg		$bg
 
 gaps inner 16
 gaps outer 0
+
+# Always focus window when activated
+focus_on_window_activation focus
 
 
 # Startup scripts

@@ -93,6 +93,7 @@ export PAGER=less
 # For a full list of active aliases, run `alias`.
 alias python='python3'
 alias pip='sudo -H pip3'
+alias icat="kitty +kitten icat"
 
 # Register SSH key(s)
 ssh-add ~/.ssh/git_ed35519 &>/dev/null

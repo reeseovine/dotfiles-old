@@ -10,11 +10,12 @@ reboot_command="systemctl reboot"
 logout_command="i3-msg exit"
 #hibernate_command="systemctl hibernate"
 suspend_command="systemctl suspend"
+lock_command="bash -e ~/scripts/lock"
 
 # you can customise the rofi command all you want ...
-rofi_command="rofi" # -width 10 -hide-scrollbar -bg #586e75 -opacity 100 -padding 5"
+rofi_command="rofi -lines 5"
 
-options=$'suspend\npoweroff\nreboot\nlogout'
+options=$'suspend\nlock\npoweroff\nreboot\nlogout'
 
 # ... because the essential options (-dmenu and -p) are added here
 eval \$"$(echo "$options" | $rofi_command -dmenu -p 'action')_command"

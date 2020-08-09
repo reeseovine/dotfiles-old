@@ -2,14 +2,16 @@
 
 # make tweets using rofi
 
-tweet_text=$(rofi -dmenu -p 'tweet')
+tweet_text=$(rofi -dmenu -p 'tweet' -lines 0 -width 1000)
 if [[ -z "$tweet_text" ]]; then
-	notify-send "tweet.sh" "Tweet empty"
+	#notify-send "tweet.sh" "Tweet empty"
 	exit 1
 fi
 
 output=$(~/scripts/tweet.sh post $tweet_text)
-#url="http://t.co/$(echo "$output" | jq -r '.id')"
-#echo "$url"
 
-notify-send "tweet.sh" "Tweet sent!"
+if [[ 'null' == $(echo '$output' | jq -r '.id') ]]; then
+	notify-send "tweet.sh" "$(echo '$output' | jq -r '.errors[0].message')"
+else
+	notify-send "tweet.sh" "Tweet sent!"
+fi
