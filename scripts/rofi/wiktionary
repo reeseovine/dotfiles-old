@@ -65,8 +65,13 @@ def lookup(query):
 			if text[:len(query)] != query:
 				entries.append(POStable[defn['partOfSpeech']] + text.rstrip(':'))
 	
-	(_, next) = open_rofi("\n".join(entries))
-	if len(next) > 0:
+	next = None
+	if len(entries) == 0:
+		(_, next) = open_rofi("No matching entries found.")
+	else:
+		(_, next) = open_rofi("\n".join(entries))
+	
+	if next != None and len(next) > 0:
 		if next.decode('UTF-8')[0] != '(':
 			lookup(next)
 		else:

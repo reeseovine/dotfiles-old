@@ -56,7 +56,7 @@ The piece that arguably ties it all together. I made a few templates to get the 
 
 ## xsessionrc
 
-A script that gets run when an X session starts.
+A script that runs when an X session starts.
 
 ## zshrc
 
