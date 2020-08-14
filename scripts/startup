@@ -22,13 +22,13 @@ redshift &
 nm-applet &
 blueman-tray &
 
-firefox &
+vivaldi --remote-debugging-port=9222 &
 discord &
 caprine &
 gtk-launch android-messages &
 
 sleep 6s
-i3-msg [class="Firefox"] move container to workspace 3
+i3-msg [class="vivaldi"] move container to workspace 3
 i3-msg [class="discord"] move container to workspace 4
 i3-msg [class="Caprine"] move container to workspace 5
 i3-msg [class="android-messages"] move container to workspace 5

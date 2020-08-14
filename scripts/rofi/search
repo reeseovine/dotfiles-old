@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# search the web using rofi
+
+engines=$'google\nduckduckgo'
+google_url="https://www.google.com/search?q="
+duckduckgo_url="https://duckduckgo.com/?q="
+
+engine=$(echo "$engines" | rofi -dmenu -p 'choose a search engine' -lines 2)
+query=$(rofi -dmenu -p 'query' -lines 2)
+
+if [[ -z "$query" ]]; then
+	exit 1
+else
+	xdg-open "$(eval echo \$"$(echo "$engine")_url")$query"
+	exit 0
+fi

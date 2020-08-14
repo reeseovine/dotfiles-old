@@ -101,7 +101,7 @@ bindsym $alt+space focus mode_toggle
 bindsym $alt+a focus parent
 
 # focus the child container
-#bindsym $alt+d focus child
+bindsym $alt+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -182,7 +182,7 @@ bindsym $alt+r mode "resize"
 # [L]ock
 bindsym $alt+Shift+l exec ~/scripts/lock
 
-# Kill misbehaving window
+# Kill misbehaving window with alt+F4
 bindcode --release $alt+70 exec xkill
 
 # Toggle gaps
@@ -200,17 +200,15 @@ bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
 # Open web [b]rowser
-bindsym $alt+Shift+b exec vivaldi
-# Open ranger
+bindsym $alt+Shift+b exec vivaldi --remote-debugging-port=9222
+# Open ranger [f]ile manager
 bindsym $alt+Shift+f exec kitty ranger
-# Open screenshot tool on PrtSc
-#bindcode 107 exec gtk-launch org.gnome.Screenshot
 
 # rofi menus
 bindsym $sup+space exec rofi -show drun -drun-display-format {name}
 bindsym $sup+Tab exec rofi -show window
 bindsym $sup+r exec rofi -show run
-bindsym $sup+s exec ~/scripts/rofi/userscripts
+bindsym $sup+s exec ~/scripts/rofi/search
 bindsym $sup+d exec ~/scripts/rofi/wiktionary
 bindsym $sup+t exec ~/scripts/rofi/tweet
 bindsym $sup+e exec rofimoji --prompt="emoji" --rofi-args=" -no-show-icons"
