@@ -22,13 +22,17 @@ redshift &
 nm-applet &
 blueman-tray &
 
+i3-msg "workspace 3; append_layout /home/reese/git/dotfiles/i3/layouts/3.json"
+i3-msg "workspace 4; append_layout /home/reese/git/dotfiles/i3/layouts/4.json"
+i3-msg "workspace 5; append_layout /home/reese/git/dotfiles/i3/layouts/5.json"
+
+sleep 1
+
 vivaldi --remote-debugging-port=9222 &
 discord &
 caprine &
 gtk-launch android-messages &
 
-sleep 6s
-i3-msg [class="vivaldi"] move container to workspace 3
-i3-msg [class="discord"] move container to workspace 4
-i3-msg [class="Caprine"] move container to workspace 5
-i3-msg [class="android-messages"] move container to workspace 5
+sleep 6
+
+i3-msg "workspace 1"

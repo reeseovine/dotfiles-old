@@ -8,8 +8,8 @@ sleep 1
 # update firefox theme
 #pywalfox update
 
-# update vivaldi theme
-~/git/dotfiles/scripts/vivwal &
+# update vivaldi theme (silent)
+~/git/dotfiles/scripts/vivwal >/dev/null &
 
 # update atom theme
 touch ~/.atom/styles.less

@@ -37,7 +37,7 @@ else
 			tabnumber=$(echo "$line" | grep -o '[0-9]\+')
 			# change Vivaldi accent background colour
 			var=$(
-    			(echo ".switch $tabnumber"; sleep 1; echo "chrome.storage.local.set({'BROWSER_COLOR_BG':'$background', 'BROWSER_COLOR_FG':'$foreground', 'BROWSER_COLOR_ACCENT_BG':'$color5', 'BROWSER_COLOR_HIGHLIGHT_BG':'$color1'})") | crconsole &
+    			(echo ".switch $tabnumber"; sleep 1; echo "chrome.storage.local.set({'BROWSER_COLOR_BG':'$background', 'BROWSER_COLOR_ACCENT_BG':'$color5', 'BROWSER_COLOR_HIGHLIGHT_BG':'$color1'})") | crconsole &
     			sleep 1
     			pkill -f "node /usr/bin/crconsole"
 			)

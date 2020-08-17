@@ -257,6 +257,9 @@ gaps outer 0
 # Always focus window when activated
 focus_on_window_activation focus
 
+# Always float certain windows
+for_window [class="processing-core-PApplet"] floating enable
+
 
 # Startup scripts
 exec --no-startup-id ~/git/dotfiles/scripts/startup
