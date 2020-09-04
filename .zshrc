@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/reese/git/oh-my-zsh"
+export ZSH="/home/reese/git/github.com/ohmyzsh/oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -68,14 +68,14 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+## User configuration
 
-# Add programs to $PATH
-export PATH=$PATH:/home/reese/Programs/processing-3.5.4/
+# Add dirs to $PATH
+export PATH=/home/reese/bin:/home/reese/Programs/processing-3.5.4/:$PATH
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -87,6 +87,12 @@ export TERMINAL=kitty
 export EDITOR=nano
 export PAGER=less
 
+# git-get environment variables
+export GIT_PATH=~/git/
+
+# git-get alias
+gg () { dir="$(git get $1)"; [[ -n "$dir" ]] && cd $dir }
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -97,3 +103,6 @@ alias icat="kitty +kitten icat"
 
 # Register SSH key(s)
 ssh-add ~/.ssh/git_ed35519 &>/dev/null
+
+# Load autojump
+source /usr/share/autojump/autojump.sh

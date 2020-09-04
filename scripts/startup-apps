@@ -1,0 +1,16 @@
+#!/bin/bash
+
+i3-msg "workspace 3; append_layout /home/reese/git/dotfiles/i3/layouts/3.json"
+i3-msg "workspace 4; append_layout /home/reese/git/dotfiles/i3/layouts/4.json"
+i3-msg "workspace 5; append_layout /home/reese/git/dotfiles/i3/layouts/5.json"
+
+sleep 1
+
+vivaldi --remote-debugging-port=9222 &
+discord &
+caprine &
+gtk-launch android-messages &
+
+sleep 6
+
+i3-msg "workspace 1"

@@ -3,7 +3,7 @@ configuration {
 	modi: "window,drun,run";
 	width: 30;
 	lines: 10;
-	font: "Ubuntu mono 14";
+	font: "Hack 12";
 	show-icons: true;
 	hide-scrollbar: true;
 	terminal: "kitty";

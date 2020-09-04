@@ -18,7 +18,7 @@ POStable = {
 	'article':		'(art) ',
 	'conjunction':	'(con) ',
 	'interjection':	'(int) ',
-	'letter':		'(l) ',
+	'letter':		'(ltr) ',
 	'noun':			'(n) ',
 	'numeral':		'(num) ',
 	'preposition':	'(pre) ',
@@ -60,10 +60,11 @@ def lookup(query):
 	word = parser.fetch(query)
 	
 	entries = []
-	for defn in word[0]['definitions']:
-		for text in defn['text']:
-			if text[:len(query)] != query:
-				entries.append(POStable[defn['partOfSpeech']] + text.rstrip(':'))
+	for section in word:
+		for defn in section['definitions']:
+			for text in defn['text']:
+				if text[:len(query)] != query:
+					entries.append(POStable[defn['partOfSpeech']] + text.rstrip(':'))
 	
 	next = None
 	if len(entries) == 0:

@@ -37,7 +37,13 @@ patterns = {
 	],
 	'mini': [
 		'',
-		'  tttt',
+		'tttt',
+		''
+	],
+	'small': [
+		'',
+		'tttt',
+		'bbbb',
 		''
 	],
 	'invaders': [

@@ -214,7 +214,7 @@ bindsym $sup+t exec ~/scripts/rofi/tweet
 bindsym $sup+e exec rofimoji --prompt="emoji" --rofi-args=" -no-show-icons"
 bindsym $sup+u exec rofimoji --prompt="unichr" --files all --rofi-args=" -no-show-icons"
 bindsym $sup+Escape exec ~/scripts/rofi/rofi-power
-bindsym $sup+equal exec ~/scripts/rofi/=
+bindsym $sup+equal exec rofi -show calc -modi calc -no-show-match -no-sort
 
 # macOS-like screenshots
 bindsym $sup+Shift+2			exec --no-startup-id maim -i $(xdotool getactivewindow) ~/Pictures/Screenshots/$(date -Iseconds).png
@@ -262,5 +262,6 @@ for_window [class="processing-core-PApplet"] floating enable
 
 
 # Startup scripts
-exec --no-startup-id ~/git/dotfiles/scripts/startup
+exec --no-startup-id ~/git/dotfiles/scripts/startup-daemons
+exec --no-startup-id ~/git/dotfiles/scripts/startup-apps
 exec_always ~/git/dotfiles/scripts/polybar

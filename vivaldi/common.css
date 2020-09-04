@@ -17,11 +17,6 @@
 	filter: none;
 }
 
-/* hide "recently closed tabs" trash can icon */
-#tabs-container .toggle-trash {
-	display: none !important;
-}
-
 /* fix toolbar height */
 .toolbar-mainbar {
     padding-bottom: 1px;

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Battery warning script
+~/git/dotfiles/scripts/battery-notify &
+
+# Start compositor
+compton -b
+
+# Disable screensaver
+xset -dpms s off
+# ...and use xautolock instead
+xautolock -time 20 -locker "~/scripts/lock" &
+
+# Set wallpaper and colors
+~/git/dotfiles/scripts/pywal &
+
+# Applications
+redshift &
+nm-applet &
+blueman-tray &

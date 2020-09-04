@@ -1,3 +1,7 @@
 atom/*
 !atom/config.cson
 !atom/styles.less
+
+ranger/*
+!ranger/rc.conf
+!ranger/rifle.conf

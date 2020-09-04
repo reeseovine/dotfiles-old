@@ -1,13 +1,9 @@
 #!/bin/bash
 
+pgrep -x rsync >/dev/null && notify-send -i drive-multidisk "Backup" "rsync already running!" && exit
+
 logfile="/home/reese/.log/backup.log"
 
-notify-send -i drive-multidisk "Backup" "Started"
-
-err=$(rsync -avW --exclude-from=/home/reese/git/dotfiles/rsync/excludelist /home rsync://192.168.0.253/sad-machine/ 2>&1 > $logfile)
-
-if [[ $err ]]; then
-	notify-send -u critical -i drive-multidisk "Backup" "An error occurred. Check $logfile for more details."
-else
-	notify-send -i drive-multidisk "Backup" "Finished"
-fi
+notify-send -i drive-multidisk "Backup started"
+rsync -avW --exclude-from=/home/reese/git/dotfiles/rsync/excludelist /home rsync://192.168.0.253/sad-machine/ &> $logfile
+notify-send -i drive-multidisk "Backup finished" "Check $logfile to verify."
