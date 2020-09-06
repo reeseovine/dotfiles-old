@@ -208,6 +208,7 @@ bindsym $alt+Shift+f exec kitty ranger
 bindsym $sup+space exec rofi -show drun -drun-display-format {name}
 bindsym $sup+Tab exec rofi -show window
 bindsym $sup+r exec rofi -show run
+bindsym $sup+b exec ~/scripts/rofi/backupctl
 bindsym $sup+s exec ~/scripts/rofi/search
 bindsym $sup+d exec ~/scripts/rofi/wiktionary
 bindsym $sup+t exec ~/scripts/rofi/tweet
@@ -262,6 +263,6 @@ for_window [class="processing-core-PApplet"] floating enable
 
 
 # Startup scripts
-exec --no-startup-id ~/git/dotfiles/scripts/startup-daemons
-exec --no-startup-id ~/git/dotfiles/scripts/startup-apps
-exec_always ~/git/dotfiles/scripts/polybar
+exec --no-startup-id ~/scripts/startup-daemons
+exec --no-startup-id ~/scripts/startup-apps
+exec_always ~/scripts/polybar

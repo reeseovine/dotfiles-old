@@ -1,9 +1,49 @@
 #!/bin/bash
 
-pgrep -x rsync >/dev/null && notify-send -i drive-multidisk "Backup" "rsync already running!" && exit
-
 logfile="/home/reese/.log/backup.log"
+pidfile="/tmp/backup.pid"
 
-notify-send -i drive-multidisk "Backup started"
-rsync -avW --exclude-from=/home/reese/git/dotfiles/rsync/excludelist /home rsync://192.168.0.253/sad-machine/ &> $logfile
-notify-send -i drive-multidisk "Backup finished" "Check $logfile to verify."
+notify_backup () {
+	notify-send -i drive-multidisk "$1"
+}
+
+case "$1" in
+	abort | cancel | end | exit | halt | kill | quit | stop | term | terminate )
+		if [ -s $pidfile ]; then
+			kill $(cat $pidfile)
+		fi
+		exit 0
+	;;
+esac
+
+# make sure process is not already running
+if [ -e $pidfile ]; then
+	pid=`cat $pidfile`
+	if kill -0 &>1 > /dev/null $pid; then
+		notify_backup "A backup is already running!"
+		exit 1
+	else
+		rm $pidfile
+	fi
+fi
+echo $$ > $pidfile
+
+cleanup () {
+	[ $? -eq 0 ] && notify_backup "Backup finished"
+	echo $? >> $logfile
+	rm $pidfile
+	exit $?
+}
+interrupted () {
+	kill $rsync_pid
+	notify_backup "Backup cancelled"
+	exit 1
+}
+
+trap cleanup EXIT
+trap interrupted TERM INT SIGTERM SIGINT
+
+notify_backup "Backup starting"
+rsync -avW --exclude-from=/home/reese/git/gitlab.com/katacarbix/dotfiles/rsync/excludelist /home rsync://192.168.0.253/sad-machine/ &> $logfile &
+rsync_pid=$!
+wait

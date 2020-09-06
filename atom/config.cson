@@ -31,8 +31,8 @@
     ]
   editor:
     atomicSoftTabs: false
-    fontFamily: "Hack, Noto Color Emoji, monospace"
-    fontSize: 16
+    fontFamily: "Hack, monospace, Noto Color Emoji, Material Icons"
+    fontSize: 18
     preferredLineLength: 8000
     scrollPastEnd: true
     showIndentGuide: true
@@ -42,7 +42,9 @@
     undoGroupingInterval: 600
   "exception-reporting":
     userId: "3c20228a-6ff3-4069-a341-36a1fce2de05"
-  "markdown-preview": {}
+  "markdown-preview":
+    breakOnSingleNewline: true
+    useGitHubStyle: true
   processing: {}
   script:
     cwdBehavior: "Directory of the script"

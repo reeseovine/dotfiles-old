@@ -1,0 +1,33 @@
+#!/bin/env bash
+
+# control my backup script with rofi
+
+logfile="/home/reese/.log/backup.log"
+pidfile="/tmp/backup.pid"
+backup_script="/home/reese/scripts/backup"
+
+rofi_prompt="rofi -dmenu -p backupctl -lines 2"
+
+# is a backup currently running?
+if [ -e $pidfile ] && kill -0 &>1 > /dev/null `cat $pidfile`; then
+	options=$'cancel current backup\nwatch log'
+else
+	options=$'back up now\nread log'
+fi
+
+choice=$(echo "$options" | $rofi_prompt)
+
+case $choice in
+	"back up now")
+		$backup_script &
+	;;
+	"cancel current backup")
+		$backup_script cancel
+	;;
+	"watch log")
+		$TERMINAL bash -c "watch -n 10 tac $logfile"
+	;;
+	"read log")
+		$TERMINAL bash -c "tac $logfile | less"
+	;;
+esac

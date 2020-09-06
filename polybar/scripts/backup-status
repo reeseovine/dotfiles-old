@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+icon=""
+sep=" "
+status_progress=""
+status_never=""
+status_failed=""
+status_outdated=""
+status_finished=""
+
+logfile="/home/reese/.log/backup.log"
+pidfile="/tmp/backup.pid"
+
+while [ true ]; do
+	
+	status=""
+
+	if [ -e $pidfile ] && kill -0 &>1 > /dev/null `cat $pidfile`; then
+		status="$status_progress"
+	elif [[ ! -e $logfile ]]; then
+		status="$status_never"
+	elif [[ ! "$(tail -n 1 $logfile)" =~ ^0 ]]; then
+		status="$status_failed"
+	else
+		age=$(( $(date +%s) - $(date -r $logfile +%s) ))
+		# older than 1 week
+		if [[ $age -gt 604800 ]]; then
+			status="$status_outdated"
+		# newer than 1 hour
+	elif [[ $age -lt 3600 ]]; then
+			status="$status_finished"
+		fi
+	fi
+
+	echo "$icon$sep$status"
+	sleep 10
+
+done
