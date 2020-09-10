@@ -100,6 +100,7 @@ To enable transparency (and blur on some systems/DEs) you should install [Glassc
 I'm using the pywal variant of my [Bliss theme](https://github.com/katacarbix/discord-stuff/) which gets recompiled by the pywal script.
 
 #### [Abricotine](abricotine)
+*Symlinked as ~/.config/Abricotine/app*
 Markdown editor with custom theme support. No transparency out of the box but could probably be modified in the same way, though I like it better opaque. My wal theme is based on the default dark theme. I haven't figured out how to make it refresh the theme automatically yet so it must be done manually (ctrl+F5).
 
 #### What about [Android Messages](https://github.com/katacarbix/android-messages/)<sup>[(name TBD)](https://github.com/katacarbix/android-messages/issues/6)</sup>?
