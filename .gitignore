@@ -5,3 +5,7 @@ atom/*
 ranger/*
 !ranger/rc.conf
 !ranger/rifle.conf
+
+abricotine/*
+!abricotine/config.json
+!abricotine/themes/wal
