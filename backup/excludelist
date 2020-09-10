@@ -4,12 +4,12 @@
 /home/reese/.electron*
 /home/reese/.local/share/lutris/
 /home/reese/.local/share/Steam/
-/home/reese/Backup/
+#/home/reese/Backup/
 /home/reese/Downloads/
 /home/reese/Games/Steam
 /home/reese/Games/Lutris
 /home/reese/Programs
-/home/reese/VirtualBox VMs
+#/home/reese/VirtualBox VMs
 
 */core
 *[Cc]ache*

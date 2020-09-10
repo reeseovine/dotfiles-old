@@ -1,7 +1,27 @@
 #!/bin/bash
 
-echo "Commencing updates..."
-sudo apt update
-sudo apt upgrade -y
-sudo apt autoremove -y
-sudo apt install -f
+update_apt () {
+	sudo apt update
+	sudo apt upgrade -y
+	sudo apt autoremove -y
+	sudo apt install -f
+}
+
+update_npm () {
+	sudo npm upgrade -g
+}
+
+update_pip () {
+	pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo -H pip3 install -U
+}
+
+
+export SUDO_ASKPASS=$(which ssh-askpass)
+sudo -A echo "Commencing updates..."
+
+update_apt &
+update_npm &
+update_pip &
+
+wait
+echo "Updates complete."

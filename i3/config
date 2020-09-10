@@ -192,8 +192,8 @@ bindsym $alt+g gaps inner all toggle 18
 bindsym $alt+Shift+s sticky toggle
 
 ## Keyboard backlight control
-bindsym XF86KbdBrightnessUp   exec ~/scripts/brightness -i 10
-bindsym XF86KbdBrightnessDown exec ~/scripts/brightness -d 10
+bindsym XF86KbdBrightnessUp exec kb-backlight -i 10
+bindsym XF86KbdBrightnessDown exec kb-backlight -d 10
 
 ## Screen backlight control
 bindsym XF86MonBrightnessUp exec light -A 5
@@ -203,6 +203,8 @@ bindsym XF86MonBrightnessDown exec light -U 5
 bindsym $alt+Shift+b exec vivaldi --remote-debugging-port=9222
 # Open ranger [f]ile manager
 bindsym $alt+Shift+f exec kitty ranger
+# Open [G]IMP
+bindsym $alt+Shift+g exec gimp
 
 # rofi menus
 bindsym $sup+space exec rofi -show drun -drun-display-format {name}
@@ -214,7 +216,7 @@ bindsym $sup+d exec ~/scripts/rofi/wiktionary
 bindsym $sup+t exec ~/scripts/rofi/tweet
 bindsym $sup+e exec rofimoji --prompt="emoji" --rofi-args=" -no-show-icons"
 bindsym $sup+u exec rofimoji --prompt="unichr" --files all --rofi-args=" -no-show-icons"
-bindsym $sup+Escape exec ~/scripts/rofi/rofi-power
+bindsym $sup+Escape exec ~/scripts/rofi/power
 bindsym $sup+equal exec rofi -show calc -modi calc -no-show-match -no-sort
 
 # macOS-like screenshots

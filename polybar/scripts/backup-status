@@ -8,8 +8,7 @@ status_failed=""
 status_outdated=""
 status_finished=""
 
-logfile="/home/reese/.log/backup.log"
-pidfile="/tmp/backup.pid"
+source $HOME/.config/backup/config
 
 while [ true ]; do
 	

@@ -20,5 +20,5 @@ sassc ~/git/github.com/katacarbix/discord-stuff/themes/bliss/pywal.scss ~/git/gi
 # compile android messages theme
 # sassc ~/.config/android-messages/css/user-style.scss ~/.config/android-messages/css/user-style.css
 
-# rgb lights (keyboard, lightbulbs, etc.)
+# rgb lights (keyboard, etc.)
 python3 ~/scripts/rgbctl

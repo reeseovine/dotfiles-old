@@ -1,0 +1,25 @@
+#!/bin/env bash
+### Variables for the backup script
+
+## EDIT THESE BEFORE RUNNING
+# Location of backup SOURCE
+addr_src="/home"
+# Location of backup DESTINATION
+addr_dest="rsync://192.168.0.253/sad-machine/"
+
+# List of patterns to exclude from backup
+## Make sure this file exists, then add anything you want to it (or leave it empty)
+excludelist=$HOME/.config/backup/excludelist
+
+# Path to the main backup script. This is for the menu script.
+backup_script=$HOME/scripts/backup
+
+
+# ~~~~~~
+
+
+## You probably don't need to change these...
+# Location of log file
+logfile=$HOME/.log/backup.log
+# Location of PID (process ID) file
+pidfile=/tmp/backup.pid

@@ -2,9 +2,7 @@
 
 # control my backup script with rofi
 
-logfile="/home/reese/.log/backup.log"
-pidfile="/tmp/backup.pid"
-backup_script="/home/reese/scripts/backup"
+source $HOME/.config/backup/config
 
 rofi_prompt="rofi -dmenu -p backupctl -lines 2"
 
@@ -25,9 +23,10 @@ case $choice in
 		$backup_script cancel
 	;;
 	"watch log")
-		$TERMINAL bash -c "watch -n 10 tac $logfile"
+		$TERMINAL bash -c "watch -n 5 tac \"$(echo $logfile)\""
 	;;
 	"read log")
-		$TERMINAL bash -c "tac $logfile | less"
+		echo $logfile
+		$TERMINAL bash -c "tac \"$(echo $logfile)\""
 	;;
 esac

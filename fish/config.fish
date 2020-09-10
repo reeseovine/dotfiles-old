@@ -1,8 +1,12 @@
 set -g theme_display_date no
+set -g theme_display_cmd_duration no
 set -g theme_color_scheme terminal
 
 # Add dirs to $PATH
 export PATH="/home/reese/bin:/home/reese/Programs/processing-3.5.4/:$PATH"
+
+# Register SSH key(s)
+ssh-add ~/.ssh/git_ed35519 &>/dev/null
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8

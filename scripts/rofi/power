@@ -5,12 +5,11 @@
 # tostiheld, 2016
 # source: https://github.com/tostiheld/dotfiles/blob/master/bin/power-menu.sh
 
+suspend_command="systemctl suspend"
+lock_command="bash -e ~/scripts/lock"
 poweroff_command="systemctl poweroff"
 reboot_command="systemctl reboot"
 logout_command="i3-msg exit"
-#hibernate_command="systemctl hibernate"
-suspend_command="systemctl suspend"
-lock_command="bash -e ~/scripts/lock"
 
 # you can customise the rofi command all you want ...
 rofi_command="rofi -lines 5"

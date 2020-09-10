@@ -8,7 +8,7 @@ if [[ -z "$tweet_text" ]]; then
 	exit 1
 fi
 
-output=$(~/scripts/tweet.sh post $tweet_text)
+output=$(tweet.sh post "$tweet_text")
 
 if [[ 'null' == $(echo '$output' | jq -r '.id') ]]; then
 	notify-send "tweet.sh" "$(echo '$output' | jq -r '.errors[0].message')"

@@ -1,0 +1,7 @@
+{
+  "name": "dotfiles",
+  "private": "true",
+  "scripts": {
+    "dist": "markdown-toc ../README.md -i --maxdepth 3"
+  }
+}
