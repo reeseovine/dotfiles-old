@@ -8,4 +8,4 @@ ranger/*
 
 abricotine/*
 !abricotine/config.json
-!abricotine/themes/wal
+!abricotine/themes/wal/*
