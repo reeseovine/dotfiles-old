@@ -169,6 +169,9 @@ Uses i3's `append_layout` feature to restore layouts automatically upon login so
 ### rofi
 Scripts that use rofi as their UI.
 
+**askpass** *by [ivanbartsov](https://github.com/davatorium/rofi/issues/584#issuecomment-384555551)*
+askpass client for sudo.
+
 **power** *by [tostiheld](https://github.com/tostiheld/dotfiles/blob/master/bin/power-menu.sh)*
 Menu for shutting down, logging out, etc.
 
@@ -179,7 +182,7 @@ A wrapper around [tweet.sh](https://github.com/piroor/tweet.sh) so I can send tw
 I started with the code for [Rofimoji](https://github.com/fdw/rofimoji) and repurposed it for looking up definitions from Wiktionary.
 
 ### Backups
-I wrote three bash scripts for managing backups:
+I wrote three scripts for managing backups:
 - [`backup`](scripts/backup) — The main script. It can start and stop backups, and it will keep running until it's done. It's basically just a wrapper for `rsync` with extra features like notifications.
 - [`backupctl`](scripts/rofi/backupctl) — A rofi menu where you can start or stop a backup in the background and open the log file without having to do it a terminal manually.
 - [`backup-status`](polybar/scripts/backup-status) — An indicator for polybar which shows if a backup is running, just ran, failed, or is out of date. It might need some modification to work with other status bars but I think it's a good base to start on. Here's the polybar module:
@@ -194,13 +197,15 @@ I wrote three bash scripts for managing backups:
 
 The [`backup`](backup) directory contains a config file for path variables, and a file containing patterns to exclude.
 
-#### Why?
+**Why?**
 For years I'd been looking for a simple backup solution for Linux that also felt seamless and integrated into the desktop. Once I heard about rsync and learned how to use it I immediately loved how easy it was, but I got tired of typing the entire command each time (or scrolling through my term history for it) so I wrote these in a day to make things easier for me.
 
-#### Shortcomings
+**Shortcomings**
 I didn't include the ability to create multiple backups or schedule them, but I don't think it would be hard to add those features.
 
 It's also highly tailored to my needs and setup which means you might need to translate some of the code to work with your desktop if you use different programs than me.
+
+_**BUG:** Does not report errors correctly._
 
 
 ## Miscellanea

@@ -1,27 +1,41 @@
 #!/bin/bash
 
+# Elevate script
+if (($EUID != 0)); then
+	export SUDO_ASKPASS=~/scripts/rofi/askpass
+	sudo -AH "$0" "$@"
+	exit
+fi
+
+
+# Notification wrapper to de-escalate command
+notify_update () {
+	sudo -u reese notify-send -i software-update-available-symbolic "$1"
+}
+
+
 update_apt () {
-	sudo apt update
-	sudo apt upgrade -y
-	sudo apt autoremove -y
-	sudo apt install -f
+	apt update
+	apt upgrade -y
+	apt autoremove -y
+	apt install -f
 }
 
 update_npm () {
-	sudo npm upgrade -g
+	npm update -g
+	npm install -g electron --unsafe-perm=true # electron is stupid
 }
 
 update_pip () {
-	pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo -H pip3 install -U
+	pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U --use-feature=2020-resolver
 }
 
 
-export SUDO_ASKPASS=$(which ssh-askpass)
-sudo -A echo "Commencing updates..."
+notify_update "Starting updates..."
 
 update_apt &
 update_npm &
 update_pip &
 
 wait
-echo "Updates complete."
+notify_update "Updates complete."
