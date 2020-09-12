@@ -11,6 +11,9 @@ xset -dpms s off
 # ...and use xautolock instead
 xautolock -time 20 -locker "~/scripts/lock" &
 
+# Enable touchpad gestures
+libinput-gestures-setup start
+
 # Set wallpaper and colors
 ~/scripts/pywal &
 

@@ -7,4 +7,11 @@ killall -q polybar
 while pgrep -u $USER -x polybar >/dev/null; do sleep 1; done
 
 # Launch main bar
-polybar -q -c ~/.config/polybar/config.ini main &
+monitor_primary=$(polybar -m | grep primary | sed -Ee 's/^(.*?):.*$/\1/')
+MONITOR="${monitor_primary}" polybar -q -c ~/.config/polybar/config.ini main &
+
+# Launch secondary bar on external monitors
+monitors=($(polybar -m | grep -v primary | sed -Ee 's/^(.*?):.*$/\1/'))
+for mon in "${monitors[@]}"; do
+	MONITOR="${mon}" polybar -q -c ~/.config/polybar/config.ini secondary &
+done

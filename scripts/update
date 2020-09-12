@@ -2,8 +2,7 @@
 
 # Elevate script
 if (($EUID != 0)); then
-	export SUDO_ASKPASS=~/scripts/rofi/askpass
-	sudo -AH "$0" "$@"
+	SUDO_ASKPASS=$(which askpass-rofi) sudo -AH "$0" "$@"
 	exit
 fi
 

@@ -26,6 +26,7 @@ All of the files and directories in the root of the repository (except the READM
 - [Scripts](#scripts)
   * [rofi](#rofi-1)
   * [Backups](#backups)
+  * [Scripts you should know about that weren't mentioned elsewhere](#scripts-you-should-know-about-that-werent-mentioned-elsewhere)
 - [Miscellanea](#miscellanea)
 
 <!-- tocstop -->
@@ -62,7 +63,9 @@ compton is a small but powerful composition backend for X desktops. `tryone144`'
 compton has the ability to set window transparency but I chose to forgo this feature in favor of creating transparent areas within some apps. I then turned off transparency and blurring in compton's config for any program that's opaque.
 
 ### [polybar](polybar)
-This was actually one of the first pieces I added to my environment. I started with [this theme](https://github.com/adi1090x/polybar-themes#-polybar-4) and heavily modified it over time using [polybar's wiki](https://github.com/polybar/polybar/wiki) for help. As you can probably tell it looks rather different but I'll keep the attribution anyway just for record-keeping's sake
+This was actually one of the first pieces I added to my environment. I started with [this theme](https://github.com/adi1090x/polybar-themes#-polybar-4) and heavily modified it over time using [polybar's wiki](https://github.com/polybar/polybar/wiki) for help. As you can probably tell it looks rather different but I'll keep the attribution anyway just for record-keeping's sake.
+
+There's the `main` bar, and one called `secondary` which is stripped down for multi-monitor setups.
 
 ### [dunst](dunst/dunstrc)
 A notification daemon that displays desktop notifications. The style is pretty extensively customizable, but sadly the one thing that it can't do is variable transparency, so it has to be applied to the entire thing. Luckily it's not too noticeable (in my opinion). It doesn't use colors from wal because I think it looks cleaner without them.
@@ -118,7 +121,7 @@ My config contains only the features that I need. I tried not to get bogged down
 ### [fish](fish)
 fish is nice because it leaves behind some of the typical shell paradigms carried through the decades in favor of having a much more friendly user experience.
 
-I was hesitant to try it at first because people said it's "not POSIX-compliant". But what does that mean, really? The scripts that I had written already have a [hashbang](https://en.wikipedia.org/wiki/Shebang_(Unix)) line at the top, which should always be standard practice if you want it to be portable. Another supposed drawback is that most shell-code pasted into the terminal won't always work right away, but I found this to also be the case with zsh sometimes too.
+I was hesitant to try it at first because people said it's "not POSIX-compliant". But what does that mean, really? The scripts that I had written already have a [hashbang](https://en.wikipedia.org/wiki/Shebang_(Unix)) line at the top, which should always be standard practice anyway. Another supposed drawback is that most shell-code pasted into the terminal won't always work right away, but I found this to be the case with zsh sometimes too.
 
 Overall I think fish is easier to use, and if backwards-compatibility is needed it's easy to just switch to another shell temporarily.
 
@@ -134,7 +137,7 @@ A simple little fetch utility that displays info about the computer.
 ## [Scripts](scripts)
 *Symlinked as ~/scripts*
 
-All of the scripts below were either written by me or borrowed from someone else and modified for my use case. I don't want to reupload unmodified scripts, even with attribution, because that just feels like stealing to me.
+All of the scripts below were either written by me or borrowed from someone else and modified for my use case. I don't want to reupload unmodified scripts. Instead, check out the section near the end with links to scripts and packages that I find useful.
 
 **battery-notify** *by [beatle on archlinux.org](https://bbs.archlinux.org/viewtopic.php?pid=1037160#p1037160)*
 Starts on login and warns me when laptop battery gets too low.
@@ -143,10 +146,10 @@ Starts on login and warns me when laptop battery gets too low.
 Custom visualizations of terminal colors. I'm sure there are better implementations out there but this was fun to make.
 
 **lock** *by me*
-Runs [`i3lock-color`](https://github.com/Raymo111/i3lock-color) using colors from wal to save lines of code elsewhere. You want to make sure you have compositor blurring or something behind it, otherwise your desktop will be visible.
+Runs [i3lock-color](https://github.com/Raymo111/i3lock-color) using colors from wal to save lines of code elsewhere. You want to make sure you have compositor blurring or something behind it, otherwise your desktop will be visible.
 
 **polybar** *by [aid1090x](https://github.com/adi1090x/polybar-themes)*
-A three-liner that restarts polybar so it can use colors from wal.
+Starts polybar. The `main` bar goes on the primary display and the `secondary` bar goes on all the other ones.
 
 **rgbctl** *by me*
 Sets the colors of physical devices with RGB in my setup. Right now it only sets the colors of the keyboard on my Razer Blade. It has the ability to set the Yeelight bulbs over my local network but I turned that off because it hurts my eyes 😵.
@@ -169,8 +172,8 @@ Uses i3's `append_layout` feature to restore layouts automatically upon login so
 ### rofi
 Scripts that use rofi as their UI.
 
-**askpass** *by [ivanbartsov](https://github.com/davatorium/rofi/issues/584#issuecomment-384555551)*
-askpass client for sudo.
+**displayout** *by me*
+Tool for quickly switching between single- and dual-monitor setups. The xrandr commands were generated by [ARandR](https://christian.amsuess.com/tools/arandr/)
 
 **power** *by [tostiheld](https://github.com/tostiheld/dotfiles/blob/master/bin/power-menu.sh)*
 Menu for shutting down, logging out, etc.
@@ -179,7 +182,7 @@ Menu for shutting down, logging out, etc.
 A wrapper around [tweet.sh](https://github.com/piroor/tweet.sh) so I can send tweets without having to open Twitter.
 
 **wiktionary** *by me*
-I started with the code for [Rofimoji](https://github.com/fdw/rofimoji) and repurposed it for looking up definitions from Wiktionary.
+Look up definitions from Wiktionary. You can set the language as well.
 
 ### Backups
 I wrote three scripts for managing backups:
@@ -206,6 +209,31 @@ I didn't include the ability to create multiple backups or schedule them, but I 
 It's also highly tailored to my needs and setup which means you might need to translate some of the code to work with your desktop if you use different programs than me.
 
 _**BUG:** Does not report errors correctly._
+
+
+### Scripts you should know about that weren't mentioned elsewhere
+*Located in ~/bin/ or installed using a package manager*
+
+[**askpass-rofi**](https://github.com/davatorium/rofi/issues/584#issuecomment-384555551)
+Gives scripts a way to prompt for sudo access. Prepend commands with `SUDO_ASKPASS=/path/to/askpass-rofi sudo -A` to use.
+
+[**autojump**](https://github.com/wting/autojump)
+Quickly navigates your filesystem by keeping a record of your most-visited dirs.
+
+[**git-get**](https://github.com/pietvanzoen/git-get)
+Clones and organizes git repos in directories matching the path of the URL (like `go`).
+
+[**kb-backlight**](https://github.com/hastinbe/i3-kb-backlight)
+Control keyboard backlight brightness. 
+
+[**maim**](https://github.com/naelstrof/maim)
+Takes screenshots.
+
+[**rofimoji**](https://github.com/fdw/rofimoji)
+Unicode character picker for rofi with integrated support for emojis.
+
+[**the silver searcher (`ag`)**](https://github.com/ggreer/the_silver_searcher)
+Search for patterns within files in a directory. Super fast.
 
 
 ## Miscellanea
