@@ -9,3 +9,7 @@ ranger/*
 abricotine/*
 !abricotine/config.json
 !abricotine/themes/wal/*
+
+fish/*
+!fish/config.fish
+!fish/fish_variables

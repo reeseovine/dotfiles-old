@@ -214,6 +214,7 @@ bindsym $sup+b exec ~/scripts/rofi/backupctl
 bindsym $sup+s exec ~/scripts/rofi/search
 bindsym $sup+d exec ~/scripts/rofi/wiktionary
 bindsym $sup+t exec ~/scripts/rofi/tweet
+bindsym $sup+m exec ~/scripts/rofi/displayout
 bindsym $sup+e exec rofimoji --prompt="emoji" --rofi-args=" -no-show-icons"
 bindsym $sup+u exec rofimoji --prompt="unichr" --files all --rofi-args=" -no-show-icons"
 bindsym $sup+Escape exec ~/scripts/rofi/power
