@@ -3,11 +3,11 @@
 source $HOME/.config/backup/config
 
 notify_backup () {
-	notify-send -i drive-multidisk "$1"
+	dunstify -i drive-multidisk "$@"
 }
 
 case "$1" in
-	abort | cancel | end | exit | halt | kill | quit | stop | term | terminate )
+	abort | cancel | end | exit | halt | int | interrupt | kill | quit | stop | term | terminate )
 		if [ -s $pidfile ]; then
 			kill $(cat $pidfile)
 		fi
@@ -27,8 +27,15 @@ fi
 echo $$ > $pidfile
 
 cleanup () {
-	[ $? -eq 0 ] && notify_backup "Backup finished"
-	echo $? >> $logfile
+	if [ $? -eq 0 ]; then
+		lastline="$(tail -n 1 $logfile)"
+		if [[ $lastline =~ ^rsync\ error: ]]; then
+			action=$(notify_backup -u critical "Backup failed!" "$(cat $logfile | grep rsync:)" --action="log,Show log")
+		else
+			action=$(notify_backup "Backup finished" --action="log,Show log")
+		fi
+		[[ "$action" == "log" ]] && $terminal_command "tac \"$(echo $logfile)\" | less"
+	fi
 	rm $pidfile
 	exit $?
 }
@@ -42,6 +49,6 @@ trap cleanup EXIT
 trap interrupted TERM INT SIGTERM SIGINT
 
 notify_backup "Backup starting"
-rsync -avW --no-p --exclude-from=$excludelist $addr_src $addr_dest &> $logfile &
+rsync -vrlptDW --del --exclude-from=$excludelist $addr_src $addr_dest &> $logfile &
 rsync_pid=$!
 wait
