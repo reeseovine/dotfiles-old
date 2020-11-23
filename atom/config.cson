@@ -31,8 +31,8 @@
     ]
   editor:
     atomicSoftTabs: false
-    fontFamily: "Hack, monospace, Noto Color Emoji, Material Icons"
-    fontSize: 18
+    fontFamily: "FiraCode-Retina, monospace, Noto Color Emoji, Material Icons"
+    fontSize: 20
     preferredLineLength: 8000
     scrollPastEnd: true
     showIndentGuide: true
@@ -42,6 +42,13 @@
     undoGroupingInterval: 600
   "exception-reporting":
     userId: "3c20228a-6ff3-4069-a341-36a1fce2de05"
+  firacode:
+    scopes: [
+      "*"
+    ]
+  fonts:
+    fontFamily: "FiraCode Retina"
+    secondaryFonts: "monospace, Noto Color Emoji, Material Icons, Weather Icons"
   "markdown-preview":
     breakOnSingleNewline: true
     useGitHubStyle: true

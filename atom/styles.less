@@ -16,6 +16,15 @@ body {
 
 .tab-bar .tab.active {
 	background-color: @bg-light;
+// Enable stylistic sets for Fira Code
+atom-text-editor[data-grammar] {
+	font-feature-settings: "ss01", "ss02", "ss05";
+	
+	// Turn off ligatures inside strings and regex
+	.syntax--string,
+	.syntax--regexp {
+		-webkit-font-feature-settings: "liga" off, "calt" off;
+	}
 }
 
 // Default font stack + Emoji and symbols
