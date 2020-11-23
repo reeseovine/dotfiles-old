@@ -43,7 +43,7 @@ title_align center
 floating_modifier $alt
 
 # start a terminal
-bindsym $alt+Return exec kitty
+bindsym $alt+Return exec --no-startup-id kitty
 
 # kill focused window
 bindsym $alt+Shift+q kill
@@ -143,6 +143,9 @@ bindsym $alt+Shift+0 move container to workspace number $ws10
 # switch to the previous or next workspace with [ and ]
 bindcode $alt+34 workspace prev
 bindcode $alt+35 workspace next
+# switch to the previous or next workspace with meta+arrow
+bindcode $sup+113 workspace prev
+bindcode $sup+114 workspace next
 
 # reload the configuration file
 bindsym $alt+Shift+c reload
@@ -179,6 +182,42 @@ mode "resize" {
 bindsym $alt+r mode "resize"
 
 
+# Borders
+for_window [class="^.*"] border pixel 2
+smart_borders on
+#smart_borders no_gaps
+
+# Set colors from Xresources
+# Change 'color7' and 'color2' to whatever colors you want i3 to use
+# from the generated scheme.
+# NOTE: The hex color in the lines below is the color i3 will use if
+# it fails to get colors from Xresources.
+set_from_resource $bg i3wm.background #000000
+set_from_resource $fg i3wm.foreground #FFFFFF
+set_from_resource $ac i3wm.color1     #368CC9
+set_from_resource $ur i3wm.color2     #E03E56
+
+set $white #FFFFFF
+set $black #000000
+
+# Frame colors
+# class                 border	bg		text	indictr	child bdr
+client.focused          $ac		$ac		$white 	$ac		$ac
+client.focused_inactive $bg		$bg		$fg   	$bg		$bg
+client.unfocused        $bg		$bg		$fg   	$bg		$bg
+client.urgent           $ur		$ur		$white 	$ur		$ur
+client.placeholder      $bg		$bg		$fg   	$bg		$bg
+
+gaps inner 16
+gaps outer 0
+
+# Always focus window when activated
+focus_on_window_activation focus
+
+# Always float certain windows
+for_window [class="processing-core-PApplet"] floating enable
+
+
 # [L]ock
 bindsym $alt+Shift+l exec ~/scripts/lock
 
@@ -199,73 +238,38 @@ bindsym XF86KbdBrightnessDown exec kb-backlight -d 10
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
-# Open web [b]rowser
-bindsym $alt+Shift+b exec vivaldi --remote-debugging-port=9222
-# Open ranger [f]ile manager
-bindsym $alt+Shift+f exec kitty ranger
-# Open [G]IMP
-bindsym $alt+Shift+g exec gimp
+# Application shortcuts
+bindsym $alt+Shift+a exec --no-startup-id atom
+bindsym $alt+Shift+b exec --no-startup-id firefox
+# bindsym $alt+Shift+b exec --no-startup-id vivaldi --remote-debugging-port=9222
+bindsym $alt+Shift+f exec --no-startup-id i3-sensible-terminal ranger
+bindsym $alt+Shift+g exec --no-startup-id gimp
 
 # rofi menus
-bindsym $sup+space exec rofi -show drun -drun-display-format {name}
-bindsym $sup+Tab exec rofi -show window
-bindsym $sup+r exec rofi -show run
-bindsym $sup+b exec ~/scripts/rofi/backupctl
-bindsym $sup+s exec ~/scripts/rofi/search
-bindsym $sup+d exec ~/scripts/rofi/wiktionary
-bindsym $sup+t exec ~/scripts/rofi/tweet
-bindsym $sup+m exec ~/scripts/rofi/displayout
-bindsym $sup+e exec rofimoji --prompt="emoji" --rofi-args=" -no-show-icons"
-bindsym $sup+u exec rofimoji --prompt="unichr" --files all --rofi-args=" -no-show-icons"
-bindsym $sup+Escape exec ~/scripts/rofi/power
-bindsym $sup+equal exec rofi -show calc -modi calc -no-show-match -no-sort
+bindsym $sup+space exec --no-startup-id rofi -show drun -drun-display-format {name}
+bindsym $sup+Tab exec --no-startup-id rofi -show window -width 50
+bindsym $sup+Escape exec --no-startup-id ~/scripts/rofi/power
+bindsym XF86PowerOff exec --no-startup-id ~/scripts/rofi/power
+bindsym $sup+equal exec --no-startup-id LC_MONETARY=en_US.UTF-8 rofi -show calc -modi calc -lines 0 -no-show-match -no-sort -no-history | xclip -selection clipboard
+bindsym $sup+b exec --no-startup-id ~/scripts/rofi/backupctl
+bindsym $sup+d exec --no-startup-id ~/scripts/rofi/wiktionary
+bindsym $sup+e exec --no-startup-id rofimoji
+bindsym $sup+m exec --no-startup-id ~/scripts/rofi/displayout
+bindsym $sup+r exec --no-startup-id rofi -show run
+bindsym $sup+s exec --no-startup-id rofi -show ssh
+bindsym $sup+t exec --no-startup-id ~/scripts/rofi/tweet
+bindsym $sup+u exec --no-startup-id rofimoji --prompt="unichr" --files all
 
 # macOS-like screenshots
-bindsym $sup+Shift+2			exec --no-startup-id maim -i $(xdotool getactivewindow) ~/Pictures/Screenshots/$(date -Iseconds).png
-bindsym $sup+Control+Shift+2	exec --no-startup-id maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym $sup+Shift+3			exec --no-startup-id maim ~/Pictures/Screenshots/$(date -Iseconds).png
-bindsym $sup+Control+Shift+3	exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym $sup+Shift+4			exec --no-startup-id maim -s ~/Pictures/Screenshots/$(date -Iseconds).png
-bindsym $sup+Control+Shift+4	exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
-
-
-# Borders
-for_window [class="^.*"] border pixel 2
-smart_borders on
-#smart_borders no_gaps
-
-# Set colors from Xresources
-# Change 'color7' and 'color2' to whatever colors you want i3 to use
-# from the generated scheme.
-# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
-# it fails to get colors from Xresources.
-set_from_resource $bg i3wm.color0  #000000
-set_from_resource $fg i3wm.color15 #FFFFFF
-set_from_resource $ac i3wm.color1  #368CC9
-set_from_resource $ur i3wm.color2  #E03E56
-
-set $white #FFFFFF
-set $black #000000
-
-# Frame colors
-# class                 border	bg		text	indi	child bdr
-client.focused          $ac		$ac		$white	$ac		$ac
-client.focused_inactive $bg		$bg		$white	$bg		$bg
-client.unfocused        $bg		$bg		$white	$bg		$bg
-client.urgent           $ur		$ur		$black	$ur		$ur
-client.placeholder      $bg		$bg		$white	$bg		$bg
-
-gaps inner 16
-gaps outer 0
-
-# Always focus window when activated
-focus_on_window_activation focus
-
-# Always float certain windows
-for_window [class="processing-core-PApplet"] floating enable
+bindsym $sup+Shift+2			exec --no-startup-id maim -ui $(xdotool getactivewindow) ~/Pictures/Screenshots/$(date -Iseconds).png
+bindsym $sup+Control+Shift+2	exec --no-startup-id maim -ui $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym $sup+Shift+3			exec --no-startup-id maim -u ~/Pictures/Screenshots/$(date -Iseconds).png
+bindsym $sup+Control+Shift+3	exec --no-startup-id maim -u | xclip -selection clipboard -t image/png
+bindsym $sup+Shift+4			exec --no-startup-id maim -us ~/Pictures/Screenshots/$(date -Iseconds).png
+bindsym $sup+Control+Shift+4	exec --no-startup-id maim -us | xclip -selection clipboard -t image/png
 
 
 # Startup scripts
 exec --no-startup-id ~/scripts/startup-daemons
 exec --no-startup-id ~/scripts/startup-apps
-exec_always ~/scripts/polybar
+exec_always --no-startup-id ~/scripts/polybar

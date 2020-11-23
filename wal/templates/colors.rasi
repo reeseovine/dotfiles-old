@@ -40,9 +40,9 @@ mainbox {{
 }}
 
 message {{
-    border: 2px 0px 0px;
+    padding: 10px 0px;
     border-color: @border-color;
-    padding: 1px;
+    border: 2px 0px 0px;
 }}
 
 textbox {{
@@ -50,7 +50,7 @@ textbox {{
 }}
 
 inputbar {{
-    children:   [ prompt,textbox-prompt-symbol,entry,case-indicator ];
+    children: [ prompt, textbox-prompt-symbol, entry, case-indicator ];
 }}
 
 prompt {{
@@ -69,7 +69,7 @@ listview {{
     border: 0;
     spacing: 0;
     scrollbar: true;
-    margin: 8px 0px 0px;
+    margin: 0;
 }}
 
 element {{

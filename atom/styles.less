@@ -1,21 +1,57 @@
 @import '/home/reese/.cache/wal/colors.less';
 
+// Stuff for pywal theme
 @bg-trans: fade(@background, 80%);
-@bg-light: lighten(@background, 10%);
+@bg-light: lighten(@background, 15%);
+
+@fg-muted: fade(@foreground, 80%);
 
 body {
 	background-color: @bg-trans;
 }
-
 .tab-bar,
 .tab-bar .tab:not(.active),
 .atom-dock-resize-handle,
 .panel-footer {
 	background-color: @background;
 }
-
 .tab-bar .tab.active {
-	background-color: @bg-light;
+	background-color: @color5;
+	color: #fff !important;
+}
+
+.tab-bar .tab.active.modified:not(:hover) .close-icon {
+	border-color: #fff;
+}
+
+.text-subtle,
+.tab-bar .tab {
+	color: @fg-muted;
+}
+.text-highlight,
+.tree-view,
+.list-tree,
+.tab-bar .tab.active,
+status-bar a,
+status-bar .cursor-position a,
+.encoding-status a,
+.grammar-status a,
+.status-bar {
+	&, &:hover {
+		color: @foreground;
+	}
+}
+
+.list-group .selected::before,
+.list-tree .selected::before {
+	background-color: @foreground;
+}
+.tree-view .list-item.selected,
+.list-tree .selected {
+	color: @background;
+}
+
+
 // Enable stylistic sets for Fira Code
 atom-text-editor[data-grammar] {
 	font-feature-settings: "ss01", "ss02", "ss05";
@@ -29,5 +65,5 @@ atom-text-editor[data-grammar] {
 
 // Default font stack + Emoji and symbols
 .markdown-preview.markdown-preview {
-  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Noto Color Emoji", "Material Icons";
+	font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Noto Color Emoji", "Material Icons";
 }

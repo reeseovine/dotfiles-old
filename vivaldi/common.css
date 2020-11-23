@@ -14,12 +14,20 @@
 
 /* hide ring around favicon */
 .theme-dark .tab-position .tab.active .tab-header .favicon {
-	filter: none;
+	filter: none !important;
 }
 
-/* fix toolbar height */
-.toolbar-mainbar {
-    padding-bottom: 1px;
+/* fix tab bar spacing */
+#tabs-container.top {
+	padding-top: 0 !important;
+	height: 32px !important;
+}
+.tab-position .tab .tab-header {
+	flex: 0 0 31px !important;
+	padding: 8px 0 6px 6px !important;
+}
+.native .vivaldi {
+	height: 32px;
 }
 
 /* border at bottom of toolbar */

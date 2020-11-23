@@ -1,0 +1,30 @@
+:root {
+	font-family: Roboto, sans-serif !important;
+	
+	/* Borders */
+	--tabs-border-color: transparent !important; /* border surrounding tab and toolbar */
+	--lwt-background-tab-separator-color: transparent; /* tab separator */
+}
+
+/* Transparency stuff, stolen from https://github.com/manilarome/blurredfox */
+#main-window {
+	/* background: #000000cc !important; */
+}
+
+toolbar {
+	background-image: none !important;
+}
+
+/* get rid of ugly borders */
+.tab-background {
+	border: none !important;
+}
+#TabsToolbar .tabbrowser-tab .tab-line {
+    display: none !important;
+}
+#navigator-toolbox {
+	border-bottom: none !important;
+}
+#nav-bar {
+	box-shadow: none !important;
+}

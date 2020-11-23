@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const cson = require('cson');
+const { spawn } = require('child_process');
+
+const colors = require('/home/reese/.cache/wal/colors.json');
+
+// Update atom's configuration
+let toggle_atom = mode => {
+	let themes = {
+		'dark': ["atom-bliss-blur-ui", "one-black-syntax"],
+		'light': ["atom-bliss-blur-ui", "one-light-syntax"]
+	}
+	
+	let filename = "/home/reese/.atom/config.cson";
+	let conf = cson.load(filename);
+	conf['*'].core.themes = themes[mode];
+	fs.writeFileSync(filename, cson.stringify(conf));
+	console.log('modified atom config.');
+}
+
+let toggle_fish = mode => {
+	let fish_vars = '/home/reese/.config/fish/fish_variables';
+	const cp = spawn('cp', [`${fish_vars}_${mode}`, `${fish_vars}`]);
+	cp.on('close', code => {
+		if (code == 0) console.log(`copied fish variables.`);
+	});
+}
+
+(() => {
+	let mode;
+	if (process.argv.length > 2 && process.argv[2] == '-l'){
+		mode = 'light';
+	} else {
+		mode = 'dark';
+	}
+
+	toggle_atom(mode);
+	toggle_fish(mode);
+})()
+
+module.exports.atom = toggle_atom;
+module.exports.fish = toggle_fish;
