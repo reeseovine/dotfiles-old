@@ -1,5 +1,7 @@
 "*":
-  "Chromo-Color-Previews": {}
+  "Chromo-Color-Previews":
+    supportedTypes:
+      colorName: false
   "autoclose-html-plus":
     forceInline: [
       "title"
@@ -55,6 +57,7 @@
   processing: {}
   script:
     cwdBehavior: "Directory of the script"
+    ignoreSelection: true
     stopOnRerun: true
   welcome:
     showOnStartup: false

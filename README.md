@@ -71,13 +71,13 @@ There's the `main` bar, and one called `secondary` which is stripped down for mu
 A notification daemon that displays desktop notifications. The style is pretty extensively customizable, but sadly the one thing that it can't do is variable transparency, so it has to be applied to the entire thing. Luckily it's not too noticeable (in my opinion). It doesn't use colors from wal because I think it looks cleaner without them.
 
 ### [rofi](rofi/config.rasi)
-Mostly just preferences for behavior rather than appearance, which is taken care of in [this wal template](wal/templates/colors-rofi-dark.rasi).
+Mostly just preferences for behavior rather than appearance, which is taken care of in [this wal template](wal/templates/colors-rofi-dark.rasi). When I have time I want to go through and update the theme to account for some features I didn't know about when I first made it (like the `-mesg` line).
 
 ### [wal](wal)
 Contains templates to make it easier for other programs to import the colors.
 
 ### Vivaldi
-Vivaldi can use [custom CSS](vivaldi/common.css) with an [experimental toggle](https://forum.vivaldi.net/topic/37802/css-modifications-experimental-feature) which is nice, but it doesn't go so far as to be pywal-friendly (at least not without restarting every time). Fortunately I can use [this script](scripts/vivwal) (which I modified slightly) to set the theme colors automatically through a remote Chromium console. It's pretty clever honestly.
+I switched back to Firefox. ~~Vivaldi can use [custom CSS](vivaldi/common.css) with an [experimental toggle](https://forum.vivaldi.net/topic/37802/css-modifications-experimental-feature) which is nice, but it doesn't go so far as to be pywal-friendly (at least not without restarting every time). Fortunately I can use [this script](scripts/vivwal) (which I modified slightly) to set the theme colors automatically through a remote Chromium console. It's pretty clever honestly.~~
 
 ### Electron apps
 Electron-based applications are nice because they use CSS to change how they look. A lot of them will support user stylesheets (and maybe even transparency) out of the box, but some of them needed to be modified a little.
@@ -140,25 +140,37 @@ A simple little fetch utility that displays info about the computer.
 All of the scripts below were either written by me or borrowed from someone else and modified for my use case. I don't want to reupload unmodified scripts. Instead, check out the section near the end with links to scripts and packages that I find useful.
 
 **battery-notify** *by [beatle on archlinux.org](https://bbs.archlinux.org/viewtopic.php?pid=1037160#p1037160)*
-Starts on login and warns me when laptop battery gets too low.
+Runs in the background and warns me when laptop battery gets too low.
 
 **colors** *by me*
 Custom visualizations of terminal colors. I'm sure there are better implementations out there but this was fun to make.
 
+**kitty-popup** *by me*
+Create terminal script popup windows using kitty's remote control feature.
+
+**lightswitch** *by me*
+Tells certain programs to switch to light or dark mode depending on a command line argument.
+
 **lock** *by me*
 Runs [i3lock-color](https://github.com/Raymo111/i3lock-color) using colors from wal to save lines of code elsewhere. You want to make sure you have compositor blurring or something behind it, otherwise your desktop will be visible.
 
+**minecraft** *by me*
+Reads your Minecraft server list and displays a little status indicator.
+
+**mkgameshortcut** *by me*
+Creates an application shortcut given an itch.io game folder so you can add it to Steam or access it from your app launcher.
+
 **polybar** *by [aid1090x](https://github.com/adi1090x/polybar-themes)*
 Starts polybar. The `main` bar goes on the primary display and the `secondary` bar goes on all the other ones.
+
+**pywal** *by me*
+Grabs a random wallpaper (or reads a path from `argv`), sets it and loads a color scheme with wal, then tells everything to update its color scheme (either directly or indirectly). Supports light and dark mode, and has an automatic option using `redshift `.
 
 **rgbctl** *by me*
 Sets the colors of physical devices with RGB in my setup. Right now it only sets the colors of the keyboard on my Razer Blade. It has the ability to set the Yeelight bulbs over my local network but I turned that off because it hurts my eyes 😵.
 
 **vivwal** *by [wismut on vivaldi.net](https://forum.vivaldi.net/topic/34521/linux-changing-theme-via-command-line/22?_=1597433612704)*
 Sets the colors of Vivaldi using `crconsole`. Vivaldi needs to be started with the command `vivaldi --remote-debugging-port=9222` for this to work.
-
-**pywal** *by me*
-Grabs a random wallpaper (or reads a path from `argv`), sets it and loads a color scheme with wal, then tells everything to update its color scheme (either directly or indirectly).
 
 **update** *by me*
 Update system-wide packages from different package managers in parallel. Uses sudo askpass so you don't need to have a terminal open.
@@ -173,7 +185,7 @@ Uses i3's `append_layout` feature to restore layouts automatically upon login so
 Scripts that use rofi as their UI.
 
 **displayout** *by me*
-Tool for quickly switching between single- and dual-monitor setups. The xrandr commands were generated by [ARandR](https://christian.amsuess.com/tools/arandr/)
+Menu for switching between single- and dual-monitor setups. The xrandr commands were generated by [ARandR](https://christian.amsuess.com/tools/arandr/)
 
 **power** *by [tostiheld](https://github.com/tostiheld/dotfiles/blob/master/bin/power-menu.sh)*
 Menu for shutting down, logging out, etc.
@@ -189,7 +201,7 @@ Look up definitions from Wiktionary. You can set the language as well.
 I wrote three scripts for managing backups:
 - [`backup`](scripts/backup) — The main script. It can start and stop backups, and it will keep running until it's done. It's basically just a wrapper for `rsync` with extra features like notifications and logging.
 - [`backupctl`](scripts/rofi/backupctl) — A rofi menu where you can start or stop a backup in the background and open the log file without having to do it a terminal manually.
-- [`backup-status`](polybar/scripts/backup-status) — An indicator for polybar which shows if a backup is running, just ran, failed, or is out of date. It might need some modification to work with other status bars but I think it's a good base to start on. Here's the polybar module:
+- [`backup-status`](polybar/scripts/backup-status) — An indicator for polybar which shows if a backup is running, just ran, failed, or is out of date. It might need some modification to work with other status bars but it's a good base to start with. Here's the polybar module:
   ```ini
   [module/backup]
   type = custom/script
@@ -199,10 +211,10 @@ I wrote three scripts for managing backups:
   ```
   The line `tail = true` tells it to show only the last line of output.
 
-The [`backup`](backup) directory contains a config file for path variables, and a file containing patterns to exclude.
+The [`backup`](backup) directory contains a config file for path variables and a file containing patterns to exclude.
 
 **Why?**
-For years I'd been looking for a simple backup solution for Linux that also felt seamless and integrated into the desktop. Once I heard about rsync and learned how to use it I immediately loved how easy it was, but I got tired of typing the entire command each time (or scrolling through my term history for it) so I wrote these in a day to make things easier for me.
+For years I'd been looking for a simple backup solution for Linux that also felt seamless and integrated into the desktop. Once I looked into rsync I immediately loved how easy it was but I got tired of typing the entire command each time (or scrolling through my term history for it) so I wrote these in a day to make things easier for me.
 
 **Shortcomings**
 I didn't include the ability to create multiple backups or schedule them, but I don't think it would be hard to add those features.
@@ -222,23 +234,21 @@ Gives scripts a way to prompt for sudo access. Prepend commands with `SUDO_ASKPA
 Quickly navigates your filesystem by keeping a record of your most-visited dirs.
 
 [**git-get**](https://github.com/pietvanzoen/git-get)
-Clones and organizes git repos in directories matching the path of the URL (like `go`).
+Clones and organizes git repos in directories matching the path of the URL (like `go get`).
 
 [**kb-backlight**](https://github.com/hastinbe/i3-kb-backlight)
-Control keyboard backlight brightness. 
+Control keyboard backlight brightness.
 
 [**maim**](https://github.com/naelstrof/maim)
 Takes screenshots.
 
-[**rofimoji**](https://github.com/fdw/rofimoji)
-Unicode character picker for rofi with integrated support for emojis.
-
-[**the silver searcher (`ag`)**](https://github.com/ggreer/the_silver_searcher)
+[**ripgrep (`rg`)**](https://github.com/BurntSushi/ripgrep)
 Search for patterns within files in a directory. Super fast.
 
 
 ## Miscellanea
 
 - [`libinput-gestures.conf`](github.com/katacarbix/dotfiles/libinput-gestures.conf) — Touchpad gestures for libinput. Config generated by [Gestures](https://gitlab.com/cunidev/gestures).
+- [`rofimoji.rc`](rofimoji.rc) — Basic config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
 - [`.xsessionrc`](.xsessionrc) *(Symlinked in ~)* — A script that runs whenever an X session starts. The two things it does as of now is uses the insert key as a compose key, and turns off touchpad taps.
 - [`meta/`](meta) — Stuff that's relevant to maintaining this repository. Not symlinked.

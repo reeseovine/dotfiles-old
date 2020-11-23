@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+# My own function:
+moon_icon () {
+	icon_count=28
+	icon_start=61589
+	
+	lp=2551443
+	now=$(date -u +"%s")
+	newmoon=592500
+	phase=$((($now - $newmoon + 86400) % $lp))
+	phase_number=$((($phase * $icon_count) / $lp))
+	
+	python3 -c "print(chr($(($phase_number + $icon_start))))"
+}
+
+# The rest is from the polybar-scripts repo
+# Source: https://github.com/polybar/polybar-scripts/tree/master/polybar-scripts/openweathermap-simple
+
+get_icon () {
+	case $1 in
+		# Icons for weather-icons
+		01d) icon="";;
+		01n) icon="$(moon_icon)";;
+		02d) icon="";;
+		02n) icon="";;
+		03*) icon="";;
+		04*) icon="";;
+		09d) icon="";;
+		09n) icon="";;
+		10d) icon="";;
+		10n) icon="";;
+		11d) icon="";;
+		11n) icon="";;
+		13d) icon="";;
+		13n) icon="";;
+		50d) icon="";;
+		50n) icon="";;
+		*) icon="";
+	esac
+
+	echo $icon
+}
+
+## '.owm_secrets' file contains the following variables:
+# KEY="openweathermap_api_key_goes_here"
+# CITY="where you live"
+. ~/.owm_secrets
+
+UNITS="imperial"
+SYMBOL="°"
+
+API="https://api.openweathermap.org/data/2.5"
+
+if [ -n "$CITY" ]; then
+	if [ "$CITY" -eq "$CITY" ] 2>/dev/null; then
+		CITY_PARAM="id=$CITY"
+	else
+		CITY_PARAM="q=$CITY"
+	fi
+
+	weather=$(curl -sf "$API/weather?appid=$KEY&$CITY_PARAM&units=$UNITS")
+else
+	location=$(curl -sf https://location.services.mozilla.com/v1/geolocate?key=geoclue)
+
+	if [ -n "$location" ]; then
+		location_lat="$(echo "$location" | jq '.location.lat')"
+		location_lon="$(echo "$location" | jq '.location.lng')"
+
+		weather=$(curl -sf "$API/weather?appid=$KEY&lat=$location_lat&lon=$location_lon&units=$UNITS")
+	fi
+fi
+
+if [ -n "$weather" ]; then
+	weather_temp=$(echo "$weather" | jq ".main.temp" | cut -d "." -f 1)
+	weather_icon=$(echo "$weather" | jq -r ".weather[0].icon")
+
+	echo "$(get_icon "$weather_icon")" "$weather_temp$SYMBOL"
+fi

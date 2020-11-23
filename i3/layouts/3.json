@@ -16,6 +16,11 @@
 			"class": "^Vivaldi\\-stable$",
 			"instance": "^vivaldi\\-stable$",
 			"window_role": "^browser$"
+		},
+		{
+			"class": "^Firefox$",
+			"instance": "^Navigator$",
+			"window_role": "^browser$"
 		}
 	],
 	"type": "con"

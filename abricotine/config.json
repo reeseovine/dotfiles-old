@@ -57,6 +57,6 @@
   ],
   "theme": "wal",
   "window": {
-    "showMenuBar": true
+    "showMenuBar": false
   }
 }

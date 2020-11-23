@@ -46,7 +46,7 @@ interrupted () {
 }
 
 trap cleanup EXIT
-trap interrupted TERM INT SIGTERM SIGINT
+trap interrupted INT TERM SIGINT SIGTERM
 
 notify_backup "Backup starting"
 rsync -vrlptDW --del --exclude-from=$excludelist $addr_src $addr_dest &> $logfile &
