@@ -1,24 +1,66 @@
 #!/bin/bash
 
-wppath=${1:-~/Pictures/Wallpapers/favorites/}
-wal --backend colorz -i "$wppath"
+print_usage () {
+	echo "Usage: $0 [-l] [-a] [path]"
+	echo "-h, --help  Show this help message"
+	echo "-l          Light mode flag"
+	echo "-a          Automatic based on position of sun (requires redshift)"
+	echo "path        File or directory to use"
+	exit
+}
 
-sleep 1
+light_mode=1
+default_path_dark=$HOME/Pictures/Wallpapers/dark/
+default_path_light=$HOME/Pictures/Wallpapers/light/
+img_path=''
+
+while(($#)); do
+	case "$1" in
+		-h | --help)
+			print_usage;;
+		-l)
+			light_mode=0
+			shift
+			;;
+		-a)
+			light_mode=$([[ $(redshift -p | grep Period | sed -Ee 's/Period:\s(.*)$/\1/') == "Daytime" ]] ; echo $?)
+			shift
+			;;
+		*)
+			img_path=$1
+			shift
+			;;
+	esac
+done
+
+if [ ! $img_path ]; then
+	if [ 0 == $light_mode ]; then
+		img_path=$default_path_light
+	else
+		img_path=$default_path_dark
+	fi
+fi
+
+wal --backend colorz -i "$img_path" $([ 0 == $light_mode ] && echo "-l")
+
+# light/dark mode toggle for some applications
+export NODE_PATH=/usr/lib/node_modules/
+node $HOME/scripts/lightswitch $([ 0 == $light_mode ] && echo "-l") &
 
 # update firefox theme
-#pywalfox update
+pywalfox update
 
 # update vivaldi theme (silent)
-~/scripts/vivwal >/dev/null &
+$HOME/scripts/vivwal $([ 0 == $light_mode ] && echo "-l") >/dev/null &
 
 # update atom theme
-touch ~/.atom/styles.less
+touch $HOME/.atom/styles.less
 
 # compile discord theme
-sassc ~/git/github.com/katacarbix/discord-stuff/themes/bliss/pywal.scss ~/git/github.com/katacarbix/discord-stuff/themes/bliss/pywal.css
+sassc $HOME/git/github.com/katacarbix/discord-stuff/themes/bliss/pywal.scss $HOME/git/github.com/katacarbix/discord-stuff/themes/bliss/pywal.css
 
 # compile android messages theme
-# sassc ~/.config/android-messages/css/user-style.scss ~/.config/android-messages/css/user-style.css
+# sassc $HOME/.config/android-messages/css/user-style.scss $HOME/.config/android-messages/css/user-style.css
 
 # rgb lights (keyboard, etc.)
-python3 ~/scripts/rgbctl
+python3 $HOME/scripts/rgbctl

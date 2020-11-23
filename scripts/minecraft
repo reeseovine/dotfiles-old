@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+const https = require('https');
+const NBT = require('mcnbt');
+
+var stat = function(server){
+	https.get(`https://api.mcsrvstat.us/2/${server.ip}`, (resp) => {
+		let data = '';
+		// A chunk of data has been recieved.
+		resp.on('data', (chunk) => {
+			data += chunk;
+		});
+
+		// The whole response has been received. Print out the result.
+		resp.on('end', () => {
+			data = JSON.parse(data);
+			
+			let status = server.name;
+			status += data.online ? ' ' : ' ';
+			// console.log(`${server.name} is ${data.online ? 'online' : 'offline'}.`);
+
+			if (data.online){
+				status += data.players.online;
+				// if (data.players.online == 0) console.log(`Nobody is playing.`);
+				// else if (data.players.online == 1) console.log(`${data.players.list[0]} is playing.`);
+				// else console.log(`${data.players.online} people are playing.`);
+			}
+			
+			console.log(status);
+		});
+	}).on("error", (err) => {
+		return;
+		// console.log("Error: " + err.message);
+	});
+}
+
+var nbt = new NBT();
+nbt.loadFromFile("/home/reese/.minecraft/servers.dat", function(err){
+    if (err) return console.error(err);
+	var servers = nbt.select("").select("servers").toJSON();
+	for (var s of servers){
+		if (process.argv.length <= 2 || process.argv.indexOf(s.name, 2) >= 2) stat(s);
+	}
+});

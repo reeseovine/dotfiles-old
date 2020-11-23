@@ -1,20 +1,15 @@
 #!/bin/bash
 
-i3-msg "focus_on_window_activation none"
-
-i3-msg "workspace 2; append_layout ~/.config/i3/layouts/2.json"
+#i3-msg "workspace 2; append_layout ~/.config/i3/layouts/2.json"
 i3-msg "workspace 3; append_layout ~/.config/i3/layouts/3.json"
 i3-msg "workspace 4; append_layout ~/.config/i3/layouts/4.json"
 i3-msg "workspace 5; append_layout ~/.config/i3/layouts/5.json"
 
 sleep 1
 
-atom &
-vivaldi --remote-debugging-port=9222 &
+# atom &
+# vivaldi --remote-debugging-port=9222 &
+firefox &
 discord &
 caprine &
 gtk-launch android-messages &
-
-sleep 6
-
-i3-msg "focus_on_window_activation focus"

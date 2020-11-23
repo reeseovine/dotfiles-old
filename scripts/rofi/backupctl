@@ -4,8 +4,6 @@
 
 source $HOME/.config/backup/config
 
-rofi_prompt="rofi -dmenu -p backupctl -lines 2"
-
 # is a backup currently running?
 if [ -e $pidfile ] && kill -0 &>1 > /dev/null `cat $pidfile`; then
 	options=$'cancel current backup\nwatch log'
@@ -13,7 +11,7 @@ else
 	options=$'back up now\nread log'
 fi
 
-choice=$(echo "$options" | $rofi_prompt)
+choice=$(echo "$options" | $dmenu_prompt)
 
 case $choice in
 	"back up now")
@@ -23,10 +21,9 @@ case $choice in
 		$backup_script cancel
 	;;
 	"watch log")
-		$TERMINAL bash -c "watch -n 5 tac \"$(echo $logfile)\""
+		$terminal_command "watch -n 5 tac \"$(echo $logfile)\""
 	;;
 	"read log")
-		echo $logfile
-		$TERMINAL bash -c "tac \"$(echo $logfile)\""
+		$terminal_command "tac \"$(echo $logfile)\" | less"
 	;;
 esac

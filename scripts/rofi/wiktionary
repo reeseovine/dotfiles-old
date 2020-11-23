@@ -62,9 +62,9 @@ def lookup(query):
 	entries = []
 	for section in word:
 		for defn in section['definitions']:
-			for text in defn['text']:
-				if text[:len(query)] != query:
-					entries.append(POStable[defn['partOfSpeech']] + text.rstrip(':'))
+			for entry in defn['text']:
+				if entry[:len(query)] != query:
+					entries.append(POStable[defn['partOfSpeech']] + entry.rstrip(':'))
 	
 	next = None
 	if len(entries) == 0:

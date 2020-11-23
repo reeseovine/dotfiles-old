@@ -179,10 +179,11 @@ Tool for quickly switching between single- and dual-monitor setups. The xrandr c
 Menu for shutting down, logging out, etc.
 
 **tweet** *by me*
-A wrapper around [tweet.sh](https://github.com/piroor/tweet.sh) so I can send tweets without having to open Twitter.
+A wrapper around [tweet.sh](https://github.com/piroor/tweet.sh) so I can send tweets without having to open Twitter (or a terminal).
 
 **wiktionary** *by me*
 Look up definitions from Wiktionary. You can set the language as well.
+
 
 ### Backups
 I wrote three scripts for managing backups:

@@ -1,17 +1,15 @@
 #!/bin/bash
 
 # make tweets using rofi
-
-tweet_text=$(rofi -dmenu -p 'tweet' -lines 0 -width 1000)
-if [[ -z "$tweet_text" ]]; then
-	#notify-send "tweet.sh" "Tweet empty"
-	exit 1
-fi
+tweet_text=$(rofi -dmenu -p 'tweet' -lines 0 -width 1000 -keep-left)
+[[ -z "$tweet_text" ]] && exit 1
 
 output=$(tweet.sh post "$tweet_text")
 
-if [[ 'null' == $(echo '$output' | jq -r '.id') ]]; then
-	notify-send "tweet.sh" "$(echo '$output' | jq -r '.errors[0].message')"
+if [[ "$(echo $output | jq -r '.errors')" != "null" ]]; then
+	dunstify "tweet.sh" "error: $(echo $output | jq '.errors[0].message')"
 else
-	notify-send "tweet.sh" "Tweet sent!"
+	url=$(echo $output | jq '"https://twitter.com/" + .user.screen_name + "/status/" + .id_str' | sed -Ee 's/"//g')
+	action=$(dunstify "tweet.sh" "Tweet sent!" --action="open,Show tweet")
+	[[ "$action" == "open" ]] && xdg-open "$url"
 fi

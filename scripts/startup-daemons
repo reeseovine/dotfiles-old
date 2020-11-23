@@ -15,9 +15,10 @@ xautolock -time 20 -locker "~/scripts/lock" &
 libinput-gestures-setup start
 
 # Set wallpaper and colors
-~/scripts/pywal &
+~/scripts/pywal -a
 
 # Applications
+dunst &
 redshift &
 nm-applet &
 blueman-tray &
