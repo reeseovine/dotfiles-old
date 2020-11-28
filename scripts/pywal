@@ -49,9 +49,10 @@ node $HOME/scripts/lightswitch $([ 0 == $light_mode ] && echo "-l") &
 
 # update firefox theme
 pywalfox update
+pywalfox $([ 0 == $light_mode ] && echo "light" || echo "dark")
 
 # update vivaldi theme (silent)
-$HOME/scripts/vivwal $([ 0 == $light_mode ] && echo "-l") >/dev/null &
+# $HOME/scripts/vivwal $([ 0 == $light_mode ] && echo "-l") >/dev/null &
 
 # update atom theme
 touch $HOME/.atom/styles.less
