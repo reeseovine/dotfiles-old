@@ -82,21 +82,23 @@ Electron-based applications are nice because they use CSS to change how they loo
 #### [Atom](atom)
 *Symlinked as ~/.atom*
 
-Because it does not support transparent themes out of the box (on Linux, at least), I needed to make a quick modification to its internals. Don't worry, it doesn't involve building anything from source. Here are the steps:
+Because it does not support transparent themes out of the box (on Linux, at least), I needed to make a quick modification to its internals. Don't worry, it doesn't involve building anything from source. Here are the steps I followed:
 0. Make sure you have `npm`, then install `asar` with `sudo npm i -g asar`.
 1. Exit Atom completely.
 2. cd into `/usr/share/atom/resources/`, then unpack the main program with `sudo asar extract app.asar app.asar.extracted`. You must use `sudo` because it's in a write-protected directory.
 3. Open the file `app.asar.extracted/src/main-process/atom-window.js` in your text editor of choice (with root privileges).
 4. Around line 38 inside the `options` object and outside of the `webPreferences` object, add the line `transparent: true,` which will make the window background transparent. (I've also added `frame: false,` to mine which will hide the window title and menu bars. You don't have to.)
 5. Save this file, then package it back up in the terminal with `sudo asar pack app.asar.extracted app.asar`. If you did it correctly you should be able to start Atom again! You won't see a difference at first because...
-6. You need a theme that supports transparency! I'm using my [Bliss UI theme](https://github.com/katacarbix/atom-bliss-blur-ui). I believe [native-ui](https://atom.io/themes/native-ui) could work as well but I haven't tried it.
+6. You need a theme that supports transparency! I'm using my [Fang](https://github.com/katacarbix/fang-ui) and [Wave](https://github.com/katacarbix/wave-ui) UI themes (dark and light mode, respectively). [native-ui](https://atom.io/themes/native-ui) works rather well too.
+
+I wrote some styles to go along with Fang/Wave in [my stylesheet](atom/styles.less) that adds colors from pywal.
 
 #### Discord
 <small><em><strong>NOTE:</strong> Modifying the Discord client's code goes against Discord's Terms of Service! By doing this your account is subject to suspension. Though I have not heard of this happening, If it happens to you don't say I didn't warn you.</em>
 Okay where were we...</small>
 
 First I installed [EnhancedDiscord](https://github.com/joe27g/EnhancedDiscord) for its CSS loading and other neat plugins.
-To enable transparency (and blur on some systems/DEs) you should install [Glasscord](https://github.com/AryToNeX/Glasscord). I used it for a while but was having some issues with recent versions of the Discord client and didn't feel like fixing it (don't tell Naomi 🤫) so I opted for a similar method to the one for Atom. The package you'll want to modify is `~/.config/discord/0.0.XX/modules/discord_desktop_core/core.asar`. I won't say more beyond that so I can cover my a\$\$ 🤐. I bet you can figure it out.
+To enable transparency (and blur on some systems/DEs) you should install [Glasscord](https://github.com/AryToNeX/Glasscord). I used it for a while but was having some issues with recent versions of the Discord client and didn't feel like fixing it (don't tell Naomi 🤫) so I opted for a similar method to the one for Atom. The package you'll want to modify is `~/.config/discord/0.0.XX/modules/discord_desktop_core/core.asar` (where "XX" is the current version number). I won't say more beyond that so I can cover my a\$\$ 🤐. I bet you can figure it out.
 I'm using the pywal variant of my [Bliss theme](https://github.com/katacarbix/discord-stuff/) which gets recompiled by the pywal script.
 
 #### What about [Android Messages](https://github.com/katacarbix/android-messages/)?
