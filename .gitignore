@@ -12,4 +12,4 @@ abricotine/*
 
 fish/*
 !fish/config.fish
-!fish/fish_variables
+!fish/functions/gg.fish

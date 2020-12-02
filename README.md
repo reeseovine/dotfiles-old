@@ -6,36 +6,30 @@ All of the files and directories in the root of the repository (except the READM
 <details>
 <summary><strong>Table of Contents</strong></summary>
 
-<!-- TOC -->
+<!-- toc -->
 
-- [dotfiles](#dotfiles)
-    - [Colors](#colors)
-    - [Glamor](#glamor)
-        - [[i3](i3/config)](#i3i3config)
-        - [[compton](compton.conf)](#comptoncomptonconf)
-        - [[polybar](polybar)](#polybarpolybar)
-        - [[dunst](dunst/dunstrc)](#dunstdunstdunstrc)
-        - [[rofi](rofi/config.rasi)](#rofiroficonfigrasi)
-        - [[wal](wal)](#walwal)
-        - [Vivaldi](#vivaldi)
-        - [Firefox](#firefox)
-        - [Electron apps](#electron-apps)
-            - [[Atom](atom)](#atomatom)
-            - [Discord](#discord)
-            - [[Abricotine](abricotine)](#abricotineabricotine)
-            - [What about [Android Messages](https://github.com/katacarbix/android-messages/)?](#what-about-android-messageshttpsgithubcomkatacarbixandroid-messages)
-    - [Terminal environment](#terminal-environment)
-        - [[kitty](kitty/kitty.conf)](#kittykittykittyconf)
-        - [[fish](fish)](#fishfish)
-        - [ranger](#ranger)
-        - [neofetch](#neofetch)
-    - [[Scripts](scripts)](#scriptsscripts)
-        - [rofi](#rofi)
-        - [Backups](#backups)
-        - [Scripts you should know about that weren't mentioned elsewhere](#scripts-you-should-know-about-that-werent-mentioned-elsewhere)
-    - [Miscellanea](#miscellanea)
+- [Colors](#colors)
+- [Glamor](#glamor)
+  * [i3](#i3)
+  * [compton](#compton)
+  * [polybar](#polybar)
+  * [dunst](#dunst)
+  * [rofi](#rofi)
+  * [wal](#wal)
+  * [Firefox](#firefox)
+  * [Electron apps](#electron-apps)
+- [Terminal environment](#terminal-environment)
+  * [kitty](#kitty)
+  * [fish](#fish)
+  * [ranger](#ranger)
+  * [neofetch](#neofetch)
+- [Scripts](#scripts)
+  * [rofi](#rofi-1)
+  * [Backups](#backups)
+  * [Scripts you should know about that weren't mentioned elsewhere](#scripts-you-should-know-about-that-werent-mentioned-elsewhere)
+- [Miscellanea](#miscellanea)
 
-<!-- /TOC -->
+<!-- tocstop -->
 
 </details>
 
