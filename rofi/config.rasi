@@ -1,8 +1,8 @@
 configuration {
 	theme: "~/.cache/wal/colors.rasi";
-	modi: "window,drun,run,ssh";
+	modi: "window,drun,run,ssh,calc";
 	width: 30;
-	lines: 10;
+	lines: 12;
 	font: "Fira Code 12";
 	show-icons: true;
 	hide-scrollbar: true;

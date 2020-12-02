@@ -30,10 +30,3 @@ end
 
 # Load autojump
 source /usr/share/autojump/autojump.fish
-
-# `git get && cd` shorthand
-function gg --description "clone using git-get and change directory" --argument url
-	set -l dir (git get $url)
-	if test -n "$dir"; cd $dir
-	end
-end

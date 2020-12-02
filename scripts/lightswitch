@@ -9,8 +9,8 @@ const colors = require('/home/reese/.cache/wal/colors.json');
 // Update atom's configuration
 let toggle_atom = mode => {
 	let themes = {
-		'dark': ["atom-bliss-blur-ui", "one-black-syntax"],
-		'light': ["atom-bliss-blur-ui", "one-light-syntax"]
+		'dark': ["fang-ui", "eupho-syntax"],
+		'light': ["wave-ui", "one-light-syntax"]
 	}
 	
 	let filename = "/home/reese/.atom/config.cson";
@@ -21,10 +21,11 @@ let toggle_atom = mode => {
 }
 
 let toggle_fish = mode => {
-	let fish_vars = '/home/reese/.config/fish/fish_variables';
-	const cp = spawn('cp', [`${fish_vars}_${mode}`, `${fish_vars}`]);
-	cp.on('close', code => {
-		if (code == 0) console.log(`copied fish variables.`);
+	let fish_variables = '/home/reese/.config/fish/fish_variables';
+	const mklink = spawn('ln', ['-sf', `${fish_variables}_${mode}`, `${fish_variables}`]);
+	mklink.on('close', code => {
+		if (code == 0) console.log(`linked fish variables.`);
+		else console.error(`an error occurred when linking fish variables. (exit code ${code})`);
 	});
 }
 

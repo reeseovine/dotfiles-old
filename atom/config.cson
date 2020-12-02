@@ -28,8 +28,8 @@
     openEmptyEditorOnStart: false
     telemetryConsent: "no"
     themes: [
-      "atom-bliss-blur-ui"
-      "one-black-syntax"
+      "fang-ui"
+      "eupho-syntax"
     ]
   editor:
     atomicSoftTabs: false
@@ -50,10 +50,13 @@
     ]
   fonts:
     fontFamily: "FiraCode Retina"
-    secondaryFonts: "monospace, Noto Color Emoji, Material Icons, Weather Icons"
+    secondaryFonts: "monospace, Noto Color Emoji, FuraCode Nerd Font"
   "markdown-preview":
     breakOnSingleNewline: true
     useGitHubStyle: true
+  "markdown-writer":
+    tableAlignment: "left"
+    tableExtraPipes: true
   processing: {}
   script:
     cwdBehavior: "Directory of the script"

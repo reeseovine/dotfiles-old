@@ -1,21 +1,24 @@
 #!/bin/bash
 
-# Battery warning script
-~/scripts/battery-notify &
-
 # Start compositor
 compton -b
 
 # Disable screensaver
 xset -dpms s off
 # ...and use xautolock instead
-xautolock -time 20 -locker "~/scripts/lock" &
+# xautolock -time 20 -locker "~/scripts/lock" &
 
 # Enable touchpad gestures
 libinput-gestures-setup start
 
 # Set wallpaper and colors
 ~/scripts/pywal -a
+
+# Battery warning script
+~/scripts/battery-notify &
+
+# Clipboard manager
+clipster -d &
 
 # Applications
 dunst &

@@ -250,8 +250,9 @@ bindsym $sup+space exec --no-startup-id rofi -show drun -drun-display-format {na
 bindsym $sup+Tab exec --no-startup-id rofi -show window -width 50
 bindsym $sup+Escape exec --no-startup-id ~/scripts/rofi/power
 bindsym XF86PowerOff exec --no-startup-id ~/scripts/rofi/power
-bindsym $sup+equal exec --no-startup-id LC_MONETARY=en_US.UTF-8 rofi -show calc -modi calc -lines 0 -no-show-match -no-sort -no-history | xclip -selection clipboard
+bindsym $sup+equal exec --no-startup-id LC_MONETARY=en_US.UTF-8 rofi -show calc -lines 0 -no-show-match -no-sort -no-history -calc-command "echo -n '{result}'" -kb-accept-custom Return -kb-accept-entry Control+Return | clipster -c
 bindsym $sup+b exec --no-startup-id ~/scripts/rofi/backupctl
+bindsym $sup+c exec --no-startup-id ~/git/github.com/fdw/rofi-clipster/clippy/Clippy.py
 bindsym $sup+d exec --no-startup-id ~/scripts/rofi/wiktionary
 bindsym $sup+e exec --no-startup-id rofimoji
 bindsym $sup+m exec --no-startup-id ~/scripts/rofi/displayout

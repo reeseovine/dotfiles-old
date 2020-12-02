@@ -20,3 +20,39 @@
 	],
 	"type": "con"
 }
+
+{
+	"border": "normal",
+	"floating": "auto_off",
+	"layout": "splith",
+	"rect": {
+		"height": 354,
+		"width": 304,
+		"x": 808,
+		"y": 363
+	},
+	"type": "floating_con",
+	"nodes": [
+		{
+			"border": "pixel",
+			"current_border_width": 2,
+			"floating": "user_on",
+			"geometry": {
+				"height": 350,
+				"width": 300,
+				"x": 810,
+				"y": 365
+			},
+			"name": "Discord Updater",
+			"percent": 1,
+			"swallows": [
+				{
+					"class": "^discord$",
+					"instance": "^discord$",
+					"title": "^Discord\\ Updater$"
+				}
+			],
+			"type": "con"
+		}
+	]
+}

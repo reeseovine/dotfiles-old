@@ -1,14 +1,14 @@
+// Set colors from pywal
 @import '/home/reese/.cache/wal/colors.less';
 
-// Stuff for pywal theme
 @bg-trans: fade(@background, 80%);
 @bg-light: lighten(@background, 15%);
-
 @fg-muted: fade(@foreground, 80%);
 
 body {
 	background-color: @bg-trans;
 }
+
 .tab-bar,
 .tab-bar .tab:not(.active),
 .atom-dock-resize-handle,
@@ -19,15 +19,14 @@ body {
 	background-color: @color5;
 	color: #fff !important;
 }
-
 .tab-bar .tab.active.modified:not(:hover) .close-icon {
 	border-color: #fff;
 }
-
 .text-subtle,
 .tab-bar .tab {
 	color: @fg-muted;
 }
+
 .text-highlight,
 .tree-view,
 .list-tree,
@@ -42,13 +41,13 @@ status-bar .cursor-position a,
 	}
 }
 
-.list-group .selected::before,
+.list-group .selected,
 .list-tree .selected::before {
-	background-color: @foreground;
+	background-color: @color1 !important;
 }
-.tree-view .list-item.selected,
+.list-group .list-item.selected,
 .list-tree .selected {
-	color: @background;
+	color: white !important;
 }
 
 
@@ -65,5 +64,5 @@ atom-text-editor[data-grammar] {
 
 // Default font stack + Emoji and symbols
 .markdown-preview.markdown-preview {
-	font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Noto Color Emoji", "Material Icons";
+	font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Noto Color Emoji", "FuraCode Nerd Font";
 }

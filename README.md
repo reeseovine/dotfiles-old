@@ -6,35 +6,38 @@ All of the files and directories in the root of the repository (except the READM
 <details>
 <summary><strong>Table of Contents</strong></summary>
 
-<!-- toc -->
+<!-- TOC -->
 
-- [Colors](#colors)
-- [Glamor](#glamor)
-  * [i3](#i3)
-  * [compton](#compton)
-  * [polybar](#polybar)
-  * [dunst](#dunst)
-  * [rofi](#rofi)
-  * [wal](#wal)
-  * [Vivaldi](#vivaldi)
-  * [Electron apps](#electron-apps)
-- [Terminal environment](#terminal-environment)
-  * [kitty](#kitty)
-  * [fish](#fish)
-  * [ranger](#ranger)
-  * [neofetch](#neofetch)
-- [Scripts](#scripts)
-  * [rofi](#rofi-1)
-  * [Backups](#backups)
-  * [Scripts you should know about that weren't mentioned elsewhere](#scripts-you-should-know-about-that-werent-mentioned-elsewhere)
-- [Miscellanea](#miscellanea)
+- [dotfiles](#dotfiles)
+    - [Colors](#colors)
+    - [Glamor](#glamor)
+        - [[i3](i3/config)](#i3i3config)
+        - [[compton](compton.conf)](#comptoncomptonconf)
+        - [[polybar](polybar)](#polybarpolybar)
+        - [[dunst](dunst/dunstrc)](#dunstdunstdunstrc)
+        - [[rofi](rofi/config.rasi)](#rofiroficonfigrasi)
+        - [[wal](wal)](#walwal)
+        - [Vivaldi](#vivaldi)
+        - [Firefox](#firefox)
+        - [Electron apps](#electron-apps)
+            - [[Atom](atom)](#atomatom)
+            - [Discord](#discord)
+            - [[Abricotine](abricotine)](#abricotineabricotine)
+            - [What about [Android Messages](https://github.com/katacarbix/android-messages/)?](#what-about-android-messageshttpsgithubcomkatacarbixandroid-messages)
+    - [Terminal environment](#terminal-environment)
+        - [[kitty](kitty/kitty.conf)](#kittykittykittyconf)
+        - [[fish](fish)](#fishfish)
+        - [ranger](#ranger)
+        - [neofetch](#neofetch)
+    - [[Scripts](scripts)](#scriptsscripts)
+        - [rofi](#rofi)
+        - [Backups](#backups)
+        - [Scripts you should know about that weren't mentioned elsewhere](#scripts-you-should-know-about-that-werent-mentioned-elsewhere)
+    - [Miscellanea](#miscellanea)
 
-<!-- tocstop -->
+<!-- /TOC -->
 
 </details>
-
-<!-- AUTO-GENERATED-CONTENT:START (TOC:maxDepth=3&collapse=true&collapseText=<strong>Table of Contents</strong>) -->
-<!-- AUTO-GENERATED-CONTENT:END -->
 
 
 ## Colors
@@ -76,8 +79,8 @@ Mostly just preferences for behavior rather than appearance, which is taken care
 ### [wal](wal)
 Contains templates to make it easier for other programs to import the colors.
 
-### Vivaldi
-I switched back to Firefox. ~~Vivaldi can use [custom CSS](vivaldi/common.css) with an [experimental toggle](https://forum.vivaldi.net/topic/37802/css-modifications-experimental-feature) which is nice, but it doesn't go so far as to be pywal-friendly (at least not without restarting every time). Fortunately I can use [this script](scripts/vivwal) (which I modified slightly) to set the theme colors automatically through a remote Chromium console. It's pretty clever honestly.~~
+### Firefox
+I'm using the [Pywalfox](https://github.com/Frewacom/pywalfox) extension + a few UI tweaks in my [`userChrome.css`](firefox/userChrome.css).
 
 ### Electron apps
 Electron-based applications are nice because they use CSS to change how they look. A lot of them will support user stylesheets (and maybe even transparency) out of the box, but some of them needed to be modified a little.
@@ -102,11 +105,7 @@ First I installed [EnhancedDiscord](https://github.com/joe27g/EnhancedDiscord) f
 To enable transparency (and blur on some systems/DEs) you should install [Glasscord](https://github.com/AryToNeX/Glasscord). I used it for a while but was having some issues with recent versions of the Discord client and didn't feel like fixing it (don't tell Naomi 🤫) so I opted for a similar method to the one for Atom. The package you'll want to modify is `~/.config/discord/0.0.XX/modules/discord_desktop_core/core.asar`. I won't say more beyond that so I can cover my a\$\$ 🤐. I bet you can figure it out.
 I'm using the pywal variant of my [Bliss theme](https://github.com/katacarbix/discord-stuff/) which gets recompiled by the pywal script.
 
-#### [Abricotine](abricotine)
-*Symlinked as ~/.config/Abricotine/app*
-Markdown editor with custom theme support. No transparency out of the box but could probably be modified in the same way, though I like it better opaque. My wal theme is based on the default dark theme. I haven't figured out how to make it refresh the theme automatically yet so it must be done manually (ctrl+F5).
-
-#### What about [Android Messages](https://github.com/katacarbix/android-messages/)<sup>[(name TBD)](https://github.com/katacarbix/android-messages/issues/6)</sup>?
+#### What about [Android Messages](https://github.com/katacarbix/android-messages/)?
 It supports custom CSS, transparency, and blur/vibrancy/aero out of the box!
 
 I use the custom theme provided in the repo but I don't actually use pywal colors (despite having created a version just for that). This is because I have it on the same workspace as [Caprine](https://github.com/sindresorhus/caprine) and, while Caprine supports custom CSS, it's a total pain to try to figure out what selectors do what. It's just an endless cascade of React components, each with its own semi-transparent background. Thanks, Sindre 😒. Anyway the two apps look out of place being next to each other so I'm sticking with the neutral dark grey theme for now.
@@ -154,7 +153,7 @@ Tells certain programs to switch to light or dark mode depending on a command li
 **lock** *by me*
 Runs [i3lock-color](https://github.com/Raymo111/i3lock-color) using colors from wal to save lines of code elsewhere. You want to make sure you have compositor blurring or something behind it, otherwise your desktop will be visible.
 
-**minecraft** *by me*
+**mcstatus** *by me*
 Reads your Minecraft server list and displays a little status indicator.
 
 **mkgameshortcut** *by me*
@@ -168,9 +167,6 @@ Grabs a random wallpaper (or reads a path from `argv`), sets it and loads a colo
 
 **rgbctl** *by me*
 Sets the colors of physical devices with RGB in my setup. Right now it only sets the colors of the keyboard on my Razer Blade. It has the ability to set the Yeelight bulbs over my local network but I turned that off because it hurts my eyes 😵.
-
-**vivwal** *by [wismut on vivaldi.net](https://forum.vivaldi.net/topic/34521/linux-changing-theme-via-command-line/22?_=1597433612704)*
-Sets the colors of Vivaldi using `crconsole`. Vivaldi needs to be started with the command `vivaldi --remote-debugging-port=9222` for this to work.
 
 **update** *by me*
 Update system-wide packages from different package managers in parallel. Uses sudo askpass so you don't need to have a terminal open.

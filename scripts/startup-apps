@@ -11,5 +11,6 @@ sleep 1
 # vivaldi --remote-debugging-port=9222 &
 firefox &
 discord &
+# spectral &
 caprine &
 gtk-launch android-messages &
