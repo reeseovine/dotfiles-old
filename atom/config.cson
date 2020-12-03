@@ -53,7 +53,6 @@
     secondaryFonts: "monospace, Noto Color Emoji, FuraCode Nerd Font"
   "markdown-preview":
     breakOnSingleNewline: true
-    useGitHubStyle: true
   "markdown-writer":
     tableAlignment: "left"
     tableExtraPipes: true

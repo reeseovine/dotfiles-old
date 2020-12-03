@@ -3,43 +3,77 @@
 const fs = require('fs');
 const cson = require('cson');
 const { spawn } = require('child_process');
-
+const CDP = require('chrome-remote-interface');
 const colors = require('/home/reese/.cache/wal/colors.json');
 
 // Update atom's configuration
-let toggle_atom = mode => {
+let toggle_atom = async mode => {
 	let themes = {
 		'dark': ["fang-ui", "eupho-syntax"],
 		'light': ["wave-ui", "one-light-syntax"]
 	}
-	
 	let filename = "/home/reese/.atom/config.cson";
 	let conf = cson.load(filename);
 	conf['*'].core.themes = themes[mode];
-	fs.writeFileSync(filename, cson.stringify(conf));
-	console.log('modified atom config.');
-}
-
-let toggle_fish = mode => {
-	let fish_variables = '/home/reese/.config/fish/fish_variables';
-	const mklink = spawn('ln', ['-sf', `${fish_variables}_${mode}`, `${fish_variables}`]);
-	mklink.on('close', code => {
-		if (code == 0) console.log(`linked fish variables.`);
-		else console.error(`an error occurred when linking fish variables. (exit code ${code})`);
+	fs.writeFile(filename, cson.stringify(conf), err => {
+		!err ? console.log('modified atom config.') : console.error(`atom config error: ${err}`);
 	});
 }
 
-(() => {
-	let mode;
-	if (process.argv.length > 2 && process.argv[2] == '-l'){
-		mode = 'light';
-	} else {
-		mode = 'dark';
-	}
+// Symlink fish_variables to one of two files
+let toggle_fish = async mode => {
+	let fish_variables = '/home/reese/.config/fish/fish_variables';
+	let mklink = spawn('ln', ['-sf', `${fish_variables}_${mode}`, `${fish_variables}`]);
+	mklink.on('close', code => {
+		!code ? console.log('linked fish variables.') : console.error(`an error occurred when linking fish variables. (exit code ${code})`);
+	});
+}
 
-	toggle_atom(mode);
-	toggle_fish(mode);
+// Requires EnhancedDiscord to be installed and for Discord to be
+// started with the command line argument '--remote-debugging-port=1666'.
+let toggle_discord = async mode => {
+	CDP({port: 1666}, (client) => {
+		client.Runtime.evaluate({expression: `EDApi.findModuleByProps("updateLocalSettings").updateRemoteSettings({theme: "${mode}"}) `});
+		console.log('changed discord appearance');
+		client.close();
+	}).on('error', (err) => {
+		console.error(`discord console error: ${err}`);
+	});
+}
+
+let main = (mode, toggles) => {
+	if (toggles.incudes('atom')) toggle_atom(mode);
+	if (toggles.incudes('fish')) toggle_fish(mode);
+	if (toggles.incudes('discord')) toggle_discord(mode);
+}
+
+(() => {
+	let argv = require('yargs/yargs')(process.argv.slice(2))
+	 	.usage('$0 [args]')
+	 	.options({
+	 		'light': {
+	 	        alias: 'l',
+	 			type: 'boolean',
+	 	        default: false,
+	 	        description: 'Switches to light mode if set, otherwise dark.'
+	     	},
+	 		'toggles': {
+				alias: 't',
+	 			type: 'array',
+	 			default: ['atom', 'fish', 'discord'],
+	 			requiresArg: true,
+	 			description: '(optional) Specify which programs to toggle.\n(available options are: atom, fish, discord)'
+	 		}
+	 	})
+	 	.hide('version')
+	 	.help()
+		.argv;
+	
+	let mode = argv.light ? 'light' : 'dark';
+	main(mode, argv.toggles);
 })()
 
+module.exports = main;
 module.exports.atom = toggle_atom;
 module.exports.fish = toggle_fish;
+module.exports.discord = toggle_discord;
