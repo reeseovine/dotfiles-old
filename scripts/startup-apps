@@ -7,10 +7,9 @@ i3-msg "workspace 5; append_layout ~/.config/i3/layouts/5.json"
 
 sleep 1
 
-# atom &
-# vivaldi --remote-debugging-port=9222 &
-firefox &
-discord &
-# spectral &
-caprine &
-gtk-launch android-messages &
+# gtk-launch atom
+gtk-launch firefox
+gtk-launch discord
+# gtk-launch spectral
+gtk-launch caprine
+gtk-launch android-messages

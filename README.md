@@ -42,7 +42,7 @@ All of the files and directories in the root of the repository (except the READM
 - rofi
 - kitty (and other terminal emulators)
 - Atom
-- Vivaldi
+- Firefox
 - Discord
 - the RGB keyboard in my laptop  
   (still trying to make it work on my not-programmable-over-USB keyboard...)
@@ -52,20 +52,20 @@ Some of these refresh their colors automatically but most need to be told to ref
 
 ## Glamor
 ### [i3](i3/config)
-[i3-gaps](https://github.com/Airblader/i3) is a tiling window manager. This fork adds the ability to create gaps between windows in tiling mode so your wallpaper can peek through. In addition to window styling, my config adds quite a few keyboard shortcuts for things like starting apps quickly, opening rofi menus, and taking screenshots.
+[i3-gaps](https://github.com/Airblader/i3) is a fork of the tiling window manager that adds the ability to create gaps between windows in tiling mode so your wallpaper can peek through. In addition to window styling, my config adds quite a few keyboard shortcuts for things like starting apps quickly, opening rofi menus, and taking screenshots.
 
 ### [compton](compton.conf)
-compton is a small but powerful composition backend for X desktops. `tryone144`'s [dual_kawase](https://github.com/tryone144/compton/tree/dual_kawase) branch adds a really nice blur behind windows can go up to much higher radii which I prefer. Most windows I gave a subtle shadow as well that just makes things look a little less flat.
+compton is a small but powerful composition backend for X desktops. `tryone144`'s [dual_kawase](https://github.com/tryone144/compton/tree/dual_kawase) branch adds a really nice blur behind windows that can go up to much higher radii which I prefer. I gave most windows a subtle shadow as well that just makes things look a little less flat.
 
-compton has the ability to set window transparency but I chose to forgo this feature in favor of creating transparent areas within some apps. I then turned off transparency and blurring in compton's config for any program that's opaque.
+compton has the ability to make windows semi-transparent but I chose to forgo this feature in favor of creating transparent areas within some apps. I then turned off blurring in compton's config for any program that's opaque, because there's no reason to blur something I'm not even going to see.
 
 ### [polybar](polybar)
-This was actually one of the first pieces I added to my environment. I started with [this theme](https://github.com/adi1090x/polybar-themes#-polybar-4) and heavily modified it over time using [polybar's wiki](https://github.com/polybar/polybar/wiki) for help. As you can probably tell it looks rather different but I'll keep the attribution anyway just for record-keeping's sake.
+This was actually one of the first pieces I added to my environment. I started with [this theme](https://github.com/adi1090x/polybar-themes#-polybar-4) and heavily modified it over time using [polybar's wiki](https://github.com/polybar/polybar/wiki) for help. As you can probably tell it looks rather different but I'm keeping the attribution just for record-keeping's sake.
 
 There's the `main` bar, and one called `secondary` which is stripped down for multi-monitor setups.
 
 ### [dunst](dunst/dunstrc)
-A notification daemon that displays desktop notifications. The style is pretty extensively customizable, but sadly the one thing that it can't do is variable transparency, so it has to be applied to the entire thing. Luckily it's not too noticeable (in my opinion). It doesn't use colors from wal because I think it looks cleaner without them.
+A notification daemon that displays desktop notifications. Its appearance is pretty extensively customizable, but sadly the one thing that it can't do is variable transparency, so it has to be applied to the entire notification. Luckily it's not too noticeable (in my opinion). It doesn't use colors from wal because I think it looks better without them.
 
 ### [rofi](rofi/config.rasi)
 Mostly just preferences for behavior rather than appearance, which is taken care of in [this wal template](wal/templates/colors-rofi-dark.rasi). When I have time I want to go through and update the theme to account for some features I didn't know about when I first made it (like the `-mesg` line).
@@ -134,14 +134,14 @@ A simple little fetch utility that displays info about the computer.
 
 All of the scripts below were either written by me or borrowed from someone else and modified for my use case. I don't want to reupload unmodified scripts. Instead, check out the section near the end with links to scripts and packages that I find useful.
 
-**battery-notify** *by [beatle on archlinux.org](https://bbs.archlinux.org/viewtopic.php?pid=1037160#p1037160)*
+**battery-notify** *by [beatle on archlinux forums](https://bbs.archlinux.org/viewtopic.php?pid=1037160#p1037160)*
 Runs in the background and warns me when laptop battery gets too low.
 
 **colors** *by me*
 Custom visualizations of terminal colors. I'm sure there are better implementations out there but this was fun to make.
 
 **kitty-popup** *by me*
-Create terminal script popup windows using kitty's remote control feature.
+Create terminal script popup windows using kitty's remote control and i3-msg to manipulate the window.
 
 **lightswitch** *by me*
 Tells certain programs to switch to light or dark mode depending on a command line argument.
@@ -149,29 +149,26 @@ Tells certain programs to switch to light or dark mode depending on a command li
 **lock** *by me*
 Runs [i3lock-color](https://github.com/Raymo111/i3lock-color) using colors from wal to save lines of code elsewhere. You want to make sure you have compositor blurring or something behind it, otherwise your desktop will be visible.
 
-**mcstatus** *by me*
-Reads your Minecraft server list and displays a little status indicator.
-
 **mkgameshortcut** *by me*
 Creates an application shortcut given an itch.io game folder so you can add it to Steam or access it from your app launcher.
 
-**polybar** *by [aid1090x](https://github.com/adi1090x/polybar-themes)*
-Starts polybar. The `main` bar goes on the primary display and the `secondary` bar goes on all the other ones.
+**polybar** *by me*
+Starts polybar. The `main` bar goes on the primary display and a `secondary` bar goes on all the other ones.
 
 **pywal** *by me*
-Grabs a random wallpaper (or reads a path from `argv`), sets it and loads a color scheme with wal, then tells everything to update its color scheme (either directly or indirectly). Supports light and dark mode, and has an automatic option using `redshift `.
+Grabs a random wallpaper (or reads a path from `argv`), sets it and loads a color scheme with wal, then tells everything to update its color scheme (either directly or indirectly). Supports light and dark mode, and has an automatic option using `redshift -p`.
 
 **rgbctl** *by me*
 Sets the colors of physical devices with RGB in my setup. Right now it only sets the colors of the keyboard on my Razer Blade. It has the ability to set the Yeelight bulbs over my local network but I turned that off because it hurts my eyes 😵.
 
 **update** *by me*
-Update system-wide packages from different package managers in parallel. Uses sudo askpass so you don't need to have a terminal open.
+Update system-wide packages from different package managers in parallel. Uses rofi-askpass when not run from a terminal.
 
 **startup-daemons** *by me*
-Background processes which add to i3 what other desktop environments have built in.
+Background processes which add to my setup what other desktop environments have built in.
 
 **startup-apps** *by me*
-Uses i3's `append_layout` feature to restore layouts automatically upon login so I don't waste my time doing it manually. I might look into [i3-resurrect](https://github.com/JonnyHaystack/i3-resurrect) at some point if it does more than what I already have here.
+Uses i3's `append_layout` feature to restore layouts and shuffle windows upon login so I don't waste my time doing it manually.
 
 ### rofi
 Scripts that use rofi as their UI.
@@ -183,6 +180,9 @@ Menu for switching between single- and dual-monitor setups. The xrandr commands 
 Menu for shutting down, logging out, etc.
 
 **tweet** *by me*
+A wrapper around [tweet.sh](https://github.com/piroor/tweet.sh) so I can send tweets without having to open Twitter (or a terminal).
+
+**usb** *by [luyves](https://github.com/luyves/polybar-rofi-usb-mount)*
 A wrapper around [tweet.sh](https://github.com/piroor/tweet.sh) so I can send tweets without having to open Twitter (or a terminal).
 
 **wiktionary** *by me*
@@ -217,7 +217,7 @@ _**BUG:** Does not report errors correctly._
 
 
 ### Scripts you should know about that weren't mentioned elsewhere
-*Located in ~/bin/ or installed using a package manager*
+*Located in ~/.local/bin/ or installed using a package manager*
 
 [**askpass-rofi**](https://github.com/davatorium/rofi/issues/584#issuecomment-384555551)
 Gives scripts a way to prompt for sudo access. Prepend commands with `SUDO_ASKPASS=/path/to/askpass-rofi sudo -A` to use.
@@ -240,8 +240,8 @@ Search for patterns within files in a directory. Super fast.
 
 ## Miscellanea
 
-- [`libinput-gestures.conf`](libinput-gestures.conf) — Touchpad gestures for libinput. Config generated by [Gestures](https://gitlab.com/cunidev/gestures).
-- [`logid.cfg`](logid.cfg) - Gestures and button remapping for Logitech mouse using [logiops](https://github.com/PixlOne/logiops).
-- [`rofimoji.rc`](rofimoji.rc) — Basic config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
-- [`.xsessionrc`](.xsessionrc) *(Symlinked in ~)* — A script that runs whenever an X session starts. The two things it does as of now is uses the insert key as a compose key, and turns off touchpad taps.
+- [`libinput-gestures.conf`](libinput-gestures.conf) *Symlinked in ~/.config/* — Touchpad gestures for libinput.
+- [`logid.cfg`](logid.cfg) *Symlinked in /etc/* — Gestures and button remapping for Logitech mouse using [logiops](https://github.com/PixlOne/logiops).
+- [`rofimoji.rc`](rofimoji.rc) *Symlinked in ~/.config/* — Basic config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
+- [`.xsessionrc`](.xsessionrc) *Symlinked in ~* — A script that runs whenever an X session starts. The two things it does as of now is uses the insert key as a compose key, and turns off touchpad taps.
 - [`meta/`](meta) — Stuff that's relevant to maintaining this repository. Not symlinked.

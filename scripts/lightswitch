@@ -9,7 +9,7 @@ const colors = require('/home/reese/.cache/wal/colors.json');
 // Update atom's configuration
 let toggle_atom = async mode => {
 	let themes = {
-		'dark': ["fang-ui", "eupho-syntax"],
+		'dark': ["fang-ui", "one-black-syntax"],
 		'light': ["wave-ui", "one-light-syntax"]
 	}
 	let filename = "/home/reese/.atom/config.cson";
@@ -42,9 +42,9 @@ let toggle_discord = async mode => {
 }
 
 let main = (mode, toggles) => {
-	if (toggles.incudes('atom')) toggle_atom(mode);
-	if (toggles.incudes('fish')) toggle_fish(mode);
-	if (toggles.incudes('discord')) toggle_discord(mode);
+	if (toggles.includes('atom')) toggle_atom(mode);
+	if (toggles.includes('fish')) toggle_fish(mode);
+	if (toggles.includes('discord')) toggle_discord(mode);
 }
 
 (() => {

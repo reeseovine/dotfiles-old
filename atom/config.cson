@@ -33,7 +33,7 @@
     ]
   editor:
     atomicSoftTabs: false
-    fontFamily: "FiraCode-Retina, monospace, Noto Color Emoji, Material Icons"
+    fontFamily: "FiraCode-Retina, monospace, Noto Color Emoji, FiraCode Nerd Font"
     fontSize: 20
     preferredLineLength: 8000
     scrollPastEnd: true
@@ -50,7 +50,7 @@
     ]
   fonts:
     fontFamily: "FiraCode Retina"
-    secondaryFonts: "monospace, Noto Color Emoji, FuraCode Nerd Font"
+    secondaryFonts: "monospace, Noto Color Emoji, FiraCode Nerd Font"
   "markdown-preview":
     breakOnSingleNewline: true
   "markdown-writer":

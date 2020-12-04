@@ -3,7 +3,7 @@ configuration {
 	modi: "window,drun,run,ssh,calc";
 	width: 30;
 	lines: 12;
-	font: "Fira Code 12";
+	font: "FiraCode Nerd Font 12";
 	show-icons: true;
 	hide-scrollbar: true;
 	terminal: "kitty";

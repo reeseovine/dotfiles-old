@@ -255,6 +255,7 @@ bindsym $sup+b exec --no-startup-id ~/scripts/rofi/backupctl
 bindsym $sup+c exec --no-startup-id ~/git/github.com/fdw/rofi-clipster/clippy/Clippy.py
 bindsym $sup+d exec --no-startup-id ~/scripts/rofi/wiktionary
 bindsym $sup+e exec --no-startup-id rofimoji
+bindsym $sup+n exec --no-startup-id rofimoji --files /home/reese/git/github.com/katacarbix/rofimoji/picker/data/nerd_font.csv
 bindsym $sup+m exec --no-startup-id ~/scripts/rofi/usb
 bindsym $sup+r exec --no-startup-id rofi -show run
 bindsym $sup+s exec --no-startup-id rofi -show ssh
