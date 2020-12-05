@@ -16,8 +16,6 @@
       "li"
     ]
     makeNeverCloseSelfClosing: false
-  "build-sassc":
-    customArguments: "--style compact {FILE_ACTIVE} {FILE_ACTIVE_NAME_BASE}.css"
   core:
     allowPendingPaneItems: false
     audioBeep: false
@@ -29,11 +27,11 @@
     telemetryConsent: "no"
     themes: [
       "fang-ui"
-      "eupho-syntax"
+      "one-black-syntax"
     ]
   editor:
     atomicSoftTabs: false
-    fontFamily: "FiraCode-Retina, monospace, Noto Color Emoji, FiraCode Nerd Font"
+    fontFamily: "FiraCode Nerd Font, monospace, Noto Color Emoji"
     fontSize: 20
     preferredLineLength: 8000
     scrollPastEnd: true
@@ -44,19 +42,6 @@
     undoGroupingInterval: 600
   "exception-reporting":
     userId: "3c20228a-6ff3-4069-a341-36a1fce2de05"
-  firacode:
-    scopes: [
-      "*"
-    ]
-  fonts:
-    fontFamily: "FiraCode Retina"
-    secondaryFonts: "monospace, Noto Color Emoji, FiraCode Nerd Font"
-  "markdown-preview":
-    breakOnSingleNewline: true
-  "markdown-writer":
-    tableAlignment: "left"
-    tableExtraPipes: true
-  processing: {}
   script:
     cwdBehavior: "Directory of the script"
     ignoreSelection: true

@@ -18,6 +18,7 @@ All of the files and directories in the root of the repository (except the READM
   * [wal](#wal)
   * [Firefox](#firefox)
   * [Electron apps](#electron-apps)
+  * [Fonts](#fonts)
 - [Terminal environment](#terminal-environment)
   * [kitty](#kitty)
   * [fish](#fish)
@@ -106,10 +107,12 @@ It supports custom CSS, transparency, and blur/vibrancy/aero out of the box!
 
 I use the custom theme provided in the repo but I don't actually use pywal colors (despite having created a version just for that). This is because I have it on the same workspace as [Caprine](https://github.com/sindresorhus/caprine) and, while Caprine supports custom CSS, it's a total pain to try to figure out what selectors do what. It's just an endless cascade of React components, each with its own semi-transparent background. Thanks, Sindre 😒. Anyway the two apps look out of place being next to each other so I'm sticking with the neutral dark grey theme for now.
 
+### Fonts
+The sans-serif font I use is [Roboto](https://github.com/googlefonts/roboto). I use a [Nerd Font](https://github.com/ryanoasis/nerd-fonts)-patched version of [Fira Code](https://github.com/tonsky/FiraCode), a monospaced programming font, in my terminal and code editor. I have an older version of it installed as well because [the newer version doesn't look right in polybar](https://github.com/polybar/polybar/issues/2045).
 
 ## Terminal environment
 ### [kitty](kitty/kitty.conf)
-I like [kitty](https://sw.kovidgoyal.net/kitty/) because it's fast, rendered on the GPU, and many settings to get it to look and work how I want it to. A good terminal emulator makes working inside of it much more enjoyable. Pywal can set the colors of most terms automatically, and kitty is one of them.
+I like [kitty](https://sw.kovidgoyal.net/kitty/) because it's fast, rendered on the GPU, and has many settings to get it to look and work how I want it to. A good terminal emulator makes working inside of it much more enjoyable. Pywal can set the colors of most terms automatically, and kitty is one of them.
 
 My config contains only the features that I need. I tried not to get bogged down by learning every single thing that it can do and just rely on i3 for most of that.
 
