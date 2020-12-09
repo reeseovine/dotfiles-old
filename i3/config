@@ -239,9 +239,8 @@ bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
 # Application shortcuts
-bindsym $alt+Shift+a exec --no-startup-id atom
-bindsym $alt+Shift+b exec --no-startup-id firefox
-# bindsym $alt+Shift+b exec --no-startup-id vivaldi --remote-debugging-port=9222
+bindsym $alt+Shift+a exec --no-startup-id gtk-launch atom
+bindsym $alt+Shift+b exec --no-startup-id gtk-launch firefox
 bindsym $alt+Shift+f exec --no-startup-id i3-sensible-terminal ranger
 bindsym $alt+Shift+g exec --no-startup-id glimpse-editor
 
@@ -250,6 +249,7 @@ bindsym $sup+space exec --no-startup-id rofi -show drun -drun-display-format {na
 bindsym $sup+Tab exec --no-startup-id rofi -show window -width 50
 bindsym $sup+Escape exec --no-startup-id ~/scripts/rofi/power
 bindsym XF86PowerOff exec --no-startup-id ~/scripts/rofi/power
+bindsym $sup+slash exec --no-startup-id rofi -show file-browser -width 1000 -columns 3 -scroll-method 0
 bindsym $sup+equal exec --no-startup-id LC_MONETARY=en_US.UTF-8 rofi -show calc -lines 0 -no-show-match -no-sort -no-history -calc-command "echo -n '{result}'" -kb-accept-custom Return -kb-accept-entry Control+Return | clipster -c
 bindsym $sup+b exec --no-startup-id ~/scripts/rofi/backupctl
 bindsym $sup+c exec --no-startup-id rofi-clipster

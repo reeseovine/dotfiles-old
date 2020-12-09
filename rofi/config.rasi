@@ -1,6 +1,6 @@
 configuration {
 	theme: "~/.cache/wal/colors.rasi";
-	modi: "window,drun,run,ssh,calc";
+	modi: "window,drun,run,ssh,file-browser";
 	width: 30;
 	lines: 12;
 	font: "FiraCode Nerd Font 12";
@@ -11,4 +11,5 @@ configuration {
 	run-command: "{cmd}";
 	run-shell-command: "{terminal} --hold {cmd}";
 	sort: false;
+	scroll-method: 1;
 }

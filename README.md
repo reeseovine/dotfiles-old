@@ -99,7 +99,8 @@ I wrote some styles to go along with Fang/Wave in [my stylesheet](atom/styles.le
 Okay where were we...</small>
 
 First I installed [EnhancedDiscord](https://github.com/joe27g/EnhancedDiscord) for its CSS loading and other neat plugins.
-To enable transparency (and blur on some systems/DEs) you should install [Glasscord](https://github.com/AryToNeX/Glasscord). I used it for a while but was having some issues with recent versions of the Discord client and didn't feel like fixing it (don't tell Naomi 🤫) so I opted for a similar method to the one for Atom. The package you'll want to modify is `~/.config/discord/0.0.XX/modules/discord_desktop_core/core.asar` (where "XX" is the current version number). I won't say more beyond that so I can cover my a\$\$ 🤐. I bet you can figure it out.
+To enable transparency (and blur on supported systems/DEs) you should install [Glasscord](https://github.com/AryToNeX/Glasscord). I used it for a while but was having some issues with recent versions of the Discord client and didn't feel like fixing it (don't tell Naomi 🤫) so I opted for a similar method to the one for Atom. The package you'll want to modify is `~/.config/discord/0.0.XX/modules/discord_desktop_core/core.asar` (where "XX" is the current version number). I won't say more beyond that so I can cover my a\$\$ 🤐. I bet you can figure it out.
+I then start it each time (or just modify the application entry) with the command line argument `--remote-debugging-port=1666` to allow [the `lightswitch` script](scripts/lightswitch) to switch between light and dark mode.
 I'm using the pywal variant of my [Bliss theme](https://github.com/katacarbix/discord-stuff/) which gets recompiled by the pywal script.
 
 #### What about [Android Messages](https://github.com/katacarbix/android-messages/)?
@@ -142,6 +143,9 @@ Runs in the background and warns me when laptop battery gets too low.
 
 **colors** *by me*
 Custom visualizations of terminal colors. I'm sure there are better implementations out there but this was fun to make.
+
+**ddpv** *by me*
+Basic script for imaging disks with a progress bar and notifications
 
 **kitty-popup** *by me*
 Create terminal script popup windows using kitty's remote control and i3-msg to manipulate the window.
@@ -246,5 +250,5 @@ Search for patterns within files in a directory. Super fast.
 - [`libinput-gestures.conf`](libinput-gestures.conf) *Symlinked in ~/.config/* — Touchpad gestures for libinput.
 - [`logid.cfg`](logid.cfg) *Symlinked in /etc/* — Gestures and button remapping for Logitech mouse using [logiops](https://github.com/PixlOne/logiops).
 - [`rofimoji.rc`](rofimoji.rc) *Symlinked in ~/.config/* — Basic config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
-- [`.xsessionrc`](.xsessionrc) *Symlinked in ~* — A script that runs whenever an X session starts. The two things it does as of now is uses the insert key as a compose key, and turns off touchpad taps.
+- [`.xinitrc`](.xinitrc) *Symlinked in ~* — Script that runs when X session starts.
 - [`meta/`](meta) — Stuff that's relevant to maintaining this repository. Not symlinked.

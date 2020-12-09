@@ -41,20 +41,36 @@ if [ ! $img_path ]; then
 	fi
 fi
 
-wal --backend colorz -i "$img_path" $([ 0 == $light_mode ] && echo "-l")
+if [[ -d "$img_path" ]]; then
+	img_path=$(find "$img_path" -type f ! -name "$(basename -- "$(cat ~/.cache/wal/wal)")" | shuf -n 1)
+fi
+
+# Set the color scheme and wallpaper
+scheme="${HOME}/.config/wal/colorschemes/$([ 0 == $light_mode ] && echo "light" || echo "dark")/$(basename "$img_path").json"
+if [ -a "$scheme" ]; then
+	echo $img_path > ~/.cache/wal/wal
+	wal -e -f "$scheme"
+else
+	wal -i "$img_path" -e --backend colorz $([ 0 == $light_mode ] && echo "-l")
+fi
+
+# Reload GTK
+python -c "from wpgtk.data.reload import gtk3; gtk3()"
+# Restart i3 (restarts polybar)
+i3-msg restart
 
 # light/dark mode toggle for some applications
-export NODE_PATH=/usr/lib/node_modules/
 node $HOME/scripts/lightswitch $([ 0 == $light_mode ] && echo "-l") &
+
+# re-link fish_variables
+fish_variables=$HOME/.config/fish/fish_variables
+ln -sf "${fish_variables}_$([ 0 == $light_mode ] && echo "light" || echo "dark")" $fish_variables
 
 # update firefox theme
 pywalfox update
 pywalfox $([ 0 == $light_mode ] && echo "light" || echo "dark")
 
-# update vivaldi theme (silent)
-# $HOME/scripts/vivwal $([ 0 == $light_mode ] && echo "-l") >/dev/null &
-
-# update atom theme
+# update atom user stylesheet
 touch $HOME/.atom/styles.less
 
 # compile discord theme
@@ -64,4 +80,7 @@ sassc $HOME/git/github.com/katacarbix/discord-stuff/themes/bliss/pywal.scss $HOM
 # sassc $HOME/.config/android-messages/css/user-style.scss $HOME/.config/android-messages/css/user-style.css
 
 # rgb lights (keyboard, etc.)
-python3 $HOME/scripts/rgbctl
+python3 $HOME/scripts/rgbctl &
+
+# wait for all child processes to end
+wait

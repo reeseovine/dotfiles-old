@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const cson = require('cson');
-const { spawn } = require('child_process');
 const CDP = require('chrome-remote-interface');
 const colors = require('/home/reese/.cache/wal/colors.json');
 
@@ -20,15 +19,6 @@ let toggle_atom = async mode => {
 	});
 }
 
-// Symlink fish_variables to one of two files
-let toggle_fish = async mode => {
-	let fish_variables = '/home/reese/.config/fish/fish_variables';
-	let mklink = spawn('ln', ['-sf', `${fish_variables}_${mode}`, `${fish_variables}`]);
-	mklink.on('close', code => {
-		!code ? console.log('linked fish variables.') : console.error(`an error occurred when linking fish variables. (exit code ${code})`);
-	});
-}
-
 // Requires EnhancedDiscord to be installed and for Discord to be
 // started with the command line argument '--remote-debugging-port=1666'.
 let toggle_discord = async mode => {
@@ -43,7 +33,6 @@ let toggle_discord = async mode => {
 
 let main = (mode, toggles) => {
 	if (toggles.includes('atom')) toggle_atom(mode);
-	if (toggles.includes('fish')) toggle_fish(mode);
 	if (toggles.includes('discord')) toggle_discord(mode);
 }
 
@@ -60,9 +49,9 @@ let main = (mode, toggles) => {
 	 		'toggles': {
 				alias: 't',
 	 			type: 'array',
-	 			default: ['atom', 'fish', 'discord'],
+	 			default: ['atom', 'discord'],
 	 			requiresArg: true,
-	 			description: '(optional) Specify which programs to toggle.\n(available options are: atom, fish, discord)'
+	 			description: '(optional) Specify which programs to toggle.\n(available options are: atom, discord)'
 	 		}
 	 	})
 	 	.hide('version')
@@ -75,5 +64,4 @@ let main = (mode, toggles) => {
 
 module.exports = main;
 module.exports.atom = toggle_atom;
-module.exports.fish = toggle_fish;
 module.exports.discord = toggle_discord;
