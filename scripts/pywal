@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 print_usage () {
 	echo "Usage: $0 [-l] [-a] [path]"
@@ -49,15 +49,10 @@ fi
 scheme="${HOME}/.config/wal/colorschemes/$([ 0 == $light_mode ] && echo "light" || echo "dark")/$(basename "$img_path").json"
 if [ -a "$scheme" ]; then
 	echo $img_path > ~/.cache/wal/wal
-	wal -e -f "$scheme"
+	wal -f "$scheme"
 else
-	wal -i "$img_path" -e --backend colorz $([ 0 == $light_mode ] && echo "-l")
+	wal -i "$img_path" --backend colorz $([ 0 == $light_mode ] && echo "-l")
 fi
-
-# Reload GTK
-python -c "from wpgtk.data.reload import gtk3; gtk3()"
-# Restart i3 (restarts polybar)
-i3-msg restart
 
 # light/dark mode toggle for some applications
 node $HOME/scripts/lightswitch $([ 0 == $light_mode ] && echo "-l") &

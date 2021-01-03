@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Source: https://github.com/luyves/polybar-rofi-usb-mount
 # Slightly modified by me

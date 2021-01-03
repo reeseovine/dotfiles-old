@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 # dd with progress bar
+# by katacarbix
+# do whatever you want
 
 bs="1M"
 pv_opts="-F '%e%r%p%b'"
@@ -11,7 +13,7 @@ if (($EUID != 0)); then
 	if [ -t 0 ]; then
 		sudo -H "$0" "$@"
 	else
-		SUDO_ASKPASS=$(which askpass-rofi) sudo -AH "$0" "$@"
+		sudo -AH "$0" "$@"
 	fi
 	exit
 fi

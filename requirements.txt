@@ -1,0 +1,9 @@
+rofimoji
+wiktionaryparser
+gcalcli
+pywal
+colorz
+pywalfox
+colour
+yeelight
+pyphoon

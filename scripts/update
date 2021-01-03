@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Elevate script
 if (($EUID != 0)); then
 	if [ -t 0 ]; then
 		sudo -H "$0" "$@"
 	else
-		SUDO_ASKPASS=$(which askpass-rofi) sudo -AH "$0" "$@"
+		sudo -AH "$0" "$@"
 	fi
 	exit
 fi
@@ -35,8 +35,8 @@ update_npm () {
 }
 
 update_pip () {
-	pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U --use-feature=2020-resolver
-	sudo -u reese pip3 list --outdated --user --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo -u reese pip3 install -U --user --use-feature=2020-resolver
+	pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U
+	sudo -u reese pip3 list --outdated --user --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo -u reese pip3 install -U --user
 }
 
 update_omf () {

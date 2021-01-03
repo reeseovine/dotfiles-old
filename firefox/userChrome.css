@@ -28,6 +28,11 @@ toolbar {
 	box-shadow: none !important;
 }
 
+/* Hide the entire toolbar in popup windows */
+#main-window[chromehidden*="toolbar"] #nav-bar {
+	visibility: collapse;
+}
+
 
 /* https://www.userchrome.org/megabar-styling-firefox-address-bar.html#mbarstyler */
 /*** BEGIN Firefox 77 (June 2, 2020) Override URL bar enlargement ***/

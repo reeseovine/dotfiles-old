@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # small power menu using rofi, i3, systemd and pm-utils
 # (last 3 dependencies are adjustable below)

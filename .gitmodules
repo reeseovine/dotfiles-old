@@ -1,0 +1,6 @@
+[submodule "micro/plug/editorconfig"]
+	path = micro/plug/editorconfig
+	url = https://github.com/10sr/editorconfig-micro
+[submodule "ranger/plugins/ranger-autojump"]
+	path = ranger/plugins/ranger-autojump
+	url = git@github.com:fdw/ranger-autojump.git

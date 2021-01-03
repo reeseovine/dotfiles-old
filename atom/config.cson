@@ -1,55 +1,82 @@
-"*":
-  "Chromo-Color-Previews":
-    supportedTypes:
-      colorName: false
-  "autoclose-html-plus":
-    forceInline: [
-      "title"
-      "h1"
-      "h2"
-      "h3"
-      "h4"
-      "h5"
-      "h6"
-      "span"
-      "p"
-      "li"
-    ]
-    makeNeverCloseSelfClosing: false
-  core:
-    allowPendingPaneItems: false
-    audioBeep: false
-    autoHideMenuBar: true
-    disabledPackages: [
-      "background-tips"
-    ]
-    openEmptyEditorOnStart: false
-    telemetryConsent: "no"
-    themes: [
-      "fang-ui"
-      "one-black-syntax"
-    ]
-  editor:
-    atomicSoftTabs: false
-    fontFamily: "FiraCode Nerd Font, monospace, Noto Color Emoji"
-    fontSize: 20
-    preferredLineLength: 8000
-    scrollPastEnd: true
-    showIndentGuide: true
-    softTabs: false
-    softWrap: true
-    tabLength: 4
-    undoGroupingInterval: 600
-  "exception-reporting":
-    userId: "3c20228a-6ff3-4069-a341-36a1fce2de05"
-  script:
-    cwdBehavior: "Directory of the script"
-    ignoreSelection: true
-    stopOnRerun: true
-  welcome:
-    showOnStartup: false
-  whitespace:
-    ignoreWhitespaceOnlyLines: true
-".ini.source":
-  editor:
-    autoIndent: false
+'*':
+	'atom-clock':
+		dateFormat: 'h:mm'
+		locale: 'en_US'
+		showOnlyInFullscreen: true
+		showTooltip: true
+		tooltipDateFormat: 'dddd, MMMM Do [at] h:mm:ss A'
+	'atom-typescript':
+		allowJS: true
+		ignoredDiagnosticCodes: [
+			'8002'
+			'8003'
+			'8004'
+			'8006'
+			'8008'
+			'8010'
+		]
+		jsSyntaxScopes: [
+			'source.js'
+			'source.jsx'
+			'javascript'
+			'source.flow'
+		]
+	'color-picker':
+		abbreviateValues: true
+		automaticReplace: true
+		preferredFormat: 'HEX'
+		randomColor: false
+	core:
+		allowPendingPaneItems: false
+		audioBeep: false
+		autoHideMenuBar: true
+		disabledPackages: [
+			'background-tips'
+			'whitespace'
+			'teletype'
+			'linter'
+			'seti-icons'
+			'color-picker'
+			'autocomplete-paths'
+			'javascript-drag-import'
+			'ide-python'
+			'atom-ide-ui'
+			'html-entitize'
+		]
+		openEmptyEditorOnStart: false
+		telemetryConsent: 'no'
+		themes: [
+			'fang-ui'
+			'tomorrow-night-saturated-syntax'
+		]
+		titleBar: 'hidden'
+	editor:
+		fontFamily: 'FiraCode Nerd Font, Noto Color Emoji'
+		fontSize: 19
+		preferredLineLength: 8000
+		scrollPastEnd: true
+		showIndentGuide: true
+		softTabs: false
+		softWrap: true
+		tabLength: 4
+		undoGroupingInterval: 600
+	emmet: {}
+	'exception-reporting':
+		userId: '3c20228a-6ff3-4069-a341-36a1fce2de05'
+	'indentation-indicator':
+		indicatorPosition: 'right'
+	'markdown-preview':
+		useGitHubStyle: true
+	pigments:
+		markerType: 'gutter'
+	script:
+		cwdBehavior: 'Directory of the script'
+		ignoreSelection: true
+		stopOnRerun: true
+	welcome:
+		showOnStartup: false
+	whitespace:
+		ignoreWhitespaceOnlyLines: true
+'.ini.source':
+	editor:
+		autoIndent: false

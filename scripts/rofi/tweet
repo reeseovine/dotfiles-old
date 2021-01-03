@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # make tweets using rofi
-tweet_text=$(rofi -dmenu -p 'tweet' -lines 0 -width 1000 -keep-left)
+tweet_text=$(rofi -dmenu -p 'tweet' -lines 0 -width 1000)
 [[ -z "$tweet_text" ]] && exit 1
 
 output=$(tweet.sh post "$tweet_text")

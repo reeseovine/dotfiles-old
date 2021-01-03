@@ -1,3 +1,8 @@
+node_modules
+package-lock.json
+
+*.pyc
+
 atom/*
 !atom/config.cson
 !atom/styles.less
@@ -5,11 +10,11 @@ atom/*
 ranger/*
 !ranger/rc.conf
 !ranger/rifle.conf
-
-abricotine/*
-!abricotine/config.json
-!abricotine/themes/wal/*
+!ranger/plugins
 
 fish/*
 !fish/config.fish
 !fish/functions/gg.fish
+
+micro/buffers
+micro/backups

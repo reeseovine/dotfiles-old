@@ -10,24 +10,24 @@ All of the files and directories in the root of the repository (except the READM
 
 - [Colors](#colors)
 - [Glamor](#glamor)
-  * [i3](#i3)
-  * [compton](#compton)
-  * [polybar](#polybar)
-  * [dunst](#dunst)
-  * [rofi](#rofi)
-  * [wal](#wal)
-  * [Firefox](#firefox)
-  * [Electron apps](#electron-apps)
-  * [Fonts](#fonts)
+	* [i3](#i3)
+	* [compton](#compton)
+	* [polybar](#polybar)
+	* [dunst](#dunst)
+	* [rofi](#rofi)
+	* [wal](#wal)
+	* [Firefox](#firefox)
+	* [Electron apps](#electron-apps)
+	* [Fonts](#fonts)
 - [Terminal environment](#terminal-environment)
-  * [kitty](#kitty)
-  * [fish](#fish)
-  * [ranger](#ranger)
-  * [neofetch](#neofetch)
+	* [kitty](#kitty)
+	* [fish](#fish)
+	* [ranger](#ranger)
+	* [neofetch](#neofetch)
 - [Scripts](#scripts)
-  * [rofi](#rofi-1)
-  * [Backups](#backups)
-  * [Scripts you should know about that weren't mentioned elsewhere](#scripts-you-should-know-about-that-werent-mentioned-elsewhere)
+	* [rofi](#rofi-1)
+	* [Backups](#backups)
+	* [Scripts you should know about that weren't mentioned elsewhere](#scripts-you-should-know-about-that-werent-mentioned-elsewhere)
 - [Miscellanea](#miscellanea)
 
 <!-- tocstop -->
@@ -46,7 +46,7 @@ All of the files and directories in the root of the repository (except the READM
 - Firefox
 - Discord
 - the RGB keyboard in my laptop  
-  (still trying to make it work on my not-programmable-over-USB keyboard...)
+	(still trying to make it work on my not-programmable-over-USB keyboard...)
 
 Some of these refresh their colors automatically but most need to be told to refresh either by [a script](scripts/pywal) or by [a parent program](i3/config#L270).
 
@@ -145,7 +145,10 @@ Runs in the background and warns me when laptop battery gets too low.
 Custom visualizations of terminal colors. I'm sure there are better implementations out there but this was fun to make.
 
 **ddpv** *by me*
-Basic script for imaging disks with a progress bar and notifications
+Basic script for imaging disks with a progress bar and notifications.
+
+**gcal-repl** *by me*
+A wrapper around [`gcalcli`](https://github.com/insanum/gcalcli) which turns it into a REPL (read-eval-print loop) rather than having to enter the full command every time. This gets wrapped with `kitty-popup` by polybar when I click the date/time widget for easy access.
 
 **kitty-popup** *by me*
 Create terminal script popup windows using kitty's remote control and i3-msg to manipulate the window.
@@ -157,7 +160,7 @@ Tells certain programs to switch to light or dark mode depending on a command li
 Runs [i3lock-color](https://github.com/Raymo111/i3lock-color) using colors from wal to save lines of code elsewhere. You want to make sure you have compositor blurring or something behind it, otherwise your desktop will be visible.
 
 **mkgameshortcut** *by me*
-Creates an application shortcut given an itch.io game folder so you can add it to Steam or access it from your app launcher.
+Creates an application shortcut given an itch.io game folder so you can access it from your app launcher or add it to Steam.
 
 **polybar** *by me*
 Starts polybar. The `main` bar goes on the primary display and a `secondary` bar goes on all the other ones.
@@ -168,14 +171,14 @@ Grabs a random wallpaper (or reads a path from `argv`), sets it and loads a colo
 **rgbctl** *by me*
 Sets the colors of physical devices with RGB in my setup. Right now it only sets the colors of the keyboard on my Razer Blade. It has the ability to set the Yeelight bulbs over my local network but I turned that off because it hurts my eyes 😵.
 
-**update** *by me*
-Update system-wide packages from different package managers in parallel. Uses rofi-askpass when not run from a terminal.
+**startup-apps** *by me*
+Uses i3's `append_layout` feature to restore layouts and shuffle windows upon login so I don't have to waste my time doing it manually.
 
 **startup-daemons** *by me*
 Background processes which add to my setup what other desktop environments have built in.
 
-**startup-apps** *by me*
-Uses i3's `append_layout` feature to restore layouts and shuffle windows upon login so I don't waste my time doing it manually.
+**update** *by me*
+Update system-wide packages from different package managers in parallel. Uses rofi-askpass when not run from a terminal.
 
 ### rofi
 Scripts that use rofi as their UI.
@@ -190,7 +193,7 @@ Menu for shutting down, logging out, etc.
 A wrapper around [tweet.sh](https://github.com/piroor/tweet.sh) so I can send tweets without having to open Twitter (or a terminal).
 
 **usb** *by [luyves](https://github.com/luyves/polybar-rofi-usb-mount)*
-A wrapper around [tweet.sh](https://github.com/piroor/tweet.sh) so I can send tweets without having to open Twitter (or a terminal).
+USB device manager and client for `udisks2`.
 
 **wiktionary** *by me*
 Look up definitions from Wiktionary. You can set the language as well.
@@ -201,14 +204,14 @@ I wrote three scripts for managing backups:
 - [`backup`](scripts/backup) — The main script. It can start and stop backups, and it will keep running until it's done. It's basically just a wrapper for `rsync` with extra features like notifications and logging.
 - [`backupctl`](scripts/rofi/backupctl) — A rofi menu where you can start or stop a backup in the background and open the log file without having to do it a terminal manually.
 - [`backup-status`](polybar/scripts/backup-status) — An indicator for polybar which shows if a backup is running, just ran, failed, or is out of date. It might need some modification to work with other status bars but it's a good base to start with. Here's the polybar module:
-  ```ini
-  [module/backup]
-  type = custom/script
-  exec = ~/.config/polybar/scripts/backup-status
-  tail = true
-  click-left = ~/scripts/rofi/backupctl
-  ```
-  The line `tail = true` tells it to show only the last line of output.
+	```ini
+	[module/backup]
+	type = custom/script
+	exec = ~/.config/polybar/scripts/backup-status
+	tail = true
+	click-left = ~/scripts/rofi/backupctl
+	```
+	The line `tail = true` tells it to show only the last line of output.
 
 The [`backup`](backup) directory contains a config file for path variables and a file containing patterns to exclude.
 
@@ -221,6 +224,7 @@ I didn't include the ability to create multiple backups or schedule them, but I 
 It's also highly tailored to my needs and setup which means you might need to translate some of the code to work with your desktop if you use different programs than me.
 
 _**BUG:** Does not report errors correctly._
+_**NOTE:** My backup server has been down for several months and I don't know when I'll have it back up again. There are a few issues that have gone unaddressed for a while because of this. Please check back later for updates._
 
 
 ### Scripts you should know about that weren't mentioned elsewhere
@@ -230,10 +234,10 @@ _**BUG:** Does not report errors correctly._
 Gives scripts a way to prompt for sudo access. Prepend commands with `SUDO_ASKPASS=/path/to/askpass-rofi sudo -A` to use.
 
 [**autojump**](https://github.com/wting/autojump)
-Quickly navigates your filesystem by keeping a record of your most-visited dirs.
+Quickly navigates your filesystem by keeping a record of your most-visited directories.
 
 [**git-get**](https://github.com/pietvanzoen/git-get)
-Clones and organizes git repos in directories matching the path of the URL (like `go get`).
+Clones git repos and organizes them by their URL (like `go get`). Pairs well with autojump.
 
 [**kb-backlight**](https://github.com/hastinbe/i3-kb-backlight)
 Control keyboard backlight brightness.
@@ -245,10 +249,9 @@ Takes screenshots.
 Search for patterns within files in a directory. Super fast.
 
 
-## Miscellanea
+## Miscellanea (stored in [`misc/`](misc))
 
 - [`libinput-gestures.conf`](libinput-gestures.conf) *Symlinked in ~/.config/* — Touchpad gestures for libinput.
 - [`logid.cfg`](logid.cfg) *Symlinked in /etc/* — Gestures and button remapping for Logitech mouse using [logiops](https://github.com/PixlOne/logiops).
-- [`rofimoji.rc`](rofimoji.rc) *Symlinked in ~/.config/* — Basic config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
+- [`rofimoji.rc`](rofimoji.rc) *Symlinked in ~/.config/* and [`rofimoji/`](rofimoji) — Config files for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
 - [`.xinitrc`](.xinitrc) *Symlinked in ~* — Script that runs when X session starts.
-- [`meta/`](meta) — Stuff that's relevant to maintaining this repository. Not symlinked.

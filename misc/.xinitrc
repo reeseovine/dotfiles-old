@@ -1,6 +1,3 @@
-# Binds insert as compose key.
-xmodmap -e "keysym Insert = Multi_key"
-
 # Disable touchpad taps
 synclient MaxTapTime=0
 

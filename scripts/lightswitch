@@ -5,63 +5,81 @@ const cson = require('cson');
 const CDP = require('chrome-remote-interface');
 const colors = require('/home/reese/.cache/wal/colors.json');
 
-// Update atom's configuration
-let toggle_atom = async mode => {
-	let themes = {
-		'dark': ["fang-ui", "one-black-syntax"],
-		'light': ["wave-ui", "one-light-syntax"]
+let toggle = {
+	// Update atom's configuration
+	atom: async mode => {
+		let themes = {
+			'dark': ['fang-ui', 'tomorrow-night-saturated-syntax'],
+			'light': ['wave-ui', 'nectar-syntax']
+		}
+		let filename = '/home/reese/.atom/config.cson';
+		let conf = cson.load(filename);
+		conf['*'].core.themes = themes[mode];
+		fs.writeFile(filename, cson.stringify(conf), err => {
+			!err ? console.log('modified atom config.') : console.error(`atom config error: ${err}`);
+		});
+	},
+
+	// Requires EnhancedDiscord to be installed and for Discord to be
+	// started with the command line argument '--remote-debugging-port=1666'.
+	discord: async mode => {
+		CDP({port: 1666}, (client) => {
+			client.Runtime.evaluate({expression: `EDApi.findModuleByProps('updateLocalSettings').updateRemoteSettings({theme: '${mode}'}) `});
+			console.log('changed discord appearance');
+			client.close();
+		}).on('error', (err) => {
+			console.error(`discord console error: ${err}`);
+		});
+	},
+
+	// Update micro's configuration
+	micro: async mode => {
+		let themes = {
+			'dark': 'monokai',
+			'light': 'simple'
+		}
+		let filename = '/home/reese/.config/micro/settings.json';
+		let conf = JSON.parse(fs.readFileSync(filename, 'utf8'));
+		conf.colorscheme = themes[mode];
+		fs.writeFile(filename, JSON.stringify(conf, null, '\t'), err => {
+			!err ? console.log('modified micro config.') : console.error(`micro config error: ${err}`);
+		});
 	}
-	let filename = "/home/reese/.atom/config.cson";
-	let conf = cson.load(filename);
-	conf['*'].core.themes = themes[mode];
-	fs.writeFile(filename, cson.stringify(conf), err => {
-		!err ? console.log('modified atom config.') : console.error(`atom config error: ${err}`);
-	});
 }
 
-// Requires EnhancedDiscord to be installed and for Discord to be
-// started with the command line argument '--remote-debugging-port=1666'.
-let toggle_discord = async mode => {
-	CDP({port: 1666}, (client) => {
-		client.Runtime.evaluate({expression: `EDApi.findModuleByProps("updateLocalSettings").updateRemoteSettings({theme: "${mode}"}) `});
-		console.log('changed discord appearance');
-		client.close();
-	}).on('error', (err) => {
-		console.error(`discord console error: ${err}`);
-	});
+let main = (mode, apps) => {
+	apps = apps || Object.keys(toggle);
+	for (var a of apps){
+		toggle[a](mode);
+	}
 }
 
-let main = (mode, toggles) => {
-	if (toggles.includes('atom')) toggle_atom(mode);
-	if (toggles.includes('discord')) toggle_discord(mode);
-}
+if (require.main === module){
+	(() => {
+		let argv = require('yargs/yargs')(process.argv.slice(2))
+		 	.usage('$0 [args]')
+		 	.options({
+		 		'light': {
+		 	        alias: 'l',
+		 			type: 'boolean',
+		 	        default: false,
+		 	        description: 'Switches to light mode if set, otherwise dark.'
+		     	},
+		 		'toggles': {
+					alias: 't',
+		 			type: 'array',
+		 			default: Object.keys(toggle),
+		 			requiresArg: true,
+		 			description: `(optional) Specify which programs to toggle.\n(available options are: ${Object.keys(toggle).join(', ')})`
+		 		}
+		 	})
+		 	.hide('version')
+		 	.help()
+			.argv;
 
-(() => {
-	let argv = require('yargs/yargs')(process.argv.slice(2))
-	 	.usage('$0 [args]')
-	 	.options({
-	 		'light': {
-	 	        alias: 'l',
-	 			type: 'boolean',
-	 	        default: false,
-	 	        description: 'Switches to light mode if set, otherwise dark.'
-	     	},
-	 		'toggles': {
-				alias: 't',
-	 			type: 'array',
-	 			default: ['atom', 'discord'],
-	 			requiresArg: true,
-	 			description: '(optional) Specify which programs to toggle.\n(available options are: atom, discord)'
-	 		}
-	 	})
-	 	.hide('version')
-	 	.help()
-		.argv;
-	
-	let mode = argv.light ? 'light' : 'dark';
-	main(mode, argv.toggles);
-})()
+		let mode = argv.light ? 'light' : 'dark';
+		main(mode, argv.toggles);
+	})()
+}
 
 module.exports = main;
-module.exports.atom = toggle_atom;
-module.exports.discord = toggle_discord;

@@ -4,7 +4,7 @@
 killall -q polybar
 
 # wait
-sleep 1
+while [ $(pidof polybar) ]; do sleep 1; done
 
 # Launch main bar
 monitor_primary=$(polybar -m | grep primary | sed -Ee 's/^(.*?):.*$/\1/')

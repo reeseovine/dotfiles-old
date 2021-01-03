@@ -241,7 +241,7 @@ bindsym XF86MonBrightnessDown exec light -U 5
 # Application shortcuts
 bindsym $alt+Shift+a exec --no-startup-id gtk-launch atom
 bindsym $alt+Shift+b exec --no-startup-id gtk-launch firefox
-bindsym $alt+Shift+f exec --no-startup-id i3-sensible-terminal ranger
+bindsym $alt+Shift+f exec --no-startup-id i3-sensible-terminal pypy /usr/bin/ranger
 bindsym $alt+Shift+g exec --no-startup-id glimpse-editor
 
 # rofi menus
@@ -255,7 +255,7 @@ bindsym $sup+b exec --no-startup-id ~/scripts/rofi/backupctl
 bindsym $sup+c exec --no-startup-id rofi-clipster
 bindsym $sup+d exec --no-startup-id ~/scripts/rofi/wiktionary
 bindsym $sup+e exec --no-startup-id rofimoji
-bindsym $sup+n exec --no-startup-id rofimoji --files /home/reese/git/github.com/katacarbix/rofimoji/picker/data/nerd_font.csv
+bindsym $sup+n exec --no-startup-id rofimoji --prompt="icon" --files nerd_font
 bindsym $sup+m exec --no-startup-id ~/scripts/rofi/usb
 bindsym $sup+r exec --no-startup-id rofi -show run
 bindsym $sup+s exec --no-startup-id rofi -show ssh

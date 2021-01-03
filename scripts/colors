@@ -37,7 +37,7 @@ patterns = {
 	],
 	'mini': [
 		'',
-		'tttt',
+		'tt',
 		''
 	],
 	'small': [
@@ -88,7 +88,7 @@ def draw(key):
 	for line in patterns[key]:
 		for top in range(8):
 			bottom = top + 60
-			
+
 			for char in line:
 				if char == ' ':
 					print(char, end='')
