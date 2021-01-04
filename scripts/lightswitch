@@ -1,9 +1,30 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const cson = require('cson');
-const CDP = require('chrome-remote-interface');
 const colors = require('/home/reese/.cache/wal/colors.json');
+
+let index = (obj, path, value) => {
+	if (typeof path == 'string')
+		return index(obj, path.split('.'), value);
+	else if (path.length == 1 && value !== undefined)
+		return obj[path[0]] = value;
+	else if (path.length == 0)
+		return obj;
+	else
+		return index(obj[path[0]], path.slice(1), value);
+}
+
+let updateConfig = (file, path, themes, mode, name, notation) => {
+	notation = notation || JSON;
+	fs.readFile(file, 'utf8', (err, data) => {
+		if (err) console.error(`${name} error: ${err}`);
+		let conf = notation.parse(data);
+		index(conf, path, themes[mode]);
+		fs.writeFile(file, notation.stringify(conf, null, '\t'), err => {
+			!err ? console.log(`modified ${name}.`) : console.error(`${name} error: ${err}`);
+		});
+	});
+}
 
 let toggle = {
 	// Update atom's configuration
@@ -13,16 +34,13 @@ let toggle = {
 			'light': ['wave-ui', 'nectar-syntax']
 		}
 		let filename = '/home/reese/.atom/config.cson';
-		let conf = cson.load(filename);
-		conf['*'].core.themes = themes[mode];
-		fs.writeFile(filename, cson.stringify(conf), err => {
-			!err ? console.log('modified atom config.') : console.error(`atom config error: ${err}`);
-		});
+		updateConfig(filename, '*.core.themes', themes, mode, 'atom config', require('cson'));
 	},
 
 	// Requires EnhancedDiscord to be installed and for Discord to be
 	// started with the command line argument '--remote-debugging-port=1666'.
 	discord: async mode => {
+		const CDP = require('chrome-remote-interface');
 		CDP({port: 1666}, (client) => {
 			client.Runtime.evaluate({expression: `EDApi.findModuleByProps('updateLocalSettings').updateRemoteSettings({theme: '${mode}'}) `});
 			console.log('changed discord appearance');
@@ -39,11 +57,20 @@ let toggle = {
 			'light': 'simple'
 		}
 		let filename = '/home/reese/.config/micro/settings.json';
-		let conf = JSON.parse(fs.readFileSync(filename, 'utf8'));
-		conf.colorscheme = themes[mode];
-		fs.writeFile(filename, JSON.stringify(conf, null, '\t'), err => {
-			!err ? console.log('modified micro config.') : console.error(`micro config error: ${err}`);
-		});
+		updateConfig(filename, 'colorscheme', themes, mode, 'micro settings');
+	},
+
+	// Update Sublime Text's configuration
+	sublime: async mode => {
+		let themes = {
+			'dark': 'Packages/Tomorrow Color Schemes/Tomorrow-Night.tmTheme',
+			'light': 'Packages/Tomorrow Color Schemes/Tomorrow.tmTheme'
+		}
+		let prefs = '/home/reese/.config/sublime-text-3/Packages/User/Preferences.sublime-settings';
+		let mdown = '/home/reese/.config/sublime-text-3/Packages/User/Markdown.sublime-settings';
+
+		updateConfig(prefs, 'color_scheme', themes, mode, 'sublime preferences');
+		updateConfig(mdown, 'color_scheme', themes, mode, 'sublime markdown preferences');
 	}
 }
 
@@ -57,24 +84,24 @@ let main = (mode, apps) => {
 if (require.main === module){
 	(() => {
 		let argv = require('yargs/yargs')(process.argv.slice(2))
-		 	.usage('$0 [args]')
-		 	.options({
-		 		'light': {
-		 	        alias: 'l',
-		 			type: 'boolean',
-		 	        default: false,
-		 	        description: 'Switches to light mode if set, otherwise dark.'
-		     	},
-		 		'toggles': {
+			.usage('$0 [args]')
+			.options({
+				'light': {
+					alias: 'l',
+					type: 'boolean',
+					default: false,
+					description: 'Switches to light mode if set, otherwise dark.'
+				},
+				'toggles': {
 					alias: 't',
-		 			type: 'array',
-		 			default: Object.keys(toggle),
-		 			requiresArg: true,
-		 			description: `(optional) Specify which programs to toggle.\n(available options are: ${Object.keys(toggle).join(', ')})`
-		 		}
-		 	})
-		 	.hide('version')
-		 	.help()
+					type: 'array',
+					default: Object.keys(toggle),
+					requiresArg: true,
+					description: `(optional) Specify which programs to toggle.\n(available options are: ${Object.keys(toggle).join(', ')})`
+				}
+			})
+			.hide('version')
+			.help()
 			.argv;
 
 		let mode = argv.light ? 'light' : 'dark';

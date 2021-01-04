@@ -5,8 +5,8 @@ compton -b
 
 # Disable screensaver
 xset -dpms s off
-# ...and use xautolock instead
-# xautolock -time 20 -locker "~/scripts/lock" &
+# ...and use xidlehook instead
+xidlehook --not-when-fullscreen --timer 1200 "$HOME/scripts/lock" "" &
 
 # Enable touchpad gestures
 libinput-gestures-setup start

@@ -1,47 +1,55 @@
 # dotfiles
 These are most of the configuration files I use to get my setup to look and behave how it does. Here are some notable things about them. (Screenshots coming soon-ish)
 
-All of the files and directories in the root of the repository (except the README of course) have symlinks pointing to them with the same names, located in `~/.config/`, unless stated otherwise.
+The files and directories in the root of the repository (except the README of course) have symlinks pointing to them with the same names, located in `~/.config/`, unless stated otherwise.
 
+<table>
+	<tr>
+		<td>
+<!-- AUTO-GENERATED-CONTENT:START (TOC:collapse=true&collapseText=Table of Contents) -->
 <details>
-<summary><strong>Table of Contents</strong></summary>
-
-<!-- toc -->
+<summary>Table of Contents</summary>
 
 - [Colors](#colors)
 - [Glamor](#glamor)
-	* [i3](#i3)
-	* [compton](#compton)
-	* [polybar](#polybar)
-	* [dunst](#dunst)
-	* [rofi](#rofi)
-	* [wal](#wal)
-	* [Firefox](#firefox)
-	* [Electron apps](#electron-apps)
-	* [Fonts](#fonts)
+  * [i3](#i3)
+  * [compton](#compton)
+  * [polybar](#polybar)
+  * [dunst](#dunst)
+  * [rofi](#rofi)
+  * [wal](#wal)
+  * [Firefox](#firefox)
+  * [Sublime Text 3](#sublime-text-3)
+  * [Electron apps](#electron-apps)
+    + [Atom](#atom)
+    + [Discord](#discord)
+  * [Fonts](#fonts)
 - [Terminal environment](#terminal-environment)
-	* [kitty](#kitty)
-	* [fish](#fish)
-	* [ranger](#ranger)
-	* [neofetch](#neofetch)
+  * [kitty](#kitty)
+  * [fish](#fish)
+  * [ranger](#ranger)
+  * [neofetch](#neofetch)
 - [Scripts](#scripts)
-	* [rofi](#rofi-1)
-	* [Backups](#backups)
-	* [Scripts you should know about that weren't mentioned elsewhere](#scripts-you-should-know-about-that-werent-mentioned-elsewhere)
+  * [rofi](#rofi-1)
+  * [Backups](#backups)
+  * [Scripts you should know about that weren't mentioned elsewhere](#scripts-you-should-know-about-that-werent-mentioned-elsewhere)
 - [Miscellanea](#miscellanea)
 
-<!-- tocstop -->
-
 </details>
+<!-- AUTO-GENERATED-CONTENT:END -->
+		</td>
+	</tr>
+</table>
 
 
 ## Colors
-[pywal](https://github.com/dylanaraps/pywal) is a tool that picks a wallpaper and generates a color palette from the dominant colors in it. The colors are then applied to various parts of my desktop, including:
+[pywal](https://github.com/dylanaraps/pywal) is a tool that picks a wallpaper and generates a color palette from the dominant colors in it. The colors are used in various parts of my desktop, including:
 
 - i3 (and i3-lock)
 - polybar
 - rofi
 - kitty (and other terminal emulators)
+- Sublime Text
 - Atom
 - Firefox
 - Discord
@@ -77,8 +85,15 @@ Contains templates to make it easier for other programs to import the colors.
 ### Firefox
 I'm using the [Pywalfox](https://github.com/Frewacom/pywalfox) extension + a few UI tweaks in my [`userChrome.css`](firefox/userChrome.css).
 
+### Sublime Text 3
+*Symlinked as ~/.config/sublime-text-3/Packages/User*
+
+I'm trying out Sublime Text for a bit and so far it seems incredibly smooth and snappy. I was an avid Atom user until it started becoming slow and unresponsive most of the time. I also tried VSCodium, but ultimately I wanted to move away from Electron when I have the choice.
+
+I'll keep the Atom section below for now, but in the future I may move it (and some other old stuff) to an `archive` branch.
+
 ### Electron apps
-Electron-based applications are nice because they use CSS to change how they look. A lot of them will support user stylesheets (and maybe even transparency) out of the box, but some of them needed to be modified a little.
+Electron-based applications are nice because they use CSS to change how they look. Many of them support user stylesheets (and maybe even transparency) out of the box, but others need to be modified a little.
 
 #### [Atom](atom)
 *Symlinked as ~/.atom*
@@ -102,11 +117,6 @@ First I installed [EnhancedDiscord](https://github.com/joe27g/EnhancedDiscord) f
 To enable transparency (and blur on supported systems/DEs) you should install [Glasscord](https://github.com/AryToNeX/Glasscord). I used it for a while but was having some issues with recent versions of the Discord client and didn't feel like fixing it (don't tell Naomi 🤫) so I opted for a similar method to the one for Atom. The package you'll want to modify is `~/.config/discord/0.0.XX/modules/discord_desktop_core/core.asar` (where "XX" is the current version number). I won't say more beyond that so I can cover my a\$\$ 🤐. I bet you can figure it out.
 I then start it each time (or just modify the application entry) with the command line argument `--remote-debugging-port=1666` to allow [the `lightswitch` script](scripts/lightswitch) to switch between light and dark mode.
 I'm using the pywal variant of my [Bliss theme](https://github.com/katacarbix/discord-stuff/) which gets recompiled by the pywal script.
-
-#### What about [Android Messages](https://github.com/katacarbix/android-messages/)?
-It supports custom CSS, transparency, and blur/vibrancy/aero out of the box!
-
-I use the custom theme provided in the repo but I don't actually use pywal colors (despite having created a version just for that). This is because I have it on the same workspace as [Caprine](https://github.com/sindresorhus/caprine) and, while Caprine supports custom CSS, it's a total pain to try to figure out what selectors do what. It's just an endless cascade of React components, each with its own semi-transparent background. Thanks, Sindre 😒. Anyway the two apps look out of place being next to each other so I'm sticking with the neutral dark grey theme for now.
 
 ### Fonts
 The sans-serif font I use is [Roboto](https://github.com/googlefonts/roboto). I use a [Nerd Font](https://github.com/ryanoasis/nerd-fonts)-patched version of [Fira Code](https://github.com/tonsky/FiraCode), a monospaced programming font, in my terminal and code editor. I have an older version of it installed as well because [the newer version doesn't look right in polybar](https://github.com/polybar/polybar/issues/2045).
@@ -249,7 +259,8 @@ Takes screenshots.
 Search for patterns within files in a directory. Super fast.
 
 
-## Miscellanea (stored in [`misc/`](misc))
+## Miscellanea 
+*Stored in [`misc/`](misc))*
 
 - [`libinput-gestures.conf`](libinput-gestures.conf) *Symlinked in ~/.config/* — Touchpad gestures for libinput.
 - [`logid.cfg`](logid.cfg) *Symlinked in /etc/* — Gestures and button remapping for Logitech mouse using [logiops](https://github.com/PixlOne/logiops).
