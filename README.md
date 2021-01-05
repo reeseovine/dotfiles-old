@@ -1,7 +1,7 @@
 # dotfiles
 These are most of the configuration files I use to get my setup to look and behave how it does. Here are some notable things about them. (Screenshots coming soon-ish)
 
-The files and directories in the root of the repository (except the README of course) have symlinks pointing to them with the same names, located in `~/.config/`, unless stated otherwise.
+The directories in the root of the repository (*not* files such as this README) have symlinks pointing to them with the same names, located in `~/.config/`, unless stated otherwise.
 
 <table>
 	<tr>
