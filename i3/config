@@ -257,6 +257,7 @@ bindsym $sup+d exec --no-startup-id ~/scripts/rofi/wiktionary
 bindsym $sup+e exec --no-startup-id rofimoji
 bindsym $sup+n exec --no-startup-id rofimoji --prompt="icon" --files nerd_font
 bindsym $sup+m exec --no-startup-id ~/scripts/rofi/usb
+bindsym $sup+p exec --no-startup-id rofi-rbw
 bindsym $sup+r exec --no-startup-id rofi -show run
 bindsym $sup+s exec --no-startup-id rofi -show ssh
 bindsym $sup+t exec --no-startup-id ~/scripts/rofi/tweet

@@ -208,7 +208,6 @@ USB device manager and client for `udisks2`.
 **wiktionary** *by me*
 Look up definitions from Wiktionary. You can set the language as well.
 
-
 ### Backups
 I wrote three scripts for managing backups:
 - [`backup`](scripts/backup) — The main script. It can start and stop backups, and it will keep running until it's done. It's basically just a wrapper for `rsync` with extra features like notifications and logging.
@@ -236,7 +235,6 @@ It's also highly tailored to my needs and setup which means you might need to tr
 _**BUG:** Does not report errors correctly._
 _**NOTE:** My backup server has been down for several months and I don't know when I'll have it back up again. There are a few issues that have gone unaddressed for a while because of this. Please check back later for updates._
 
-
 ### Scripts you should know about that weren't mentioned elsewhere
 *Located in ~/.local/bin/ or installed using a package manager*
 
@@ -250,19 +248,19 @@ Quickly navigates your filesystem by keeping a record of your most-visited direc
 Clones git repos and organizes them by their URL (like `go get`). Pairs well with autojump.
 
 [**kb-backlight**](https://github.com/hastinbe/i3-kb-backlight)
-Control keyboard backlight brightness.
+Controls keyboard backlight brightness.
 
 [**maim**](https://github.com/naelstrof/maim)
 Takes screenshots.
 
 [**ripgrep (`rg`)**](https://github.com/BurntSushi/ripgrep)
-Search for patterns within files in a directory. Super fast.
+Searches for patterns within files in a directory. Super fast.
 
 
 ## Miscellanea 
 *Stored in [`misc/`](misc))*
 
-- [`libinput-gestures.conf`](libinput-gestures.conf) *Symlinked in ~/.config/* — Touchpad gestures for libinput.
-- [`logid.cfg`](logid.cfg) *Symlinked in /etc/* — Gestures and button remapping for Logitech mouse using [logiops](https://github.com/PixlOne/logiops).
-- [`rofimoji.rc`](rofimoji.rc) *Symlinked in ~/.config/* and [`rofimoji/`](rofimoji) — Config files for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
-- [`.xinitrc`](.xinitrc) *Symlinked in ~* — Script that runs when X session starts.
+- [`libinput-gestures.conf`](misc/libinput-gestures.conf) *Symlinked in ~/.config/* — Touchpad gestures for libinput.
+- [`logid.cfg`](misc/logid.cfg) *Symlinked in /etc/* — Gesture and button mapping for Logitech mice using [logiops](https://github.com/PixlOne/logiops).
+- [`rofimoji.rc`](misc/rofimoji.rc) *Symlinked in ~/.config/* Config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
+- [`.xinitrc`](misc/.xinitrc) *Symlinked in ~* — Script that runs when X session starts.
