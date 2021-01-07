@@ -8,15 +8,17 @@
 		"A File Icon",
 		"Babel",
 		"Babel Snippets",
+		"Base16 Color Schemes",
 		"EditorConfig",
 		"Emmet",
 		"gruvbox",
+		"i3 wm",
+		"INI",
 		"MarkdownEditing",
 		"MarkdownPreview",
 		"MarkdownTOC",
 		"Package Control",
 		"Sass",
-		"Terminal",
-		"Tomorrow Color Schemes"
+		"Terminal"
 	]
 }

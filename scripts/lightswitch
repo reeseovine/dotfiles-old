@@ -63,8 +63,8 @@ let toggle = {
 	// Update Sublime Text's configuration
 	sublime: async mode => {
 		let themes = {
-			'dark': 'Packages/Tomorrow Color Schemes/Tomorrow-Night.tmTheme',
-			'light': 'Packages/Tomorrow Color Schemes/Tomorrow.tmTheme'
+			'dark': 'Packages/Base16 Color Schemes/Themes/base16-circus.tmTheme',
+			'light': 'Packages/Base16 Color Schemes/Themes/base16-unikitty-light.tmTheme'
 		}
 		let prefs = '/home/reese/.config/sublime-text-3/Packages/User/Preferences.sublime-settings';
 		let mdown = '/home/reese/.config/sublime-text-3/Packages/User/Markdown.sublime-settings';

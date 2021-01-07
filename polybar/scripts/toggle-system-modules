@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+modules=(cpu memory temperature network)
+for mod in "${modules[@]}"; do
+	polybar-msg cmd toggle.$mod
+done

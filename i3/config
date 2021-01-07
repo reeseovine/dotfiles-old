@@ -208,7 +208,7 @@ client.unfocused        $bg		$bg		$fg   	$bg		$bg
 client.urgent           $ur		$ur		$white 	$ur		$ur
 client.placeholder      $bg		$bg		$fg   	$bg		$bg
 
-gaps inner 16
+gaps inner 15
 gaps outer 0
 
 # Always focus window when activated
