@@ -42,7 +42,7 @@ let toggle = {
 	discord: async mode => {
 		const CDP = require('chrome-remote-interface');
 		CDP({port: 1666}, (client) => {
-			client.Runtime.evaluate({expression: `EDApi.findModuleByProps('updateLocalSettings').updateRemoteSettings({theme: '${mode}'}) `});
+			client.Runtime.evaluate({expression: `EDApi.findModuleByProps('updateLocalSettings').updateRemoteSettings({theme: '${mode}'})`});
 			console.log('changed discord appearance');
 			client.close();
 		}).on('error', (err) => {
@@ -63,7 +63,7 @@ let toggle = {
 	// Update Sublime Text's configuration
 	sublime: async mode => {
 		let themes = {
-			'dark': 'Packages/Base16 Color Schemes/Themes/base16-circus.tmTheme',
+			'dark': 'Packages/Base16 Color Schemes/Themes/base16-unikitty-dark.tmTheme',
 			'light': 'Packages/Base16 Color Schemes/Themes/base16-unikitty-light.tmTheme'
 		}
 		let prefs = '/home/reese/.config/sublime-text-3/Packages/User/Preferences.sublime-settings';

@@ -87,7 +87,6 @@ bindsym $alt+v split v
 bindsym $alt+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $alt+s layout stacking
 bindsym $alt+w layout tabbed
 bindsym $alt+e layout toggle split
 
@@ -228,7 +227,7 @@ bindcode --release $alt+70 exec xkill
 bindsym $alt+g gaps inner all toggle 18
 
 # Sticky window
-bindsym $alt+Shift+s sticky toggle
+bindsym $alt+s sticky toggle
 
 ## Keyboard backlight control
 bindsym XF86KbdBrightnessUp exec kb-backlight -i 10

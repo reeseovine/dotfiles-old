@@ -17,7 +17,7 @@ excludelist=$HOME/.config/backup/excludelist
 ## Path to the main backup script. This is so it knows what to run.
 backup_script=$HOME/scripts/backup
 
-## dmenu-like program (rofi in my case)
+## dmenu-like program (rofi in this case)
 dmenu_prompt="rofi -dmenu -p backupctl -lines 2"
 
 ## Terminal command for showing the log

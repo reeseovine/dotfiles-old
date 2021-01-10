@@ -28,7 +28,7 @@ The directories in the root of the repository (*not* files such as this README) 
   * [kitty](#kitty)
   * [fish](#fish)
   * [ranger](#ranger)
-  * [neofetch](#neofetch)
+  * [afetch](#afetch)
 - [Scripts](#scripts)
   * [rofi](#rofi-1)
   * [Backups](#backups)
@@ -56,14 +56,14 @@ The directories in the root of the repository (*not* files such as this README) 
 - the RGB keyboard in my laptop  
 	(still trying to make it work on my not-programmable-over-USB keyboard...)
 
-Some of these refresh their colors automatically but most need to be told to refresh either by [a script](scripts/pywal) or by [a parent program](i3/config#L270).
+Some of these refresh their colors automatically but most need to be told to refresh either by [a script](scripts/pywal) or by [a parent program](https://github.com/katacarbix/dotfiles/blob/bb6a9675db69ca6dacb3486502b54762e22f9585/i3/config#L278).
 
 
 ## Glamor
 ### [i3](i3/config)
 [i3-gaps](https://github.com/Airblader/i3) is a fork of the tiling window manager that adds the ability to create gaps between windows in tiling mode so your wallpaper can peek through. In addition to window styling, my config adds quite a few keyboard shortcuts for things like starting apps quickly, opening rofi menus, and taking screenshots.
 
-### [compton](compton.conf)
+### [compton](misc/compton.conf)
 compton is a small but powerful composition backend for X desktops. `tryone144`'s [dual_kawase](https://github.com/tryone144/compton/tree/dual_kawase) branch adds a really nice blur behind windows that can go up to much higher radii which I prefer. I gave most windows a subtle shadow as well that just makes things look a little less flat.
 
 compton has the ability to make windows semi-transparent but I chose to forgo this feature in favor of creating transparent areas within some apps. I then turned off blurring in compton's config for any program that's opaque, because there's no reason to blur something I'm not even going to see.
@@ -88,12 +88,12 @@ I'm using the [Pywalfox](https://github.com/Frewacom/pywalfox) extension + a few
 ### Sublime Text 3
 *Symlinked as ~/.config/sublime-text-3/Packages/User*
 
-I'm trying out Sublime Text for a bit and so far it seems incredibly smooth and snappy. I was an avid Atom user until it started becoming slow and unresponsive most of the time. I also tried VSCodium, but ultimately I wanted to move away from Electron when I have the choice.
+I'm trying out Sublime Text for a bit and so far it seems incredibly smooth and snappy. I was an avid Atom user until it started becoming slow and unresponsive most of the time. I also tried VSCodium, but ultimately I want to move away from Electron-based apps when I have the choice.
 
 I'll keep the Atom section below for now, but in the future I may move it (and some other old stuff) to an `archive` branch.
 
 ### Electron apps
-Electron-based applications are nice because they use CSS to change how they look. Many of them support user stylesheets (and maybe even transparency) out of the box, but others need to be modified a little.
+Electron-based applications can be nice because they use CSS to change how they look. Many of them support user stylesheets (and maybe even transparency) already but others need to be modified a little.
 
 #### [Atom](atom)
 *Symlinked as ~/.atom*
@@ -110,7 +110,7 @@ Because it does not support transparent themes out of the box (on Linux, at leas
 I wrote some styles to go along with Fang/Wave in [my stylesheet](atom/styles.less) that adds colors from pywal.
 
 #### Discord
-<small><em><strong>NOTE:</strong> Modifying the Discord client's code goes against Discord's Terms of Service! By doing this your account is subject to suspension. Though I have not heard of this happening, If it happens to you don't say I didn't warn you.</em>
+<small><em><strong>NOTE:</strong> Modifying the Discord client's code goes against Discord's Terms of Service! By doing this your account is subject to suspension. Though I have not heard of this happening, if it happens to you don't say I didn't warn you.</em>
 Okay where were we...</small>
 
 First I installed [EnhancedDiscord](https://github.com/joe27g/EnhancedDiscord) for its CSS loading and other neat plugins.
@@ -136,11 +136,11 @@ Overall I think fish is easier to use, and if backwards-compatibility is needed 
 
 I'm using [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish) with the `bobthefish` theme.
 
-### ranger
+### [ranger](ranger)
 A TUI file manager. It's highly customizable but I found that there isn't much that I really needed to change to make it work well. There's a bit of a learning curve to it but there are plenty of helpful resources you can find.
 
-### neofetch
-A simple little fetch utility that displays info about the computer.
+### [afetch](afetch)
+A tiny fetch utility that displays info about the computer.
 
 
 ## [Scripts](scripts)
@@ -190,7 +190,7 @@ Background processes which add to my setup what other desktop environments have 
 **update** *by me*
 Update system-wide packages from different package managers in parallel. Uses rofi-askpass when not run from a terminal.
 
-### rofi
+### [rofi](scripts/rofi)
 Scripts that use rofi as their UI.
 
 **displayout** *by me*
@@ -211,8 +211,8 @@ Look up definitions from Wiktionary. You can set the language as well.
 ### Backups
 I wrote three scripts for managing backups:
 - [`backup`](scripts/backup) — The main script. It can start and stop backups, and it will keep running until it's done. It's basically just a wrapper for `rsync` with extra features like notifications and logging.
-- [`backupctl`](scripts/rofi/backupctl) — A rofi menu where you can start or stop a backup in the background and open the log file without having to do it a terminal manually.
-- [`backup-status`](polybar/scripts/backup-status) — An indicator for polybar which shows if a backup is running, just ran, failed, or is out of date. It might need some modification to work with other status bars but it's a good base to start with. Here's the polybar module:
+- [`backupctl`](scripts/rofi/backupctl) — A rofi menu where you can start or stop a backup in the background and open the log file without having to do it manually in a terminal.
+- [`backup-status`](polybar/scripts/backup-status) — An indicator for polybar which shows if a backup is running, just ran, failed, or is out of date. It might need some modification to work with other status bars. Here's the polybar module:
 	```ini
 	[module/backup]
 	type = custom/script
