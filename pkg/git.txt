@@ -14,5 +14,5 @@ https://github.com/polybar/polybar
 https://github.com/prikhi/lightdm-mini-greeter
 https://github.com/Raymo111/i3lock-color
 https://github.com/svenstaro/rofi-calc
-https://github.com/tryone144/compton
+https://github.com/tryone144/compton/tree/dual_kawase
 https://github.com/zimbatm/h
