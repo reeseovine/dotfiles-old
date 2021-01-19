@@ -19,6 +19,8 @@ while true # TODO: catch ^C
 			set arg "search $opts[2..-1]"
 		case 'd' 'rm'
 			set arg "delete $opts[2..-1]"
+		case 'a'
+			set arg "agenda $opts[2..-1]"
 		case 'w' 'week'
 			set arg "calw $opts[2..-1]"
 		case 'm' 'month'

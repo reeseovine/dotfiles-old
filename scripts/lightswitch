@@ -14,13 +14,12 @@ let index = (obj, path, value) => {
 		return index(obj[path[0]], path.slice(1), value);
 }
 
-let updateConfig = (file, path, themes, mode, name, notation) => {
-	notation = notation || JSON;
+let updateConfig = ({file, path, themes, mode, name, notation=JSON, replacer}) => {
 	fs.readFile(file, 'utf8', (err, data) => {
 		if (err) console.error(`${name} error: ${err}`);
 		let conf = notation.parse(data);
 		index(conf, path, themes[mode]);
-		fs.writeFile(file, notation.stringify(conf, null, '\t'), err => {
+		fs.writeFile(file, notation.stringify(conf, replacer, '\t'), err => {
 			!err ? console.log(`modified ${name}.`) : console.error(`${name} error: ${err}`);
 		});
 	});
@@ -33,8 +32,8 @@ let toggle = {
 			'dark': ['fang-ui', 'tomorrow-night-saturated-syntax'],
 			'light': ['wave-ui', 'nectar-syntax']
 		}
-		let filename = '/home/reese/.atom/config.cson';
-		updateConfig(filename, '*.core.themes', themes, mode, 'atom config', require('cson'));
+		let file = '/home/reese/.atom/config.cson';
+		updateConfig({file, path:'*.core.themes', name:'atom config', themes, mode, notation:require('cson')});
 	},
 
 	// Requires EnhancedDiscord to be installed and for Discord to be
@@ -56,8 +55,8 @@ let toggle = {
 			'dark': 'monokai',
 			'light': 'simple'
 		}
-		let filename = '/home/reese/.config/micro/settings.json';
-		updateConfig(filename, 'colorscheme', themes, mode, 'micro settings');
+		let file = '/home/reese/.config/micro/settings.json';
+		updateConfig({file, path:'colorscheme', name:'micro settings', themes, mode});
 	},
 
 	// Update Sublime Text's configuration
@@ -68,16 +67,16 @@ let toggle = {
 		}
 		let prefs = '/home/reese/.config/sublime-text-3/Packages/User/Preferences.sublime-settings';
 		let mdown = '/home/reese/.config/sublime-text-3/Packages/User/Markdown.sublime-settings';
-
-		updateConfig(prefs, 'color_scheme', themes, mode, 'sublime preferences');
-		updateConfig(mdown, 'color_scheme', themes, mode, 'sublime markdown preferences');
+		updateConfig({file:prefs, path:'color_scheme', name:'sublime preferences', themes, mode});
+		updateConfig({file:mdown, path:'color_scheme', name:'sublime markdown preferences', themes, mode});
 	}
 }
 
 let main = (mode, apps) => {
 	apps = apps || Object.keys(toggle);
 	for (var a of apps){
-		toggle[a](mode);
+		if (toggle.hasOwnProperty(a)) toggle[a](mode);
+		else console.warn(`unknown app: ${a}`)
 	}
 }
 

@@ -6,7 +6,10 @@ compton -b
 # Disable screensaver
 xset -dpms s off
 # ...and use xidlehook instead
-xidlehook --not-when-fullscreen --timer 1200 "$HOME/scripts/lock" "" &
+xidlehook --not-when-fullscreen \
+	--timer 1200 '$HOME/scripts/lock' '' \
+	--timer 3600 'systemctl suspend' '' \
+	--socket /tmp/xidlehook.socket &
 
 # Enable touchpad gestures
 libinput-gestures-setup start

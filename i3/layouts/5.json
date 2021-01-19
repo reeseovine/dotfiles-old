@@ -1,42 +1,9 @@
 {
-	"border": "pixel",
-	"current_border_width": 2,
-	"floating": "auto_off",
-	"geometry": {
-		"height": 1016,
-		"width": 932,
-		"x": 18,
-		"y": 46
-	},
-	"marks": [],
 	"name": "FB Messenger",
-	"percent": 0.5,
 	"swallows": [
 		{
 			"class": "^Caprine$",
 			"instance": "^caprine$"
-		}
-	],
-	"type": "con"
-}
-
-{
-	"border": "pixel",
-	"current_border_width": 2,
-	"floating": "auto_off",
-	"geometry": {
-		"height": 800,
-		"width": 1200,
-		"x": 360,
-		"y": 140
-	},
-	"marks": [],
-	"name": "Android Messages",
-	"percent": 0.5,
-	"swallows": [
-		{
-			"class": "^android\\-messages$",
-			"instance": "^android\\-messages$"
 		}
 	],
 	"type": "con"

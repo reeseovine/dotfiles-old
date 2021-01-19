@@ -2,7 +2,8 @@
   "name": "dotfiles",
   "private": "true",
   "scripts": {
-    "doc": "md-magic --path README.md"
+    "doc": "md-magic --path README.md",
+    "pkglist-apt": "bash -c 'comm -23 <(apt-mark showmanual | sort -u) <(cat requirements.txt) > aptlist.txt'"
   },
   "dependencies": {
     "chrome-remote-interface": "^0.28.2",

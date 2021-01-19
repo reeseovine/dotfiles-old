@@ -3,7 +3,7 @@
 	url = https://github.com/10sr/editorconfig-micro
 [submodule "ranger/plugins/ranger-autojump"]
 	path = ranger/plugins/ranger-autojump
-	url = git@github.com:fdw/ranger-autojump.git
+	url = https://github.com/fdw/ranger-autojump.git
 [submodule "afetch"]
 	path = afetch
 	url = git@github.com:katacarbix/afetch.git

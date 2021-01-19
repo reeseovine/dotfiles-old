@@ -57,25 +57,21 @@ fi
 # light/dark mode toggle for some applications
 node $HOME/scripts/lightswitch $([ 0 == $light_mode ] && echo "-l") &
 
-# re-link fish_variables
-fish_variables=$HOME/.config/fish/fish_variables
-ln -sf "${fish_variables}_$([ 0 == $light_mode ] && echo "light" || echo "dark")" $fish_variables
+# rgb lights (keyboard, etc.)
+python3 $HOME/scripts/rgbctl &
 
 # update firefox theme
 pywalfox update
 pywalfox $([ 0 == $light_mode ] && echo "light" || echo "dark")
 
 # update atom user stylesheet
-touch $HOME/.atom/styles.less
+# touch $HOME/.atom/styles.less
 
 # compile discord theme
 sassc $HOME/git/github.com/katacarbix/discord-stuff/themes/bliss/pywal.scss $HOME/git/github.com/katacarbix/discord-stuff/themes/bliss/pywal.css
 
 # compile android messages theme
 # sassc $HOME/.config/android-messages/css/user-style.scss $HOME/.config/android-messages/css/user-style.css
-
-# rgb lights (keyboard, etc.)
-python3 $HOME/scripts/rgbctl &
 
 # wait for all child processes to end
 wait

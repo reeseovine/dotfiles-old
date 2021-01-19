@@ -34,6 +34,7 @@ The directories in the root of the repository (*not* files such as this README) 
   * [Backups](#backups)
   * [Scripts you should know about that weren't mentioned elsewhere](#scripts-you-should-know-about-that-werent-mentioned-elsewhere)
 - [Miscellanea](#miscellanea)
+- [Package lists](#package-lists)
 
 </details>
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -262,5 +263,16 @@ Searches for patterns within files in a directory. Super fast.
 
 - [`libinput-gestures.conf`](misc/libinput-gestures.conf) *Symlinked in ~/.config/* — Touchpad gestures for libinput.
 - [`logid.cfg`](misc/logid.cfg) *Symlinked in /etc/* — Gesture and button mapping for Logitech mice using [logiops](https://github.com/PixlOne/logiops).
-- [`rofimoji.rc`](misc/rofimoji.rc) *Symlinked in ~/.config/* Config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
+- [`rofimoji.rc`](misc/rofimoji.rc) *Symlinked in ~/.config/* — Config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
+- [`.bash_aliases`](misc/.bash_aliases) *Symlinked in ~* — Command aliases sourced by bash and fish.
+- [`.profile`](misc/.profile) *Symlinked in ~* — Script that runs on login.
 - [`.xinitrc`](misc/.xinitrc) *Symlinked in ~* — Script that runs when X session starts.
+
+
+## Package lists
+In the repo root there are a few lists of packages installed by different package managers. The package managers and their respective files are as follows:
+
+- Aptitude: [`aptlist.txt`](aptlist.txt)
+- Git: [`gitlist.txt`](gitlist.txt) - these are built from source and installed globally.
+- NodeJS: [`package.json`](package.json) (under "dependencies")
+- Pip (Python): [`requirements.txt`](requirements.txt)

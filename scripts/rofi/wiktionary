@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Get dictionary definitions from Wiktionary using Rofi
-# (c) 2020 katacarbix
+# (c) 2021 katacarbix
 # Free to use and modify.
 
 import sys
@@ -58,20 +58,20 @@ def open(word): # Open link in browser
 def lookup(query):
 	query = query.decode('UTF-8').strip()
 	word = parser.fetch(query)
-	
+
 	entries = []
 	for section in word:
 		for defn in section['definitions']:
 			for entry in defn['text']:
 				if entry[:len(query)] != query:
 					entries.append(POStable[defn['partOfSpeech']] + entry.rstrip(':'))
-	
+
 	next = None
 	if len(entries) == 0:
 		(_, next) = open_rofi("No matching entries found.")
 	else:
 		(_, next) = open_rofi("\n".join(entries))
-	
+
 	if next != None and len(next) > 0:
 		if next.decode('UTF-8')[0] != '(':
 			lookup(next)
