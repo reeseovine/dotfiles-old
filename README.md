@@ -211,9 +211,9 @@ Look up definitions from Wiktionary. You can set the language as well.
 
 ### Backups
 I wrote three scripts for managing backups:
-- [`backup`](scripts/backup) — The main script. It can start and stop backups, and it will keep running until it's done. It's basically just a wrapper for `rsync` with extra features like notifications and logging.
-- [`backupctl`](scripts/rofi/backupctl) — A rofi menu where you can start or stop a backup in the background and open the log file without having to do it manually in a terminal.
-- [`backup-status`](polybar/scripts/backup-status) — An indicator for polybar which shows if a backup is running, just ran, failed, or is out of date. It might need some modification to work with other status bars. Here's the polybar module:
+- [`backup`](scripts/backup) - The main script. It can start and stop backups, and it will keep running until it's done. It's basically just a wrapper for `rsync` with extra features like notifications and logging.
+- [`backupctl`](scripts/rofi/backupctl) - A rofi menu where you can start or stop a backup in the background and open the log file without having to do it manually in a terminal.
+- [`backup-status`](polybar/scripts/backup-status) - An indicator for polybar which shows if a backup is running, just ran, failed, or is out of date. It might need some modification to work with other status bars. Here's the polybar module:
 	```ini
 	[module/backup]
 	type = custom/script
@@ -261,12 +261,12 @@ Searches for patterns within files in a directory. Super fast.
 ## Miscellanea
 *Stored in [`misc/`](misc))*
 
-- [`.bash_aliases`](misc/.bash_aliases) *Symlinked in ~* — Command aliases sourced by bash and fish.
-- [`libinput-gestures.conf`](misc/libinput-gestures.conf) *Symlinked in ~/.config/* — Touchpad gestures for libinput.
-- [`logid.cfg`](misc/logid.cfg) *Symlinked in /etc/* — Gesture and button mapping for Logitech mice using [logiops](https://github.com/PixlOne/logiops).
-- [`.profile`](misc/.profile) *Symlinked in ~* — Script that runs on login.
-- [`rofimoji.rc`](misc/rofimoji.rc) *Symlinked in ~/.config/* — Config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
-- [`.xinitrc`](misc/.xinitrc) *Symlinked in ~* — Script that runs when X session starts.
+- [`.bash_aliases`](misc/.bash_aliases) *Symlinked in \~* - Command aliases sourced by bash and fish.
+- [`libinput-gestures.conf`](misc/libinput-gestures.conf) *Symlinked in ~/.config/* - Touchpad gestures for libinput.
+- [`logid.cfg`](misc/logid.cfg) *Symlinked in /etc/* - Gesture and button mapping for Logitech mice using [logiops](https://github.com/PixlOne/logiops).
+- [`.profile`](misc/.profile) *Symlinked in \~* - Script that runs on login.
+- [`rofimoji.rc`](misc/rofimoji.rc) *Symlinked in ~/.config/* - Config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
+- [`.xinitrc`](misc/.xinitrc) *Symlinked in \~* - Script that runs when X session starts.
 
 
 ## Package lists
@@ -274,7 +274,7 @@ There are a few lists of packages installed by different package managers; most 
 
 - [Aptitude](pkg/apt.txt)
 - [Cargo (Rust)](pkg/cargo.txt)
-- [Git](pkg/git.txt) — these are built from source and installed globally.
-- [NPM (NodeJS)](package.json) — (under "dependencies")
+- [Git](pkg/git.txt) - these are built from source and installed globally.
+- [NPM (NodeJS)](package.json) - (under "dependencies")
 - [Oh My Fish](pkg/omf.txt)
 - [Pip (Python)](pkg/pip.txt)
