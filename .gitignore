@@ -14,7 +14,10 @@ ranger/*
 
 fish/*
 !fish/config.fish
-!fish/functions/gg.fish
+!fish/fish_variables
+!fish/functions/fish_greeting.fish
+!fish/functions/h.fish
+!fish/functions/print_fish_colors.fish
 
 micro/buffers
 micro/backups

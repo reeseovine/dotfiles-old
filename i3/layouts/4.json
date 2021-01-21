@@ -12,6 +12,12 @@
 
 {
 	"type": "floating_con",
+	"rect": {
+		"height": 354,
+		"width": 304,
+		"x": 808,
+		"y": 363
+	},
 	"nodes": [
 		{
 			"name": "Discord Updater",
