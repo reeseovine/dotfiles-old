@@ -3,15 +3,6 @@ package-lock.json
 *.pyc
 *.cache
 
-atom/*
-!atom/config.cson
-!atom/styles.less
-
-ranger/*
-!ranger/rc.conf
-!ranger/rifle.conf
-!ranger/plugins
-
 fish/*
 !fish/config.fish
 !fish/fish_variables
@@ -19,5 +10,12 @@ fish/*
 !fish/functions/h.fish
 !fish/functions/print_fish_colors.fish
 
+ranger/*
+!ranger/rc.conf
+!ranger/rifle.conf
+!ranger/plugins
+
 micro/buffers
 micro/backups
+
+sublime-text/Color-Highlighter/icons

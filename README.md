@@ -1,11 +1,13 @@
 # dotfiles
 These are most of the configuration files I use to get my setup to look and behave how it does. Here are some notable things about them. (Screenshots coming soon-ish)
 
-The directories in the root of the repository (*not* files such as this README) have symlinks pointing to them with the same names, located in `~/.config/`, unless stated otherwise.
+The directories in the root of the repository (*not* files such as this README) have symlinks pointing to them with the same names, located in `~/.config/`, unless stated otherwise. The files in the root are there for repo management.
+
+There is an [`archive` branch](https://github.com/katacarbix/dotfiles/tree/archive) that contains stuff for apps that I don't use anymore including Atom and Vivaldi. It's worth *checking out* if you don't see what you're looking for in here.
 
 <table>
-	<tr>
-		<td>
+  <tr>
+    <td>
 <!-- AUTO-GENERATED-CONTENT:START (TOC:collapse=true&collapseText=Table of Contents) -->
 <details>
 <summary>Table of Contents</summary>
@@ -35,8 +37,8 @@ The directories in the root of the repository (*not* files such as this README) 
 
 </details>
 <!-- AUTO-GENERATED-CONTENT:END -->
-		</td>
-	</tr>
+    </td>
+  </tr>
 </table>
 
 
@@ -51,7 +53,7 @@ The directories in the root of the repository (*not* files such as this README) 
 - Firefox
 - Discord
 - the RGB keyboard in my laptop  
-	(still trying to make it work on my not-programmable-over-USB keyboard...)
+  (still trying to make it work on my not-programmable-over-USB keyboard...)
 
 Some of these refresh their colors automatically but most need to be told to refresh either by [a script](scripts/pywal) or by [a parent program](https://github.com/katacarbix/dotfiles/blob/bb6a9675db69ca6dacb3486502b54762e22f9585/i3/config#L278).
 
@@ -192,13 +194,13 @@ I wrote a few scripts for managing backups:
 - [`backup`](scripts/backup) - The main script. It can start and stop backups, and it will keep running until it's done. It's basically just a wrapper for `rsync` with extra features like notifications, logging, and a single-instance lock.
 - [`backupctl`](scripts/rofi/backupctl) - A rofi menu where you can start or stop a backup in the background and view the log file without having to do it manually in a terminal.
 - [`backup-status`](polybar/scripts/backup-status) - An indicator for polybar that shows if a backup is running, finished, failed, or out of date. It might need some modification to work with other status bars. Here's my polybar module:
-	```ini
-	[module/backup]
-	type = custom/script
-	exec = ~/.config/polybar/scripts/backup-status
-	tail = true ; only show last line of output
-	click-left = ~/scripts/rofi/backupctl
-	```
+  ```ini
+  [module/backup]
+  type = custom/script
+  exec = ~/.config/polybar/scripts/backup-status
+  tail = true ; only show last line of output
+  click-left = ~/scripts/rofi/backupctl
+  ```
 - [`backup/`](backup) - Contains a config file and a list of patterns to exclude.
 
 **Why?**  
