@@ -1,7 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR __fish_initialized:3100
-SETUVAR fish_key_bindings:fish_default_key_bindings
 SETUVAR fish_color_autosuggestion:feb66c
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:2faae5
@@ -23,6 +22,8 @@ SETUVAR fish_color_search_match:f6f5f8\x1e\x2d\x2dbackground\x3d969095
 SETUVAR fish_color_selection:3a2f36\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3ddddadf
 SETUVAR fish_color_user:feb66c
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell
+SETUVAR fish_key_bindings:fish_default_key_bindings
 SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:b7e14d
 SETUVAR fish_pager_color_prefix:fc1785\x1e\x2d\x2dbold

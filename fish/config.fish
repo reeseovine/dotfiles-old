@@ -1,5 +1,7 @@
 # stuff for all shells
-bass source ~/.profile
+if test -e ~/.profile
+	bass source ~/.profile
+end
 if test -e ~/.bash_aliases
     bass source ~/.bash_aliases
 end
