@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
 # Create a popup terminal window with kitty and i3
-# USAGE: kitty-popup [width] [height] [command]
+# USAGE: kitty-popup columns lines [command]
 
-kitty -o allow_remote_control=yes --listen-on unix:/tmp/kitty-popup bash &
-sleep 0.3s
-kitty @ --to unix:/tmp/kitty-popup send-text "i3-msg floating enable\ni3-msg resize set $1 px $2 px\ni3-msg move position center\n"
+read -r font_size padding <<<`grep -E '(font_size|window_padding_width)' ~/.config/kitty/kitty.conf | sed -E 's/^[a-z_]+\s+([0-9\.]*)$/\1/' | tr "\n" " "`
+width=`echo print\(round\($font_size\*0.82\)\*$1 + round\($padding\*8\/3\) + 4\) | python`
+height=`echo print\(round\($font_size\*1.66\)\*$2 + round\($padding\*8\/3\) + 4\) | python`
 shift 2
-kitty @ --to unix:/tmp/kitty-popup send-text "clear;$@\n"
+
+id=$(($RANDOM % 1000))
+
+kitty -o allow_remote_control=yes --listen-on unix:/tmp/kitty-popup_$id bash &
+sleep 0.3s
+kitty @ --to unix:/tmp/kitty-popup_$id send-text "i3-msg floating enable\ni3-msg resize set $width px $height px\ni3-msg move position center\n"
+kitty @ --to unix:/tmp/kitty-popup_$id send-text "clear;$@\n"
