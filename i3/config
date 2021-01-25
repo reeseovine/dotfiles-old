@@ -274,4 +274,4 @@ bindsym $sup+Control+Shift+4	exec --no-startup-id maim -us | xclip -selection cl
 # Startup scripts
 exec --no-startup-id ~/scripts/startup-daemons
 exec --no-startup-id ~/scripts/startup-apps
-exec_always --no-startup-id ~/scripts/polybar
+exec_always --no-startup-id ~/scripts/rebar

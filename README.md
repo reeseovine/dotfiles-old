@@ -125,9 +125,10 @@ A TUI file manager. It's highly customizable but I found that there isn't much t
 
 
 ### [Scripts](scripts)
-*Symlinked as ~/scripts*
+*Symlinked as ~/scripts*  
+*Included in $PATH*
 
-All of the scripts below were either written by me or borrowed from someone else and modified for my use case. I don't want to reupload unmodified scripts. Instead, check out the section near the end with links to scripts and packages that I find useful.
+All of the scripts below were either written by me or borrowed from someone else and modified for my use case. I don't want to reupload unmodified scripts, so for those, check out the section near the end with links to other scripts and packages that I find useful.
 
 **battery-notify** *by [beatle on archlinux forums](https://bbs.archlinux.org/viewtopic.php?pid=1037160#p1037160)*  
 Runs in the background and warns me when laptop battery gets too low.

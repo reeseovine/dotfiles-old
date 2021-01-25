@@ -29,7 +29,7 @@ fi
 
 
 # Add dirs to $PATH
-export PATH="$PATH:/home/reese/Programs/processing-3.5.4/:/home/reese/go/bin/"
+export PATH="$PATH:/home/reese/Programs/processing-3.5.4/:/home/reese/go/bin/:/home/reese/scripts/"
 
 # Register extra SSH keys
 ssh-add ~/.ssh/git_ed35519 &>/dev/null
