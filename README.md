@@ -154,8 +154,8 @@ Runs [i3lock-color](https://github.com/Raymo111/i3lock-color) using colors from 
 **mkgameshortcut** *by me*  
 Creates an application shortcut given an itch.io game folder so you can access it from your app launcher or add it to Steam.
 
-**polybar** *by me*  
-Starts polybar. The `main` bar goes on the primary display and a `secondary` bar goes on all the other ones.
+**rebar** *by me*  
+(Re)starts polybar. It detects primary and secondary displays and puts the correct bar on each.
 
 **pywal** *by me*  
 Grabs a random wallpaper (or reads a path from `argv`), sets it and loads a color scheme with wal, then tells everything to update its color scheme (either directly or indirectly). Supports light and dark mode, and has an automatic option using `redshift -p`.

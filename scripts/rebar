@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 
-# Terminate already running bar instances
+# (Re)start polybar.
+
+# Terminate already running polybar instances
 killall -q polybar
 
 # wait
 while [ $(pidof polybar) ]; do sleep 1; done
 
-# Launch main bar
+# Launch main bar on primary display
 monitor_primary=$(polybar -m | grep primary | sed -Ee 's/^(.*?):.*$/\1/')
 MONITOR="${monitor_primary}" polybar -q -c ~/.config/polybar/config.ini main &
 disown
 
-# Launch secondary bar on external monitors
+# Launch secondary bar on non-primary displays
 monitors=($(polybar -m | grep -v primary | sed -Ee 's/^(.*?):.*$/\1/'))
 for mon in "${monitors[@]}"; do
 	MONITOR="${mon}" polybar -q -c ~/.config/polybar/config.ini secondary &
