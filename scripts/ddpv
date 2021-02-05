@@ -5,7 +5,7 @@
 # do whatever you want
 
 bs="1M"
-pv_opts="-F '%e%r%p%b'"
+pv_opts="-F %e%r%p%b"
 
 
 # Elevate script

@@ -10,20 +10,20 @@
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
+	# include .bashrc if it exists
+	if [ -f "$HOME/.bashrc" ]; then
+		source "$HOME/.bashrc"
+	fi
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+	PATH="$HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+	PATH="$HOME/.local/bin:$PATH"
 fi
 
 
@@ -31,8 +31,9 @@ fi
 # Add dirs to $PATH
 export PATH="$PATH:/home/reese/Programs/processing-3.5.4/:/home/reese/go/bin/:/home/reese/scripts/"
 
-# Register extra SSH keys
-ssh-add ~/.ssh/git_ed35519 &>/dev/null
+# Register SSH keys
+eval "$(ssh-agent -s)" &>/dev/null
+ssh-add $HOME/.ssh/git_ed35519 &>/dev/null
 
 # Preferred editor and other program preferences
 export RANGER_LOAD_DEFAULT_RC=FALSE
@@ -50,3 +51,6 @@ export GIT_PATH=/home/reese/git/
 
 # Cargo (rust package manager)
 source "$HOME/.cargo/env"
+
+# Set cursor shape to BEAM
+printf "\033[6 q"

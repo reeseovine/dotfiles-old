@@ -1,9 +1,9 @@
 # stuff for all shells
 if test -e ~/.profile
-	bass source ~/.profile
+	fenv source ~/.profile
 end
 if test -e ~/.bash_aliases
-    bass source ~/.bash_aliases
+	bass source ~/.bash_aliases
 end
 
 # bobthefish theme variables

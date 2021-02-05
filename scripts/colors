@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-# Display terminal colors
-# (c) 2020 - katacarbix
-# Free to use and modify.
+# display terminal colors
+# by katacarbix
+# do whatever you want
 
 import sys
 import random

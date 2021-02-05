@@ -4,6 +4,7 @@ appimagelauncher
 apt-file
 aptitude
 apt-transport-https
+arduino
 asciidoc
 atom
 audacity
@@ -13,6 +14,8 @@ automake
 automake1.11
 baobab
 base-passwd
+bdf2psf
+beef
 bfs
 bison
 blender
@@ -41,6 +44,7 @@ discord
 dkms
 dmg2img
 dolphin-emu
+dos2unix
 dwarf-fortress
 e2fsprogs
 emacs
@@ -87,6 +91,7 @@ grub-pc-bin
 gstreamer1.0-plugins-good
 gtk-3-examples
 gzip
+hfsprogs
 hostname
 htop
 hunspell
@@ -99,6 +104,7 @@ inkscape
 inotify-tools
 irssi
 jq
+kbd
 keyboard-configuration
 kitty
 language-pack-en
@@ -231,6 +237,7 @@ lightdm-mini-greeter
 linux-generic-hwe-20.04
 linux-headers-5.4.0-54-generic
 linux-headers-generic
+lm-sensors
 locales
 lolcat
 lutris
@@ -254,9 +261,11 @@ nvidia-driver-450
 openjdk-14-jdk
 openrazer-meta
 openrct2
+openssh-client
 openssh-server
 openssl:i386
 os-prober
+otf2bdf
 pandoc
 pavucontrol
 pciutils
@@ -266,6 +275,7 @@ pm-utils
 policykit-1
 policykit-1-gnome
 poppler-data
+prusa-slicer
 pv
 python2
 python3
@@ -300,6 +310,7 @@ sassc
 shim-signed
 silversearcher-ag
 solaar
+speedtest-cli
 steam-launcher
 sublime-merge
 sublime-text

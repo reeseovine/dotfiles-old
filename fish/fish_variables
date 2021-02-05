@@ -8,7 +8,7 @@ SETUVAR fish_color_comment:969095
 SETUVAR fish_color_cwd:2e6ac6
 SETUVAR fish_color_cwd_root:834890
 SETUVAR fish_color_end:6ac527
-SETUVAR fish_color_error:f6f5f8\x1e\x2d\x2dbackground\x3dae016a
+SETUVAR fish_color_error:ae016a
 SETUVAR fish_color_escape:fb6620
 SETUVAR fish_color_history_current:\x2d\x2dbold
 SETUVAR fish_color_host:normal
@@ -25,6 +25,6 @@ SETUVAR fish_color_valid_path:\x2d\x2dunderline
 SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell
 SETUVAR fish_key_bindings:fish_default_key_bindings
 SETUVAR fish_pager_color_completion:normal
-SETUVAR fish_pager_color_description:b7e14d
+SETUVAR fish_pager_color_description:6ac527
 SETUVAR fish_pager_color_prefix:fc1785\x1e\x2d\x2dbold
 SETUVAR fish_pager_color_progress:3a2f36\x1e\x2d\x2dbackground\x3db7e14d

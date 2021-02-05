@@ -3,7 +3,11 @@
 source $HOME/.config/backup/config
 
 notify_backup () {
-	dunstify -i drive-multidisk "$@"
+	if [ -t 0 ]; then
+		echo $@
+	else
+		dunstify -i drive-multidisk "$@"
+	fi
 }
 
 case "$1" in
@@ -12,7 +16,7 @@ case "$1" in
 			kill $(cat $pidfile)
 		fi
 		exit 0
-	;;
+		;;
 esac
 
 # make sure process is not already running
@@ -49,6 +53,6 @@ trap cleanup EXIT
 trap interrupted INT TERM SIGINT SIGTERM
 
 notify_backup "Backup starting"
-rsync -vrlptDW --del --exclude-from=$excludelist $addr_src $addr_dest &> $logfile &
+rsync -vrlptDW --del --exclude-from=$excludelist $addr_src $addr_dest | tee $logfile &
 rsync_pid=$!
 wait

@@ -1,9 +1,9 @@
 # dotfiles
 These are most of the configuration files I use to get my setup to look and behave how it does. Here are some notable things about them. (Screenshots coming soon-ish)
 
-The directories in the root of the repository (*not* files such as this README) have symlinks pointing to them with the same names, located in `~/.config/`, unless stated otherwise. The files in the root are there for repo management.
+The directories in the root of the repository (*not* files such as this README) have symlinks pointing to them with the same names, located in `~/.config/`, unless stated otherwise. The files in the root are mostly there for repo management.
 
-There is an [`archive` branch](https://github.com/katacarbix/dotfiles/tree/archive) that contains stuff for apps that I don't use anymore including Atom and Vivaldi. It's worth *checking out* if you don't see what you're looking for in here.
+There is also an [`archive` branch](https://github.com/katacarbix/dotfiles/tree/archive) that contains interesting stuff for apps that I don't use anymore including Atom and Vivaldi. It's worth checking out if you don't see what you're looking for in here.
 
 <table>
   <tr>
@@ -191,7 +191,7 @@ USB device manager and client for `udisks2`.
 Look up definitions from Wiktionary. You can set the language as well.
 
 #### Backups
-I wrote a few scripts for managing backups:
+I made a few files for managing backups:
 - [`backup`](scripts/backup) - The main script. It can start and stop backups, and it will keep running until it's done. It's basically just a wrapper for `rsync` with extra features like notifications, logging, and a single-instance lock.
 - [`backupctl`](scripts/rofi/backupctl) - A rofi menu where you can start or stop a backup in the background and view the log file without having to do it manually in a terminal.
 - [`backup-status`](polybar/scripts/backup-status) - An indicator for polybar that shows if a backup is running, finished, failed, or out of date. It might need some modification to work with other status bars. Here's my polybar module:
@@ -202,7 +202,7 @@ I wrote a few scripts for managing backups:
   tail = true ; only show last line of output
   click-left = ~/scripts/rofi/backupctl
   ```
-- [`backup/`](backup) - Contains a config file and a list of patterns to exclude.
+- [`backup/`](backup) - Contains a [config](backup/config) file, a [list](backup/excludelist) of patterns to exclude, and the rsync daemon [config](backup/rsyncd.conf) that goes on the server.
 
 **Why?**  
 For a while I'd been looking for a simple backup solution for Linux that also felt seamless and integrated into the desktop, but none suited my needs. Once I looked into rsync I immediately loved how easy it was but I got tired of typing the entire command each time (or scrolling through my term history for it) so I wrote these in a day to make things easier for me.
@@ -210,17 +210,22 @@ For a while I'd been looking for a simple backup solution for Linux that also fe
 **Shortcomings**  
 I didn't include the ability to create multiple backups or schedule them, but I don't think it would be hard to add those features. It's also highly tailored to my needs and setup which means you might need to translate some of the code to work if you use different programs than me.
 
-_**BUG:** Does not report errors correctly._  
-_**NOTE:** My backup server has been down for several months and I don't know when I'll have it back up again. There are a few issues that have gone unaddressed for a while because of this. Please check back later for updates._
+_**BUG:** Does not report errors correctly._
 
 #### Scripts you should know about that weren't mentioned elsewhere
 *Located in ~/.local/bin/ or installed using a package manager*
 
 [**askpass-rofi**](https://github.com/davatorium/rofi/issues/584#issuecomment-384555551)  
-Gives scripts a way to prompt for sudo access without a terminal. Prepend commands with `SUDO_ASKPASS=/path/to/askpass-rofi sudo -A` to use.
+Gives scripts a way to prompt for sudo access without a terminal. Prepend commands with `SUDO_ASKPASS=/path/to/askpass-rofi sudo -A` (or add the first part to `.profile`/`.bashrc`) to use.
 
 [**autojump**](https://github.com/wting/autojump)  
 Quickly navigates your filesystem by keeping a record of your most-visited directories.
+
+[**Bitwarden**](https://bitwarden.com/), [**rbw**](https://github.com/doy/rbw), and [**rofi-rbw**](https://github.com/fdw/rofi-rbw)  
+Open-source password manager with apps and extensions for many platforms.
+
+[**clipster**](https://github.com/mrichar1/clipster) and [**rofi-clipster**](https://github.com/fdw/rofi-clipster)  
+Simple and performance-friendly clipboard history manager.
 
 [**h**](https://github.com/zimbatm/h)  
 Clones git repos and organizes them by their URL (like `go get`) and `cd`s into them.
@@ -239,7 +244,7 @@ Searches for patterns within files in a directory. Super fast.
 *Stored in [`misc/`](misc)*
 
 - [`.bash_aliases`](misc/.bash_aliases) *Symlinked in \~* - Command aliases sourced by bash and fish.
-- [`.profile`](misc/.profile) *Symlinked in \~* - Script that runs on login.
+- [`.profile`](misc/.profile) *Symlinked in \~* - Script that runs when a shell is opened.
 - [`.xinitrc`](misc/.xinitrc) *Symlinked in \~* - Script that runs when X session starts.
 - [`libinput-gestures.conf`](misc/libinput-gestures.conf) *Symlinked in ~/.config/* - Touchpad gestures for libinput.
 - [`logid.cfg`](misc/logid.cfg) *Symlinked in /etc/* - Gesture and button mapping for Logitech mice using [logiops](https://github.com/PixlOne/logiops).
@@ -251,7 +256,7 @@ There are a few lists of packages installed by different package managers; most 
 
 - [Aptitude](pkg/apt.txt)
 - [Cargo (Rust)](pkg/cargo.txt)
-- [Git](pkg/git.txt) - these are built from source and installed globally.
+- [Git](pkg/git.txt) - these are built from source (when needed) and installed globally.
 - [NPM (NodeJS)](package.json) - (under "dependencies")
 - [Oh My Fish](pkg/omf.txt)
 - [Pip (Python)](pkg/pip.txt)

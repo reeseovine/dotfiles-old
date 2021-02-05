@@ -3,6 +3,7 @@ bobthefish
 colorman
 default
 fish-spec
+foreign-env
 node
 nvm
 omf

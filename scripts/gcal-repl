@@ -11,7 +11,7 @@ while true # TODO: catch ^C
 
 	set cmd "gcalcli"
 	set arg ""
-	read -p "set_color brwhite -b brblue; echo -n '  '; set_color brblue -b normal; echo -n ' '; set_color normal" -l --list opts
+	read -p "set_color brwhite -b brblue; printf '  '; set_color brblue -b normal; printf ' '; set_color normal" -l --list opts
 	switch $opts[1]
 		case 'l' 'ls'
 			set arg "list"

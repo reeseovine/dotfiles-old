@@ -6,9 +6,7 @@ package-lock.json
 fish/*
 !fish/config.fish
 !fish/fish_variables
-!fish/functions/fish_greeting.fish
-!fish/functions/h.fish
-!fish/functions/print_fish_colors.fish
+!fish/functions
 
 ranger/*
 !ranger/rc.conf
@@ -19,3 +17,5 @@ micro/buffers
 micro/backups
 
 sublime-text/Color-Highlighter/icons
+sublime-text/Emmet.sublime-settings
+sublime-text/Markdown.sublime-settings

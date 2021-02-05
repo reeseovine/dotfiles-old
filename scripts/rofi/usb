@@ -30,7 +30,7 @@ mountusb(){
 
 umountusb(){
 	chosen=$(echo "$mounteddrives" | $rofi_cmd -p "unmount" | awk '{print $1}')
-	mountpoint=$(udisksctl unmount --no-user-interaction -b "$chosen" 2>/dev/null) && notif_cmd "$chosen mounted"
+	mountpoint=$(udisksctl unmount --no-user-interaction -b "$chosen" 2>/dev/null) && notif_cmd "$chosen unmounted"
 	udisksctl power-off --no-user-interaction -b "$chosen"
 }
 

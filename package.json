@@ -3,7 +3,8 @@
   "private": "true",
   "scripts": {
     "doc": "md-magic --path README.md",
-    "pkglist-apt": "bash -c 'comm -23 <(apt-mark showmanual | sort -u) <(cat requirements.txt) > pkg/apt.txt'",
+    "pkglists": "npm run pkglist-apt; npm run pkglist-cargo; npm run pkglist-omf",
+    "pkglist-apt": "bash -c 'comm -23 <(apt-mark showmanual | sort -u) <(cat pkg/pip.txt) > pkg/apt.txt'",
     "pkglist-cargo": "cargo install --list | grep -o '^\\w*\\b' > pkg/cargo.txt",
     "pkglist-omf": "ls -N1 $HOME/.local/share/omf/pkg/ $HOME/.local/share/omf/themes/ | grep -E '^[^:]+$' | sort > pkg/omf.txt"
   },

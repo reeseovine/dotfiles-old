@@ -7,7 +7,7 @@
 addr_src="/home"
 
 ## Location of backup DESTINATION
-addr_dest="rsync://192.168.0.253/sad-machine/"
+addr_dest="rsync://eon-break.local/sad-machine/"
 
 ## List of patterns to exclude from backup
 ### Make sure this file exists, then add anything you want to it (or leave it empty)

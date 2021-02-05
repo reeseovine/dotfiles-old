@@ -240,7 +240,7 @@ bindsym XF86MonBrightnessDown exec light -U 5
 # Application shortcuts
 bindsym $alt+Shift+a exec --no-startup-id gtk-launch atom
 bindsym $alt+Shift+b exec --no-startup-id gtk-launch firefox
-bindsym $alt+Shift+f exec --no-startup-id i3-sensible-terminal pypy /usr/bin/ranger
+bindsym $alt+Shift+f exec --no-startup-id gtk-launch xranger
 bindsym $alt+Shift+g exec --no-startup-id glimpse-editor
 
 # rofi menus
