@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# dd with progress bar
+# disk imager with progress bar
 # by katacarbix
 # do whatever you want
 
-bs="1M"
-pv_opts="-F %e%r%p%b"
+bs="4M"
+pv_opts="-B $bs -e -r -p -b"
 
 
 # Elevate script
@@ -28,7 +28,7 @@ notify () {
 }
 
 # The actual logic
-pv $pv_opts $1 | dd of=$2 bs=$bs
+pv $pv_opts $1 > $2
 if [ $? -eq 0 ]; then
 	notify "data transferred"
 else

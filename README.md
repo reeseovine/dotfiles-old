@@ -5,6 +5,8 @@ The directories in the root of the repository (*not* files such as this README) 
 
 There is also an [`archive` branch](https://github.com/katacarbix/dotfiles/tree/archive) that contains interesting stuff for apps that I don't use anymore including Atom and Vivaldi. It's worth checking out if you don't see what you're looking for in here.
 
+Note: I've been trying out Wayland recently and I may or may not switch to it in the future, which means a bunch of stuff in this repo could change. If that's the case it will all be available in the archive.
+
 <table>
   <tr>
     <td>
@@ -247,6 +249,7 @@ Searches for patterns within files in a directory. Super fast.
 - [`.profile`](misc/.profile) *Symlinked in \~* - Script that runs when a shell is opened.
 - [`.xinitrc`](misc/.xinitrc) *Symlinked in \~* - Script that runs when X session starts.
 - [`libinput-gestures.conf`](misc/libinput-gestures.conf) *Symlinked in ~/.config/* - Touchpad gestures for libinput.
+- [`lightdm-mini-greeter.conf`](misc/libinput-gestures.conf) *Symlinked in /etc/lightdm/* - Config file for [lightdm-mini-greeter](https://github.com/prikhi/lightdm-mini-greeter).
 - [`logid.cfg`](misc/logid.cfg) *Symlinked in /etc/* - Gesture and button mapping for Logitech mice using [logiops](https://github.com/PixlOne/logiops).
 - [`rofimoji.rc`](misc/rofimoji.rc) *Symlinked in ~/.config/* - Config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
 

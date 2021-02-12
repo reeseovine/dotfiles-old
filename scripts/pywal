@@ -52,6 +52,7 @@ if [ -a "$scheme" ]; then
 	wal -f "$scheme"
 else
 	wal -i "$img_path" --backend colorz $([ 0 == $light_mode ] && echo "-l")
+	swaybg -i "$img_path" -m fill &
 fi
 
 # light/dark mode toggle for some applications

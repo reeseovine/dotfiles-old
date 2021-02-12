@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+
+# takes screenshots in both X and Wayland desktops
+# kinda sorta based on swayshot - https://gitlab.com/radio_rogal/swayshot
+
+shot_path="$HOME/Pictures/Screenshots"
+shot_file="$shot_path/$(date -Iseconds).png"
+
+
+# determine the right clipboard handler to use
+copy_cmd () {
+	cmd='&>/dev/null; echo "no compatible clipboarder present on this system."'
+	if [ $WAYLAND_DISPLAY ] && type wl-copy >/dev/null 2>&1; then
+		cmd='- | wl-copy -t image/png'
+	elif [ -z $WAYLAND_DISPLAY ] && type xclip &>/dev/null; then
+		cmd='| xclip -selection clipboard -t image/png'
+	fi
+	echo $cmd
+}
+
+# get the currently active window
+focused_window () {
+	if [ $WAYLAND_DISPLAY ]; then
+		# jq filter for finding sway's active window
+		declare -r filter='
+		# returns the focused node by recursively traversing the node tree
+		def find_focused_node:
+		    if .focused then . else (if .nodes then (.nodes | .[] | find_focused_node) else empty end) end;
+		# returns a string in the format that grim expects
+		def format_rect:
+		    "\(.rect.x),\(.rect.y) \(.rect.width)x\(.rect.height)";
+		find_focused_node | format_rect'
+		swaymsg --type get_tree --raw | jq --raw-output "${filter}"
+	elif [ -z $WAYLAND_DISPLAY ] && type xdotool >/dev/null 2>&1; then
+		xdotool getactivewindow
+	fi
+}
+
+capture_screen () {
+	if [ $WAYLAND_DISPLAY ]; then
+		swaymsg --type get_outputs --raw | jq --raw-output '.[] | select(.focused) | .name' | grim -o - $@
+	else
+		maim -u $@
+	fi
+}
+capture_window () {
+	if [ $WAYLAND_DISPLAY ]; then
+		grim -g $(focused_window) $@
+	else
+		maim -ui $(focused_window) $@
+	fi
+}
+capture_area () {
+	if [ $WAYLAND_DISPLAY ]; then
+		slurp -b '#00000000' -c '#808080ff' -s '#00000000' -w 1 -d | grim -g - $@
+	else
+		maim -us -c 0.5,0.5,0.5 $@
+	fi
+}
+
+show_help () {
+	echo "screech - Take screenshots in Wayland (sway) and X11."
+	echo "Usage: screech [option]"
+	echo ""
+	echo "Options"
+	echo "  -copy     Copy the resulting screenshot to the clipboard."
+	echo "  -screen   Take a screenshot of the entire screen."
+	echo "  -window   Take a screenshot of the current window."
+	echo "  -area     Use your mouse to select an area to take a screenshot of."
+}
+
+copy=false
+mode='screen'
+while(($#)); do
+	case "$1" in
+		-copy )
+			copy=true ;;
+		-screen )
+			mode='screen' ;;
+		-window )
+			mode='window' ;;
+		-area )
+			mode='area' ;;
+		* )
+			show_help
+			exit ;;
+	esac
+	shift
+done
+
+# echo -e "capture_$mode $($copy && copy_cmd || $shot_file)"
+eval "capture_$mode $($copy && copy_cmd || $shot_file)"

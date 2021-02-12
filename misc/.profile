@@ -42,6 +42,7 @@ export EDITOR=micro
 export MICRO_TRUECOLOR=1
 export PAGER=less
 export LANG=en_US.UTF-8
+export LC_MONETARY=en_US.UTF-8
 export NODE_PATH=/usr/lib/node_modules/
 export QT_QPA_PLATFORMTHEME=gtk2
 export SUDO_ASKPASS=/home/reese/.local/bin/askpass-rofi
