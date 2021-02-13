@@ -82,7 +82,7 @@ Mostly just preferences for behavior rather than appearance, which is taken care
 Contains templates for programs to import the colors and handmade color schemes for some wallpapers.
 
 ### [Firefox](firefox)
-I'm using the [Pywalfox](https://github.com/Frewacom/pywalfox) extension + a few UI tweaks in my `userChrome.css` and `userContent.css`.
+I'm using the [Pywalfox](https://github.com/Frewacom/pywalfox) extension + a few UI tweaks in my `userChrome.css` and `userContent.css`. I'm also using everything in my [`userstyles` repo](https://github.com/katacarbix/userstyles) with the [Stylus](https://github.com/openstyles/stylus) extension.
 
 ### [Sublime Text](sublime-text)
 *Symlinked as ~/.config/sublime-text-3/Packages/User*
