@@ -2,25 +2,31 @@
 
 # EDIT THESE BEFORE RUNNING
 
-# Variables for the backup script
-## Location of backup SOURCE
+### Variables for the backup script ###
+
+# Location of backup SOURCE
 addr_src="/home"
 
-## Location of backup DESTINATION
+# Location of backup DESTINATION
 addr_dest="rsync://eon-break.local/sad-machine/"
 
-## List of patterns to exclude from backup
-### Make sure this file exists, then add anything you want to it (or leave it empty)
+# List of patterns to exclude from backup
+# Make sure this file exists, then add anything you want to it (or leave it empty)
 excludelist=$HOME/.config/backup/excludelist
 
-# Variables for the menu script
-## Path to the main backup script. This is so it knows what to run.
+# Extra arguments for the rsync command
+rsync_opts="--bwlimit=2000"
+
+
+### Variables for the menu script ###
+
+# Path to the main backup script. This is so it knows what to run.
 backup_script=$HOME/scripts/backup
 
-## dmenu-like program (rofi in this case)
+# dmenu-like program (rofi in this case)
 dmenu_prompt="rofi -dmenu -p backupctl -lines 2"
 
-## Terminal command for showing the log
+# Terminal command for showing the log
 terminal_command="kitty bash -c"
 
 

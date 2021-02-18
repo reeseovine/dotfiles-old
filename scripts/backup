@@ -53,6 +53,6 @@ trap cleanup EXIT
 trap interrupted INT TERM SIGINT SIGTERM
 
 notify_backup "Backup starting"
-rsync -vrlptDW --del --exclude-from=$excludelist $addr_src $addr_dest | tee $logfile &
+rsync -vrlptDW --del $rsync_opts --exclude-from=$excludelist $addr_src $addr_dest | tee $logfile &
 rsync_pid=$!
 wait

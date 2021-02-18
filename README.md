@@ -251,6 +251,7 @@ Searches for patterns within files in a directory. Super fast.
 - [`libinput-gestures.conf`](misc/libinput-gestures.conf) *Symlinked in ~/.config/* - Touchpad gestures for libinput.
 - [`lightdm-mini-greeter.conf`](misc/libinput-gestures.conf) *Symlinked in /etc/lightdm/* - Config file for [lightdm-mini-greeter](https://github.com/prikhi/lightdm-mini-greeter).
 - [`logid.cfg`](misc/logid.cfg) *Symlinked in /etc/* - Gesture and button mapping for Logitech mice using [logiops](https://github.com/PixlOne/logiops).
+- [`.nanorc`](misc/.nanorc) *Symlinked in ~* - Config for the `nano` text editor. I don't use it often but it's nice to keep this on hand.
 - [`rofimoji.rc`](misc/rofimoji.rc) *Symlinked in ~/.config/* - Config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
 
 
