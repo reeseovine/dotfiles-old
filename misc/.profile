@@ -33,7 +33,7 @@ export PATH="$PATH:/home/reese/Programs/processing-3.5.4/:/home/reese/go/bin/:/h
 
 # Register SSH keys
 eval "$(ssh-agent -s)" &>/dev/null
-ssh-add $HOME/.ssh/git_ed35519 &>/dev/null
+ssh-add $HOME/.ssh/git_ed25519 &>/dev/null
 
 # Preferred editor and other program preferences
 export RANGER_LOAD_DEFAULT_RC=FALSE
