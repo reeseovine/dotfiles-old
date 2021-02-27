@@ -29,7 +29,7 @@ fi
 
 
 # Add dirs to $PATH
-export PATH="$PATH:/home/reese/Programs/processing-3.5.4/:/home/reese/go/bin/:/home/reese/scripts/"
+export PATH="$PATH:/home/reese/Programs/processing-3.5.4/:/home/reese/go/bin/:/home/reese/git/gitlab.com/katacarbix/dotfiles/scripts/"
 
 # Register SSH keys
 eval "$(ssh-agent -s)" &>/dev/null

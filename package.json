@@ -11,6 +11,7 @@
   "dependencies": {
     "chrome-remote-interface": "^0.28.2",
     "cson": "^7.20.0",
-    "markdown-magic": "^1.0.0"
+    "markdown-magic": "^1.0.0",
+    "yargs": "^16.2.0"
   }
 }

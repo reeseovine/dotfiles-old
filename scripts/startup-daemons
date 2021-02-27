@@ -23,8 +23,12 @@ libinput-gestures-setup start
 # Clipboard manager
 clipster -d &
 
+# KDE Connect daemon
+/usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
+
 # Applications
 dunst &
-redshift &
+redshift -P &
 nm-applet &
 blueman-tray &
+kdeconnect-indicator &

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const colors = require('/home/reese/.cache/wal/colors.json');
+// const colors = require('/home/reese/.cache/wal/colors.json');
 
 let index = (obj, path, value) => {
 	if (typeof path == 'string')
@@ -26,7 +26,7 @@ let updateConfig = ({file, path, themes, mode, name, notation=JSON, replacer}) =
 }
 
 let toggle = {
-	// Update atom's configuration
+	/* // Update atom's configuration
 	atom: async mode => {
 		let themes = {
 			'dark': ['fang-ui', 'tomorrow-night-saturated-syntax'],
@@ -34,7 +34,7 @@ let toggle = {
 		}
 		let file = '/home/reese/.atom/config.cson';
 		updateConfig({file, path:'*.core.themes', name:'atom config', themes, mode, notation:require('cson')});
-	},
+	}, */
 
 	// Requires EnhancedDiscord to be installed and for Discord to be
 	// started with the command line argument '--remote-debugging-port=1666'.

@@ -12,13 +12,14 @@ set tabsize 4
 bind F1 help main
 bind ^f whereis main
 bind ^r replace main
+bind ^x cut main
 bind ^c copy main
 bind ^v paste main
 bind ^/ comment main
 bind ^g gotoline main
 bind ^z undo main
 bind ^y redo main
-bind ^s writeout main
+bind ^s savefile main
 bind ^q exit main
 
 # Improved Nano Syntax Highlighting Files

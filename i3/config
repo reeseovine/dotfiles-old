@@ -180,7 +180,7 @@ bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
 # Application shortcuts
-bindsym $alt+Shift+a exec --no-startup-id gtk-launch atom
+bindsym $alt+Shift+s exec --no-startup-id subl
 bindsym $alt+Shift+b exec --no-startup-id gtk-launch firefox
 bindsym $alt+Shift+f exec --no-startup-id gtk-launch xranger
 bindsym $alt+Shift+g exec --no-startup-id glimpse-editor
