@@ -1,7 +1,7 @@
 exa_cmd="exa --icons --group-directories-first --sort='.name' --git -Gh"
 alias ls="${exa_cmd} -a"
-alias ll="${exa_cmd} -l"
-alias la="${exa_cmd} -al"
+alias ll="${exa_cmd} -lg"
+alias la="${exa_cmd} -alg"
 alias tree="${exa_cmd} -Ta --git-ignore --ignore-glob='.git'"
 alias cwd="pwd"
 

@@ -7,7 +7,7 @@ configuration {
 	show-icons: true;
 	hide-scrollbar: true;
 	terminal: "kitty";
-	ssh-command: "{terminal} {ssh-client} {host}";
+	ssh-command: "{terminal} {ssh-client} -X {host}";
 	run-command: "{cmd}";
 	run-shell-command: "{terminal} --hold {cmd}";
 	sort: false;

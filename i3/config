@@ -186,7 +186,7 @@ bindsym $alt+Shift+f exec --no-startup-id gtk-launch xranger
 bindsym $alt+Shift+g exec --no-startup-id glimpse-editor
 
 # rofi menus
-bindsym $sup+space exec --no-startup-id rofi -show drun -drun-display-format {name}
+bindsym $sup+space exec --no-startup-id rofi -show drun -drun-display-format {name} -disable-history
 bindsym $sup+Tab exec --no-startup-id rofi -show window -width 50
 bindsym $sup+Escape exec --no-startup-id ~/scripts/rofi/power
 bindsym XF86PowerOff exec --no-startup-id ~/scripts/rofi/power
@@ -199,7 +199,7 @@ bindsym $sup+e exec --no-startup-id rofimoji
 bindsym $sup+n exec --no-startup-id rofimoji --prompt="icon" --files nerd_font
 bindsym $sup+m exec --no-startup-id ~/scripts/rofi/usb
 bindsym $sup+p exec --no-startup-id rofi-rbw
-bindsym $sup+r exec --no-startup-id rofi -show run
+bindsym $sup+r exec --no-startup-id rofi -show run -disable-history
 bindsym $sup+s exec --no-startup-id rofi -show ssh
 bindsym $sup+t exec --no-startup-id ~/scripts/rofi/tweet
 bindsym $sup+u exec --no-startup-id rofimoji --prompt="unichr" --files all
