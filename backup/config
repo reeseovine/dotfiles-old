@@ -4,18 +4,25 @@
 
 ### Variables for the backup script ###
 
-# Location of backup SOURCE
-addr_src="/home"
+# File/directory to back up (SOURCE)
+source=/home
 
-# Location of backup DESTINATION
-addr_dest="rsync://eon-break.local/sad-machine/"
+# Location of repository (DESTINATION)
+## You need to initialize the repository before you can store backups on it.
+## See: https://restic.readthedocs.io/en/stable/030_preparing_a_new_repo.html
+## If using SFTP you will want to use public key authentication so that you don't have to type the password every time.
+dest="sftp:alarm@spitfire.local:/mnt/vault/backup/sad-machine"
+
+# Where the password for the repository (NOT the user) is stored
+## After creating the file make sure to run `chmod 700` on it.
+passfile=$HOME/.config/backup/password
 
 # List of patterns to exclude from backup
 # Make sure this file exists, then add anything you want to it (or leave it empty)
 excludelist=$HOME/.config/backup/excludelist
 
-# Extra arguments for the rsync command
-rsync_opts="--bwlimit=2000"
+# Extra arguments for the restic command
+restic_opts="--limit-upload=2000"
 
 
 ### Variables for the menu script ###

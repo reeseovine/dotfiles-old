@@ -1,7 +1,9 @@
 node_modules
 package-lock.json
-*.pyc
 *.cache
+*.pyc
+
+backup/password
 
 fish/*
 !fish/config.fish
@@ -9,13 +11,13 @@ fish/*
 !fish/functions
 fish/functions/fisher.fish
 
+micro/buffers
+micro/backups
+
 ranger/*
 !ranger/rc.conf
 !ranger/rifle.conf
 !ranger/plugins
-
-micro/buffers
-micro/backups
 
 sublime-text/Color-Highlighter/icons
 sublime-text/Emmet.sublime-settings

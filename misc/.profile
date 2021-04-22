@@ -29,7 +29,7 @@ fi
 
 
 # Add dirs to $PATH
-export PATH="$PATH:/home/reese/Programs/processing-3.5.4/:/home/reese/go/bin/:/home/reese/git/gitlab.com/katacarbix/dotfiles/scripts/"
+export PATH="$PATH:$HOME/Programs/processing-3.5.4/:$HOME/Programs/platform-tools/:$HOME/go/bin/:$HOME/git/gitlab.com/katacarbix/dotfiles/scripts/"
 
 # Register SSH keys
 eval "$(ssh-agent -s)" &>/dev/null
@@ -45,10 +45,14 @@ export LANG=en_US.UTF-8
 export LC_MONETARY=en_US.UTF-8
 export NODE_PATH=/usr/lib/node_modules/
 export QT_QPA_PLATFORMTHEME=gtk2
-export SUDO_ASKPASS=/home/reese/.local/bin/askpass-rofi
+export SUDO_ASKPASS=$HOME/scripts/rofi/askpass
 
-# git-get environment variables
-export GIT_PATH=/home/reese/git/
+# Android SDK
+export ANDROID_HOME=$HOME/Programs/android-sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Cargo (rust package manager)
 source "$HOME/.cargo/env"

@@ -33,8 +33,8 @@ echo $$ > $pidfile
 cleanup () {
 	if [ $? -eq 0 ]; then
 		lastline="$(tail -n 1 $logfile)"
-		if [[ $lastline =~ ^rsync\ error: ]]; then
-			action=$(notify_backup -u critical "Backup failed!" "$(cat $logfile | grep rsync:)" --action="log,Show log")
+		if [[ $lastline =~ .*error.* ]]; then
+			action=$(notify_backup -u critical "Backup failed!" --action="log,Show log")
 		else
 			action=$(notify_backup "Backup finished" --action="log,Show log")
 		fi
@@ -44,7 +44,7 @@ cleanup () {
 	exit $?
 }
 interrupted () {
-	kill $rsync_pid
+	kill $restic_pid
 	notify_backup "Backup cancelled"
 	exit 1
 }
@@ -53,6 +53,6 @@ trap cleanup EXIT
 trap interrupted INT TERM SIGINT SIGTERM
 
 notify_backup "Backup starting"
-rsync -vrlptDW --del $rsync_opts --exclude-from=$excludelist $addr_src $addr_dest | tee $logfile &
-rsync_pid=$!
+restic $restic_opts --verbose=3 -r $dest --password-file=$passfile backup $source --exclude-file=$excludelist $backup_opts | tee $logfile &
+restic_pid=$!
 wait

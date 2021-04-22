@@ -1,11 +1,10 @@
 {
-	"color_scheme": "Packages/Base16 Color Schemes/Themes/base16-unikitty-light.tmTheme",
+	"color_scheme": "Packages/Base16 Color Schemes/Themes/base16-unikitty-dark.tmTheme",
 	"drag_text": false,
 	"draw_white_space": "none",
 	"ensure_newline_at_eof_on_save": true,
 	"font_face": "FiraCode Nerd Font",
-	"font_options":
-	[
+	"font_options": [
 		"ss01",
 		"ss02",
 		"ss03",
@@ -16,8 +15,7 @@
 	],
 	"font_size": 13,
 	"highlight_line": true,
-	"ignored_packages":
-	[
+	"ignored_packages": [
 		"JavaScript",
 		"Markdown",
 		"Vintage"

@@ -6,7 +6,7 @@ if test -e ~/.bash_aliases
 	bass source ~/.bash_aliases
 end
 
-# bobthefish theme variables
+# bobthefish theme settings
 set -g theme_display_date no
 set -g theme_display_cmd_duration no
 set -g theme_show_exit_status yes
@@ -18,6 +18,8 @@ set -g theme_nerd_fonts yes
 set -g fish_term24bit 1
 
 # Load autojump
-if test -e /usr/local/share/autojump/autojump.fish
+if test -e /usr/share/autojump/autojump.fish
+	source /usr/share/autojump/autojump.fish
+else if test -e /usr/local/share/autojump/autojump.fish
 	source /usr/local/share/autojump/autojump.fish
 end

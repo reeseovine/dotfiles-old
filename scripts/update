@@ -13,8 +13,8 @@ fi
 
 # Notification wrapper to de-escalate command
 notify_update () {
-	if [ -t 0 ]; then echo $1; fi
-	sudo -u reese dunstify -i software-update-available-symbolic -p "$1"
+	[ -t 0 ] && echo $1
+	sudo -u reese notify-send -i software-update-available-symbolic "$1"
 }
 
 
@@ -87,11 +87,11 @@ fi
 
 notify_update "Fetching updates..."
 
-$do_update_apt && update_apt>/dev/null &
-$do_update_npm && update_npm>/dev/null &
-$do_update_pip && update_pip>/dev/null &
-$do_update_omf && update_omf>/dev/null &
-$do_update_cargo && update_cargo>/dev/null &
+$do_update_apt && update_apt >/dev/null 2>&1 &
+$do_update_npm && update_npm>/dev/null 2>&1 &
+$do_update_pip && update_pip>/dev/null 2>&1 &
+$do_update_omf && update_omf>/dev/null 2>&1 &
+$do_update_cargo && update_cargo>/dev/null 2>&1 &
 
 wait
 notify_update "Updates complete."

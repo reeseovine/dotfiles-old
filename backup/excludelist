@@ -1,5 +1,6 @@
 /home/lost+found
-/home/reese/.cache/
+/home/reese/.atom
+/home/reese/.cargo/registry/src
 /home/reese/.darling*
 /home/reese/.electron*
 /home/reese/.local/include
@@ -7,15 +8,20 @@
 /home/reese/.local/share/lutris
 /home/reese/.local/share/Steam
 /home/reese/.local/share/Zeal
-/home/reese/Downloads
-/home/reese/Games/Steam
-/home/reese/Games/Lutris
-/home/reese/Programs
-/home/reese/VirtualBox\ VMs
 /home/reese/.wine
+/home/reese/Backup
+/home/reese/Downloads
+/home/reese/Games/Itch
+/home/reese/Games/Lutris
+/home/reese/Games/Steam
+/home/reese/git
+/home/reese/os-images
+/home/reese/Programs
+/home/reese/qemu-vms
+/home/reese/VirtualBox\ VMs
 
 *[Cc]ache*
-*/core
+**/core
 *.log
-*/node_modules
-*/[Tt]rash*
+**/node_modules
+*[Tt]rash*

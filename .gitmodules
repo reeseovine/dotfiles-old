@@ -3,4 +3,7 @@
 	url = https://github.com/10sr/editorconfig-micro
 [submodule "afetch"]
 	path = afetch
-	url = git@github.com:katacarbix/afetch.git
+	url = https://github.com/katacarbix/afetch.git
+[submodule "micro/plug/micro-quoter"]
+	path = micro/plug/micro-quoter
+	url = https://github.com/deusnefum/micro-quoter.git

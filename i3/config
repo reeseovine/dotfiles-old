@@ -5,7 +5,7 @@
 set $alt Mod1
 set $sup Mod4
 
-font pango:Roboto 14px
+font pango:FiraCode Nerd Font 14px
 title_align center
 
 # Use Mouse+$alt to drag floating windows to their wanted position
@@ -182,7 +182,7 @@ bindsym XF86MonBrightnessDown exec light -U 5
 # Application shortcuts
 bindsym $alt+Shift+s exec --no-startup-id subl
 bindsym $alt+Shift+b exec --no-startup-id gtk-launch firefox
-bindsym $alt+Shift+f exec --no-startup-id gtk-launch xranger
+bindsym $alt+Shift+f exec --no-startup-id kitty pypy /usr/bin/ranger
 bindsym $alt+Shift+g exec --no-startup-id glimpse-editor
 
 # rofi menus
@@ -213,7 +213,29 @@ bindsym $sup+Shift+4			exec --no-startup-id maim -us ~/Pictures/Screenshots/$(da
 bindsym $sup+Control+Shift+4	exec --no-startup-id maim -us | xclip -selection clipboard -t image/png
 
 
-# Startup scripts
-exec --no-startup-id ~/scripts/startup-daemons
+# Startup
+
+# Start compositor
+exec --no-startup-id compton -b
+# Disable screensaver
+exec --no-startup-id xset -dpms s off
+# ...and use xidlehook instead
+exec --no-startup-id xidlehook --not-when-fullscreen --timer 1200 '$HOME/scripts/lock' '' --timer 3600 'systemctl suspend' '' --socket /tmp/xidlehook.socket
+# Enable touchpad gestures
+exec --no-startup-id libinput-gestures-setup start
+# Clipboard manager
+exec --no-startup-id clipster -d
+# KDE Connect daemon
+exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
+# Applets
+exec --no-startup-id dunst
+exec --no-startup-id ~/scripts/battery-notify
+exec --no-startup-id redshift -P
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-tray
+exec --no-startup-id gtk-launch org.kde.kdeconnect.nonplasma
+# GUI programs
 exec --no-startup-id ~/scripts/startup-apps
 exec_always --no-startup-id ~/scripts/rebar
+# Set wallpaper and colors
+exec --no-startup-id ~/scripts/pywal -a

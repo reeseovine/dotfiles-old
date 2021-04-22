@@ -6,7 +6,6 @@ aptitude
 apt-transport-https
 arduino
 asciidoc
-atom
 audacity
 autoconf
 autojump
@@ -29,13 +28,11 @@ cheese
 clang
 cmake
 cmake-data
-codium
 console-setup
 coreutils
 cowsay
 cpu-x
 curl
-dash
 dconf-editor
 debhelper
 default-jre
@@ -55,6 +52,7 @@ ffmpeg
 figlet
 figma-linux
 findutils
+firefox
 firefox-locale-en
 fish
 flat-remix-gtk
@@ -62,7 +60,6 @@ flex
 fontconfig
 fontforge
 fonts-firacode
-fonts-indic
 fonts-roboto
 freecad
 g++
