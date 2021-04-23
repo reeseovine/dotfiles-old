@@ -16,3 +16,4 @@ alias nano="micro"
 alias gcal="gcalcli"
 
 alias pipes="pipes.sh -f 60 -s 15 -r 4000 -R"
+alias bonsai="cbonsai -S"
