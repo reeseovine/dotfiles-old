@@ -4,7 +4,8 @@
 	"draw_white_space": "none",
 	"ensure_newline_at_eof_on_save": true,
 	"font_face": "FiraCode Nerd Font",
-	"font_options": [
+	"font_options":
+	[
 		"ss01",
 		"ss02",
 		"ss03",
@@ -15,10 +16,11 @@
 	],
 	"font_size": 13,
 	"highlight_line": true,
-	"ignored_packages": [
+	"ignored_packages":
+	[
 		"JavaScript",
 		"Markdown",
-		"Vintage"
+		"Vintage",
 	],
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,
@@ -29,5 +31,5 @@
 	"theme": "gruvbox.sublime-theme",
 	"trim_automatic_white_space": false,
 	"ui_scale": 1.1,
-	"word_wrap": true
+	"word_wrap": true,
 }

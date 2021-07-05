@@ -5,7 +5,7 @@
 
 rofi_cmd='rofi -dmenu -i -lines 3'
 notif_cmd(){
-	dunstify -i media-removable "Removable media manager" "$@"
+	notify-send -i media-removable "Removable media manager" "$@"
 }
 usb_re='sd[b-z]'
 
@@ -38,8 +38,8 @@ umountall(){
 	for chosen in $(echo $(lsblk -rpo "name,type,size,mountpoint" | grep $usb_re | awk '$2=="part"&&$4!=""{printf "%s\n",$1}')); do
 		udisksctl unmount --no-user-interaction -b "$chosen"
 		udisksctl power-off --no-user-interaction -b "$chosen"
-		notif_cmd "Unmounted all USB drives."
 	done
+	notif_cmd "Unmounted all USB drives."
 }
 
 

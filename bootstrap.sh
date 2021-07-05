@@ -13,13 +13,14 @@ echo "*~*~*~*~*~*~*~*~*~*~*~*~*~*~*"
 echo
 echo "this script will clone my dotfiles repo and install a few things to get you started on a fresh linux installation. you should always open scripts in a text editor before running them to verify there's nothing malicious or misconfigured. make sure you're running it as your user (NOT root), sudo is installed, and you are a sudoer. it may ask you a few times for your password." | fmt
 echo
-echo "WARNING: this will overwrite any configurations and dotfiles you currently have in your home directory." | fmt
 read -e -p "press ENTER to continue..."
 echo
 echo "what type of environment should this machine have?"
 echo "[0: minimal] [1: headless/console-only] [2: basic GUI] [3: full desktop]"
 read -e -p "[default: 1] > " -a MACHINE_ENV
 if [[ -z $MACHINE_ENV ]]; then MACHINE_ENV=1; fi
+echo "clone and symbolically link dotfiles for the selected environment? WARNING: this will overwrite any configurations and dotfiles you currently have in your home directory." | fmt
+read -e -p "[Y/n] > " -a LINK_DOTS
 read -e -p "install Docker? [y/N] > " -a INSTALL_DOCKER
 read -e -p "install VM utilities? [y/N] > " -a INSTALL_KVM
 read -e -p "install gaming programs? [y/N] > " -a INSTALL_GAMES
@@ -46,12 +47,14 @@ PACMAN_SLIM=(
 	ncurses
 	nodejs
 	npm
+	nss-mdns
 	openssh
 	polkit
 	python
 	python-pip
 	ranger
 	ripgrep
+	ruby
 	xclip
 	xorg-xauth
 )
@@ -63,6 +66,7 @@ PACMAN_CONSOLE=(
 	diffutils
 	figlet
 	findutils
+	khal
 	lolcat
 	lynx
 	ncdu
@@ -72,6 +76,7 @@ PACMAN_CONSOLE=(
 	speedtest-cli
 	thefuck
 	unrar
+	vdirsyncer
 	xdo
 	xdotool
 	xsel
@@ -92,9 +97,11 @@ PACMAN_GUI=(
 PACMAN_DE=(
 	arandr
 	feh
+	prusa-slicer
 	python-pywal
 	qopenvpn
 	sassc
+	thunderbird
 	transmission-qt
 )
 PACMAN_DOCKER=(docker docker-compose)
@@ -117,6 +124,7 @@ AUR_GUI=(
 	nerd-fonts-fira-code
 	rofi-rbw
 	roficlip
+	rofimoji-git
 )
 AUR_DE=(
 	bitwarden
@@ -144,8 +152,8 @@ OMF_PKGS=(
 
 
 install_progs () {
-	if [[ -z $(command -v pacman) ]]; then
-		echo "you must be running from a distro with Pacman as its package manager (Arch, Manjaro, etc.). unfortunately it would just take too much effort for me to maintain this script for every flavor of linux. if this error is a mistake, please open an issue here: https://github.com/katacarbix/dotfiles/issues" | fmt
+	if ! command -v pacman; then
+		echo "you must be running a distro with Pacman as its package manager (Arch, Manjaro, etc.). unfortunately it would just take too much effort for me to maintain this script for every flavor of linux. if this error is a mistake, please open an issue here: https://github.com/katacarbix/dotfiles/issues" | fmt
 		exit 1
 	fi
 
@@ -173,6 +181,7 @@ install_progs () {
 		echo "configuring Docker..."
 		sudo groupadd docker
 		sudo usermod -aG docker $USER
+		sudo systemctl enable docker.service
 	fi
 
 
@@ -193,6 +202,9 @@ install_progs () {
 	if [[ $MACHINE_ENV -ge 2 ]]; then
 		git-get https://github.com/piroor/tweet.sh
 		ln -s $HOME/git/github.com/piroor/tweet.sh/tweet.sh $HOME/.local/bin
+
+		git-get https://github.com/fdw/rofi-clipster
+		pip install $HOME/git/github.com/fdw/rofi-clipster
 	fi
 	# full desktop
 	if [[ $MACHINE_ENV -eq 3 ]]; then
@@ -228,9 +240,8 @@ install_progs () {
 		curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
 		echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf >/dev/null
 		sudo pacman -Squ sublime-text
-		echo "Sublime Text 3 installed!"
+		echo "Sublime Text installed!"
 	fi
-
 }
 
 link_dotfiles () {
@@ -282,6 +293,18 @@ link_dotfiles () {
 	echo "symlinks created!"
 }
 
+system_tweaks () {
+	# Enable my locale (en_US.UTF-8)
+	cat /etc/locale.gen | sed -Ee 's/^#(en_US.UTF-8 UTF-8)$/\1/g' > /etc/locale.gen
+	echo "LANG=en_US.UTF-8" > /etc/locale.conf
+	locale-gen
+
+	read -e -p "change hostname? (leave blank for no change) > " -a NEW_HOSTNAME
+	if [[ $NEW_HOSTNAME ]]; then
+		hostnamectl set-hostname $NEW_HOSTNAME
+	fi
+}
+
 main () {
 	# make sure git is installed and system is up to date
 	sudo pacman -Sqyu --noconfirm --needed git
@@ -293,12 +316,24 @@ main () {
 	ln -sf $HOME/git/github.com/pietvanzoen/git-get/git-get $HOME/.local/bin
 	export GIT_PATH=$HOME/git
 
-	# clone the dotfiles repo and link what's needed
-	link_dotfiles
+	if [[ $LINK_DOTS =~ \^[^Nn] ]]; then
+		# clone the dotfiles repo and link what's needed
+		link_dotfiles
+	fi
+
+	# tweak system settings as root
+	export -f system_tweaks
+	su root -c "bash -c system_tweaks"
 
 	# install programs
 	install_progs
+
+	# change user's shell to fish
+	chsh $(which fish)
+
+	echo "all done!"
+	read -e -p "would you like to reboot now? [y/N] > " -a DO_REBOOT
+	if [[ $DO_REBOOT =~ \^[Yy] ]]; then sudo shutdown -r now; fi
 }
 
 main
-echo "all done! please reboot now."

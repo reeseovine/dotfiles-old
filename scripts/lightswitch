@@ -3,6 +3,7 @@
 const fs = require('fs');
 // const colors = require('/home/reese/.cache/wal/colors.json');
 
+// Get or set object elements by dot-notation strings
 let index = (obj, path, value) => {
 	if (typeof path == 'string')
 		return index(obj, path.split('.'), value);
@@ -20,7 +21,11 @@ let updateConfig = ({file, path, themes, mode, name, notation=JSON, replacer}) =
 		let conf = notation.parse(data);
 		index(conf, path, themes[mode]);
 		fs.writeFile(file, notation.stringify(conf, replacer, '\t'), err => {
-			!err ? console.log(`modified ${name}.`) : console.error(`${name} error: ${err}`);
+			if (!err){
+				console.log(`modified ${name}.`);
+			} else {
+				console.error(`${name} error: ${err}`);
+			}
 		});
 	});
 }

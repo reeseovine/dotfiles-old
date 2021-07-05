@@ -1,0 +1,93 @@
+:root {
+	font-family: Roboto, sans-serif !important;
+
+	/* Borders */
+	--tabs-border-color: transparent !important; /* border surrounding tab and toolbar */
+	--lwt-background-tab-separator-color: transparent; /* tab separator */
+}
+
+/* make it closer to Firefox's "normal" density */
+.tabmail-tab {
+	height: 33px;
+}
+#mail-bar3,
+#calendar-toolbar2,
+#task-toolbar2,
+#contentTabToolbar1 {
+	height: 40px;
+}
+#threadTree treechildren::-moz-tree-row,
+#calendar-task-tree treechildren::-moz-tree-row {
+	min-height: 28px !important;
+}
+
+/* get rid of ugly borders and gradients */
+.tabmail-tab .tab-line {
+	display: none !important;
+}
+#mail-toolbox {
+	border-bottom: none !important;
+	box-shadow: none !important;
+}
+#threadTree treechildren::-moz-tree-row,
+#calendar-task-tree treechildren::-moz-tree-row,
+#folderpane_splitter,
+.minimonth-header,
+.minimonth-day {
+	border: none !important;
+}
+radio.calview[selected="true"],
+calendar-day-label {
+	background-image: none !important;
+}
+calendar-day-label[relation=today] {
+	border: none !important;
+	margin-top: 0 !important;
+}
+#status-bar {
+	border: none !important;
+}
+
+/* color fixes */
+#quick-filter-bar,
+#calendar-nav-control,
+#today-pane-panel > vbox {
+	background-color: var(--sidebar-background-color) !important;
+	background-image: none !important;
+}
+#mini-day-image {
+	background-color: var(--lwt-toolbar-field-background-color) !important;
+	background-image: none !important;
+}
+radio.calview[selected="true"] {
+	background-color: var(--sidebar-highlight-background-color) !important;
+	color: #fff;
+}
+#status-bar {
+	background: none;
+	background-color: var(--lwt-toolbar-field-background-color) !important;
+	color: var(--lwt-tab-text) !important;
+}
+#quick-filter-bar,
+#msgHeaderView,
+#status-bar:-moz-lwtheme toolbarbutton,
+radio.calview:not([selected="true"]) {
+	color: var(--lwt-tab-text) !important;
+}
+radio.calview:not([selected="true"]):hover,
+:root[lwt-tree-brighttext] treecol:hover,
+:root[lwt-tree-brighttext] treecolpicker:hover {
+	background: var(--lwt-toolbarbutton-hover-background) !important;
+}
+
+.findbar-button:not(:-moz-any([checked="true"], [disabled="true"])):hover,
+.toolbarbutton-1:not([disabled="true"]):-moz-any(:hover, [open="true"]) > .toolbarbutton-menubutton-button,
+.toolbarbutton-1:not([disabled="true"]):hover > .toolbarbutton-menubutton-dropmarker,
+.toolbarbutton-1:not([type="menu-button"]):not([disabled="true"]):not([checked="true"]):not([open="true"]):not(:active):hover,
+#calendar-add-task-button:not([disabled="true"]):hover,
+.view-navigation-button:not([disabled="true"]):hover,
+.today-navigation-button:not([disabled="true"]):hover {
+	background: var(--lwt-toolbarbutton-hover-background) !important;
+	border: 1px solid var(--lwt-toolbarbutton-hover-background) !important;
+	box-shadow: none !important;
+}

@@ -41,6 +41,7 @@ update_omf () {
 }
 
 update_cargo () {
+	sudo -u reese rustup update
 	sudo -i -u reese bash -c "cargo install --list | grep -o '^[^ ]*' | xargs -n1 cargo install"
 }
 

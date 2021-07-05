@@ -19,6 +19,6 @@ ranger/*
 !ranger/rifle.conf
 !ranger/plugins
 
-sublime-text/Color-Highlighter/icons
+sublime-text/Color Highlighter
 sublime-text/Emmet.sublime-settings
 sublime-text/Markdown.sublime-settings

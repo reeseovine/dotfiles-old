@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Author: Ivan Bartsov
 # Source: https://github.com/davatorium/rofi/issues/584#issuecomment-384555551

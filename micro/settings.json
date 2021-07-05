@@ -1,14 +1,14 @@
 {
-	"autosu": true,
-	"colorscheme": "simple",
-	"eofnewline": false,
-	"fastdirty": true,
-	"indentchar": "\t",
-	"pluginchannels": [
-		"https://raw.githubusercontent.com/micro-editor/plugin-channel/master/channel.json"
-	],
-	"pluginrepos": [],
-	"scrollspeed": 1,
-	"softwrap": true,
-	"statusformatl": "$(filename)$(modified)[$(line),$(col)] $(status.paste) ft:$(opt:filetype) $(opt:fileformat) $(opt:encoding)"
+    "autosu": true,
+    "colorscheme": "simple",
+    "eofnewline": false,
+    "fastdirty": true,
+    "indentchar": "\t",
+    "pluginchannels": [
+        "https://raw.githubusercontent.com/micro-editor/plugin-channel/master/channel.json"
+    ],
+    "pluginrepos": [],
+    "scrollspeed": 1,
+    "softwrap": true,
+    "statusformatl": "$(filename)$(modified)[$(line),$(col)] $(status.paste) ft:$(opt:filetype) $(opt:fileformat) $(opt:encoding)"
 }

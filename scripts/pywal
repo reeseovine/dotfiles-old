@@ -55,6 +55,9 @@ else
 	swaybg -i "$img_path" -m fill &
 fi
 
+# put light mode state in file so other programs can check current state
+echo $light_mode > $HOME/.cache/wal/light_mode
+
 # light/dark mode toggle for some applications
 node $HOME/scripts/lightswitch $([ 0 == $light_mode ] && echo "-l") &
 

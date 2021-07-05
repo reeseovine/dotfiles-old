@@ -13,7 +13,7 @@ alias ranger="pypy /usr/bin/ranger"
 alias finder="ranger"
 alias nano="micro"
 
-alias gcal="gcalcli"
+alias haste="haste-client -d https://haste.seaofvoic.es"
 
 alias pipes="pipes.sh -f 60 -s 15 -r 4000 -R"
 alias bonsai="cbonsai -S"

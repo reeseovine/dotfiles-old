@@ -1,0 +1,10 @@
+{
+	"name": "Mozilla Thunderbird",
+	"swallows": [
+		{
+			"class": "^Thunderbird$",
+			"instance": "^Mail$"
+		}
+	],
+	"type": "con"
+}

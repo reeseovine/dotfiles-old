@@ -157,6 +157,23 @@ focus_on_window_activation focus
 
 # Always float certain windows
 for_window [class="processing-core-PApplet"] floating enable
+for_window [class="Thunderbird" instance="Msgcompose"] floating enable
+for_window [class="Thunderbird" title="Address Book"] floating enable
+for_window [class="Thunderbird" instance="Calendar"] floating enable
+for_window [class="Thunderbird" title="TbSync account manager"] floating enable
+
+# Move certain windows to their workspaces when opening
+for_window [class="Sublime_text"] move container to workspace 2; workspace 2
+for_window [class="Firefox"] move container to workspace 3; workspace 3
+for_window [class="discord"] move container to workspace 4; workspace 4
+for_window [class="Caprine"] move container to workspace 5; workspace 5
+for_window [class="Glimpse"] move container to workspace 6; workspace 6
+for_window [class="Inkscape"] move container to workspace 6; workspace 6
+for_window [class="Steam"] move container to workspace 7; workspace 7
+for_window [class="itch"] move container to workspace 7; workspace 7
+for_window [class="^Minecraft.*"] move container to workspace 7; workspace 7
+for_window [class="Joplin"] move container to workspace 9; workspace 9
+for_window [class="Thunderbird" instance="Mail"] move container to workspace 10; workspace 10
 
 
 # [L]ock
