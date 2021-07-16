@@ -6,6 +6,11 @@
 	font-family: Roboto, sans-serif !important;
 }
 
+/* Get rid of ugly borders */
+#navigator-toolbox {
+	border: none !important;
+}
+
 /* Hide the entire toolbar in popup windows */
 #main-window[chromehidden*="toolbar"] #nav-bar {
 	visibility: collapse;

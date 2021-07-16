@@ -1,6 +1,7 @@
 {
 	"extensions":
 	[
-		"fish_variables"
-	]
+		"fish_variables",
+		"fish",
+	],
 }

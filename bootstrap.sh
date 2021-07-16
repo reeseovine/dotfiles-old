@@ -28,7 +28,7 @@ read -e -p "install development programs? [y/N] > " -a INSTALL_DEV
 
 
 ## PACKAGE LISTS ##
-PACMAN_SLIM=(
+PACMAN_BASIC=(
 	base-devel
 	btrfs-progs
 	clang
@@ -59,13 +59,17 @@ PACMAN_SLIM=(
 	xorg-xauth
 )
 PACMAN_CONSOLE=(
+	bat
 	bluetooth
 	bluez
 	bluez-tools
 	cowsay
 	diffutils
+	dog
 	figlet
 	findutils
+	fzf
+	gping
 	khal
 	lolcat
 	lynx
@@ -80,6 +84,7 @@ PACMAN_CONSOLE=(
 	xdo
 	xdotool
 	xsel
+	zoxide
 )
 PACMAN_GUI=(
 	baobab
@@ -110,7 +115,7 @@ PACMAN_GAMES=(dolphin-emu lutris openrct2 steam)
 PACMAN_DEV=(fontforge)
 PACMAN_GRAPHICS=(blender fontforge imagemagick inkscape)
 
-AUR_SLIM=(
+AUR_BASIC=(
 	autojump
 )
 AUR_CONSOLE=(
@@ -160,7 +165,7 @@ install_progs () {
 
 	echo "installing pacman packages..."
 	# always install minimal programs
-	TO_INSTALL=(${PACMAN_SLIM[@]})
+	TO_INSTALL=(${PACMAN_BASIC[@]})
 	# console programs
 	if [[ $MACHINE_ENV -ge 1 ]]; then TO_INSTALL=(${TO_INSTALL[@]} ${PACMAN_CONSOLE[@]}); fi
 	# basic GUI
@@ -214,7 +219,7 @@ install_progs () {
 
 	echo "installing AUR packages..."
 	# always install minimal programs
-	TO_INSTALL=(${AUR_SLIM[@]})
+	TO_INSTALL=(${AUR_BASIC[@]})
 	# console programs
 	if [[ $MACHINE_ENV -ge 1 ]]; then TO_INSTALL=(${TO_INSTALL[@]} ${AUR_CONSOLE[@]}); fi
 	# basic GUI

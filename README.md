@@ -96,8 +96,9 @@ First I installed [EnhancedDiscord](https://github.com/joe27g/EnhancedDiscord) f
 2. Exit Discord completely.
 3. cd into `~/.config/discord/0.0.XX/modules/discord_desktop_core/` (where "XX" is the current version number), then unpack the core program with `asar extract core.asar core.asar.extracted`.
 4. Open the file `core.asar.extracted/app/mainScreen.js` in your text editor of choice.
-5. Around line `372` inside the `mainWindowOptions` object and outside of the `webPreferences` object, set `backgroundColor: '#00000000'` and `frame: false`, and add the line `transparent: true`. Make sure there's a comma after all of these.
-6. Save this file, then package it back up with `asar pack core.asar.extracted core.asar`. If you did it correctly you should be able to start Discord again!
+5. Around line `372` inside the `mainWindowOptions` object and outside of the `webPreferences` object, set `backgroundColor: '#00000000'` and `frame: false`, and add the line `transparent: true`. Make sure there's a comma after each of these.
+6. Save this file, then package it back up with `asar pack core.asar.extracted core.asar`.
+7. Open Discord, go to Settings, scroll down to Advanced, and disable Hardware Acceleration.
 
 I modified the application entry to use the command line argument `--remote-debugging-port=1666` which allows [the `lightswitch` script](scripts/lightswitch) to switch between light and dark mode.
 I'm using the pywal variant of my [Bliss theme](https://github.com/katacarbix/discord-stuff/) which gets recompiled by the pywal script.
@@ -131,13 +132,13 @@ A TUI file manager. It's highly customizable but I found that there isn't much t
 All of the scripts below were either written by me or borrowed from someone else and modified for my use case. I don't want to reupload unmodified scripts, so for those, check out the section near the end with links to other scripts and packages that I find useful.
 
 **battery-notify** *by [beatle on archlinux forums](https://bbs.archlinux.org/viewtopic.php?pid=1037160#p1037160)*  
-Runs in the background and warns me when laptop battery gets too low.
+Runs in the background and warns me when my laptop battery gets too low.
 
 **colors** *by me*  
 Custom visualizations of terminal colors. I'm sure there are better implementations out there but this was fun to make.
 
-**ddpv** *by me*  
-Basic script for imaging disks with a progress bar and notifications.
+**davsync** *by me*
+Synchronizes calendars and contacts from my [Xandikos](https://www.xandikos.org/) server with [`vdirsyncer`](https://github.com/pimutils/vdirsyncer) and updates [khal](https://github.com/pimutils/khal).
 
 **gcal-repl** *by me*  
 A wrapper around [`gcalcli`](https://github.com/insanum/gcalcli) which turns it into a REPL (read-eval-print loop) rather than having to enter the full command every time. This gets wrapped with `kitty-popup` by polybar when I click the date/time widget for easy access.
@@ -164,10 +165,7 @@ Grabs a random wallpaper (or reads a path from `argv`), sets it and loads a colo
 Sets the colors of physical devices with RGB in my setup. Right now it only sets the colors of the keyboard on my Razer Blade. It has the ability to set the Yeelight bulbs over my local network but I turned that off because it hurts my eyes 😵.
 
 **startup-apps** *by me*  
-Uses i3's `append_layout` feature to restore layouts and shuffle windows upon login so I don't have to waste my time doing it manually.
-
-**startup-daemons** *by me*  
-Background processes which add to my setup what other desktop environments have built in.
+Uses i3's `append_layout` feature to restore layouts and open programs upon login so I don't have to waste my time doing it manually.
 
 **update** *by me*  
 Update system-wide packages from different package managers in parallel. Uses rofi-askpass when not run from a terminal.
@@ -205,7 +203,7 @@ I made a few files for managing backups:
   tail = true ; Only show last line of output
   click-left = ~/scripts/rofi/backupctl
   ```
-- [`backup/`](backup) - Contains a [config](backup/config) file, a [list](backup/excludelist) of patterns to exclude, and the rsync daemon [config](backup/rsyncd.conf) that goes on the server.
+- [`backup/`](backup) - Contains a [config](backup/config) file and a [list](backup/excludelist) of patterns to exclude. Make sure to edit these before running the script.
 
 **Why?**  
 For a while I'd been looking for a simple backup solution for Linux that also felt seamless and integrated into the desktop but I couldn't find one which suited my needs. I originally made this script to work with rsync but I wanted snapshots, which restic can do. I love how simple it is but I got tired of typing the entire command each time (or scrolling through my term history for it) so I wrote these to make things easier for me.
@@ -213,13 +211,10 @@ For a while I'd been looking for a simple backup solution for Linux that also fe
 **Shortcomings**  
 I didn't include the ability to create multiple backups or schedule them, but I don't think it would be hard to add those features. It's also highly tailored to my needs and setup which means you might need to convert some of the code if you use different programs than me.
 
-_**BUG:** Does not report errors correctly._
+~~_**BUG:** Does not report errors correctly._~~ Fixed!
 
 #### Scripts you should know about that weren't mentioned elsewhere
 *Located in ~/.local/bin/ or installed using a package manager*
-
-[**autojump**](https://github.com/wting/autojump)  
-Quickly navigates your filesystem by keeping a record of your most-visited directories.
 
 [**Bitwarden**](https://bitwarden.com/), [**rbw**](https://github.com/doy/rbw), and [**rofi-rbw**](https://github.com/fdw/rofi-rbw)  
 Open-source password manager with apps and extensions for many platforms.
@@ -238,6 +233,9 @@ Takes screenshots.
 
 [**ripgrep (`rg`)**](https://github.com/BurntSushi/ripgrep)  
 Searches for patterns within files in a directory. Super fast.
+
+[**zoxide**](https://github.com/ajeetdsouza/zoxide)  
+Quickly navigates your filesystem by keeping a record of your most-visited directories.
 
 
 ## Miscellanea

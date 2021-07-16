@@ -5,7 +5,7 @@
 ### Variables for the backup script ###
 
 # File/directory to back up (SOURCE)
-source=/home
+source=/
 
 # Location of repository (DESTINATION)
 ## You need to initialize the repository before you can store backups on it.
@@ -24,6 +24,17 @@ excludelist=$HOME/.config/backup/excludelist
 # Extra arguments for the restic command
 restic_opts="--limit-upload=2000"
 
+# Bash function to run BEFORE backing up
+pre_backup () {
+	echo $1
+}
+
+# Bash function to run AFTER backing up
+## Backup exit code is passed as argument $1
+post_backup () {
+	echo $1
+}
+
 
 ### Variables for the menu script ###
 
@@ -38,7 +49,7 @@ terminal_command="kitty bash -c"
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# You probably don't need to change these
+# You probably don't need to change these.
 
 ## Location of log file
 logfile=$HOME/.log/backup.log

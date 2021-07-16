@@ -4,8 +4,9 @@ source $HOME/.config/backup/config
 
 notify_backup () {
 	if [ -t 0 ]; then
-		echo $@
+		echo $@ | tee $logfile
 	else
+		echo $@ >> $logfile
 		dunstify -i drive-multidisk "$@"
 	fi
 }
@@ -31,17 +32,26 @@ fi
 echo $$ > $pidfile
 
 cleanup () {
-	if [ $? -eq 0 ]; then
-		lastline="$(tail -n 1 $logfile)"
-		if [[ $lastline =~ .*error.* ]]; then
-			action=$(notify_backup -u critical "Backup failed!" --action="log,Show log")
-		else
-			action=$(notify_backup "Backup finished" --action="log,Show log")
-		fi
-		[[ "$action" == "log" ]] && $terminal_command "tac \"$(echo $logfile)\" | less"
+	restic_status=$?
+	echo $restic_status >> $logfile
+	post_backup $restic_status >> $logfile
+	if [ $restic_status -eq 0 ]; then
+		action=$(notify_backup "Backup finished" --action="log,Show log")
+	elif [ $restic_status -eq 1 ]; then
+		action=$(notify_backup -u critical "Backup failed with code 1." --action="log,Show log" --action="info,More info")
+	elif [ $restic_status -eq 3 ]; then
+		action=$(notify_backup -u critical "Backup failed with code 3." "Some files couldn't be read." --action="log,Show log" --action="info,More info")
 	fi
+	case "$ACTION" in
+		"log")
+			$terminal_command "tac \"$(echo $logfile)\" | less"
+			;;
+		"info")
+			xdg-open "https://restic.readthedocs.io/en/stable/040_backup.html#exit-status-codes"
+			;;
+	esac
 	rm $pidfile
-	exit $?
+	exit $restic_status
 }
 interrupted () {
 	kill $restic_pid
@@ -53,6 +63,8 @@ trap cleanup EXIT
 trap interrupted INT TERM SIGINT SIGTERM
 
 notify_backup "Backup starting"
-restic $restic_opts --verbose=3 -r $dest --password-file=$passfile backup $source --exclude-file=$excludelist $backup_opts | tee $logfile &
+pre_backup >> $logfile
+# https://restic.readthedocs.io/en/stable/080_examples.html#backing-up-your-system-without-running-restic-as-root
+sudo -u restic /home/restic/bin/restic $restic_opts --verbose=3 -r $dest --password-file=$passfile backup $source --exclude-file=$excludelist $backup_opts | tee $logfile &
 restic_pid=$!
 wait

@@ -12,6 +12,7 @@ alias icat="kitty +kitten icat"
 alias ranger="pypy /usr/bin/ranger"
 alias finder="ranger"
 alias nano="micro"
+alias subl="sublime_text"
 
 alias haste="haste-client -d https://haste.seaofvoic.es"
 

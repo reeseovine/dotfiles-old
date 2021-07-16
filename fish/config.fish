@@ -18,8 +18,11 @@ set -g theme_nerd_fonts yes
 set -g fish_term24bit 1
 
 # Load autojump
-if test -e /usr/share/autojump/autojump.fish
-	source /usr/share/autojump/autojump.fish
-else if test -e /usr/local/share/autojump/autojump.fish
-	source /usr/local/share/autojump/autojump.fish
-end
+# if test -e /usr/share/autojump/autojump.fish
+# 	source /usr/share/autojump/autojump.fish
+# else if test -e /usr/local/share/autojump/autojump.fish
+# 	source /usr/local/share/autojump/autojump.fish
+# end
+
+# Load zoxide
+zoxide init fish | source

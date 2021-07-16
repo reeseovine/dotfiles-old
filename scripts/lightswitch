@@ -31,16 +31,6 @@ let updateConfig = ({file, path, themes, mode, name, notation=JSON, replacer}) =
 }
 
 let toggle = {
-	/* // Update atom's configuration
-	atom: async mode => {
-		let themes = {
-			'dark': ['fang-ui', 'tomorrow-night-saturated-syntax'],
-			'light': ['wave-ui', 'nectar-syntax']
-		}
-		let file = '/home/reese/.atom/config.cson';
-		updateConfig({file, path:'*.core.themes', name:'atom config', themes, mode, notation:require('cson')});
-	}, */
-
 	// Requires EnhancedDiscord to be installed and for Discord to be
 	// started with the command line argument '--remote-debugging-port=1666'.
 	discord: async mode => {
@@ -54,7 +44,7 @@ let toggle = {
 		});
 	},
 
-	// Update micro's configuration
+	/* // Update micro's configuration
 	micro: async mode => {
 		let themes = {
 			'dark': 'monokai',
@@ -62,19 +52,19 @@ let toggle = {
 		}
 		let file = '/home/reese/.config/micro/settings.json';
 		updateConfig({file, path:'colorscheme', name:'micro settings', themes, mode});
-	},
+	}, */
 
-	// Update Sublime Text's configuration
+	/* // Update Sublime Text's configuration
 	sublime: async mode => {
 		let themes = {
 			'dark': 'Packages/Base16 Color Schemes/Themes/base16-unikitty-dark.tmTheme',
-			'light': 'Packages/Base16 Color Schemes/Themes/base16-unikitty-light.tmTheme'
+			'light': 'Packages/Base16 Color Schemes/Themes/base16-summerfruit-light.tmTheme'
 		}
 		let prefs = '/home/reese/.config/sublime-text-3/Packages/User/Preferences.sublime-settings';
 		let mdown = '/home/reese/.config/sublime-text-3/Packages/User/Markdown.sublime-settings';
 		updateConfig({file:prefs, path:'color_scheme', name:'sublime preferences', themes, mode});
 		updateConfig({file:mdown, path:'color_scheme', name:'sublime markdown preferences', themes, mode});
-	}
+	} */
 }
 
 let main = (mode, apps) => {

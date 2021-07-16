@@ -1,5 +1,6 @@
 {
-	"color_scheme": "Packages/Base16 Color Schemes/Themes/base16-unikitty-dark.tmTheme",
+	"color_scheme": "auto",
+	"caret_style": "blink",
 	"drag_text": false,
 	"draw_white_space": "none",
 	"ensure_newline_at_eof_on_save": true,
@@ -19,7 +20,6 @@
 	"ignored_packages":
 	[
 		"JavaScript",
-		"Markdown",
 		"Vintage",
 	],
 	"line_padding_bottom": 1,
@@ -28,8 +28,12 @@
 	"scroll_speed": 0.333333,
 	"show_definitions": false,
 	"show_full_path": false,
-	"theme": "gruvbox.sublime-theme",
+	"theme": "auto",
 	"trim_automatic_white_space": false,
 	"ui_scale": 1.1,
 	"word_wrap": true,
+	"dark_theme": "gruvbox.sublime-theme",
+	"light_theme": "gruvbox.sublime-theme",
+	"dark_color_scheme": "Packages/Base16 Color Schemes/Themes/base16-unikitty-dark.tmTheme",
+	"light_color_scheme": "Packages/Base16 Color Schemes/Themes/base16-summerfruit-light.tmTheme",
 }

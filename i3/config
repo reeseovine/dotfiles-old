@@ -197,7 +197,7 @@ bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
 # Application shortcuts
-bindsym $alt+Shift+s exec --no-startup-id subl
+bindsym $alt+Shift+s exec --no-startup-id /home/reese/Programs/sublime_text/sublime_text
 bindsym $alt+Shift+b exec --no-startup-id gtk-launch firefox
 bindsym $alt+Shift+f exec --no-startup-id kitty pypy /usr/bin/ranger
 bindsym $alt+Shift+g exec --no-startup-id glimpse-editor

@@ -7,3 +7,6 @@
 [submodule "micro/plug/micro-quoter"]
 	path = micro/plug/micro-quoter
 	url = https://github.com/deusnefum/micro-quoter.git
+[submodule "ranger/plugins/zoxide"]
+	path = ranger/plugins/zoxide
+	url = https://github.com/jchook/ranger-zoxide.git
