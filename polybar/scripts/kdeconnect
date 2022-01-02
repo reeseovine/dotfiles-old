@@ -10,19 +10,19 @@ WIDTH_WIDE=24
 # Color Settings of Icon shown in Polybar
 COLOR_DISCONNECTED='#888'       # Device Disconnected
 COLOR_NEWDEVICE=''          # New Device
-COLOR_BATTERY_90='#54bc7c'         # Battery >= 90
+COLOR_BATTERY_90='#5ad876'         # Battery >= 90
 COLOR_BATTERY_80=''         # Battery >= 80
 COLOR_BATTERY_70=''         # Battery >= 70
 COLOR_BATTERY_60=''         # Battery >= 60
 COLOR_BATTERY_50=''         # Battery >= 50
 COLOR_BATTERY_40=''         # Battery >= 40
 COLOR_BATTERY_30=''         # Battery >= 30
-COLOR_BATTERY_20=''         # Battery >= 20
-COLOR_BATTERY_LOW='#ff6b80'        # Battery <  20
+COLOR_BATTERY_20='#f0ab77'         # Battery >= 20
+COLOR_BATTERY_LOW='#fb7c9a'        # Battery <  20
 
 # Icons shown in Polybar
-ICON_SMARTPHONE=''
-ICON_TABLET=''
+ICON_SMARTPHONE=''
+ICON_TABLET=''
 SEPERATOR=' '
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"

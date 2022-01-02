@@ -3,7 +3,7 @@
 # Source: https://bbs.archlinux.org/viewtopic.php?pid=1037160#p1037160
 
 SLEEP_TIME=5   # Default time between checks.
-SAFE_PERCENT=20  # Still safe at this level.
+SAFE_PERCENT=30  # Still safe at this level.
 DANGER_PERCENT=10  # Warn when battery at this level.
 CRITICAL_PERCENT=2  # Shut down when battery at this level.
 
@@ -14,11 +14,10 @@ notify_battery () {
 }
 
 while [ true ]; do
-	dunstify -C $notifID
-	
-	rem_bat=$(acpi -b | grep -Eo "[0-9]+%" | grep -Eo "[0-9]+")
+	rem_bat=$(acpi -b | grep -v "Battery [0-9].*unavailable" | sed -re "s/.*\b([0-9]+)%.*/\1/")
+	echo $rem_bat
 
-	if [[ -n $(acpi -b | grep -i discharging) ]]; then
+	if [[ -n "$(acpi -b | grep -v "Battery [0-9].*unavailable" | grep -i discharging)" ]]; then
 		if [[ $rem_bat -gt $SAFE_PERCENT ]]; then
 			SLEEP_TIME=10
 		else
@@ -27,10 +26,12 @@ while [ true ]; do
 				notify_battery
 			fi
 			if [[ $rem_bat -le $CRITICAL_PERCENT ]]; then
-				sudo pm-hibernate
+				# sudo pm-hibernate
+				echo "hibernate!"
 			fi
 		fi
 	else
+		dunstify -C $notifID
 		if [[ $rem_bat -lt $SAFE_PERCENT ]]; then
 			SLEEP_TIME=5
 		else

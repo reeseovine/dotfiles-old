@@ -1,0 +1,8 @@
+// SublimeLinter Settings - User
+{
+	"linters": {
+		"xmllint": {
+			"executable": "/usr/bin/xmllint"
+		}
+	}
+}

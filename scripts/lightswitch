@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
+const JSONC = require('jsonc-simple-parser');
 // const colors = require('/home/reese/.cache/wal/colors.json');
 
 // Get or set object elements by dot-notation strings
@@ -15,7 +16,7 @@ let index = (obj, path, value) => {
 		return index(obj[path[0]], path.slice(1), value);
 }
 
-let updateConfig = ({file, path, themes, mode, name, notation=JSON, replacer}) => {
+let updateConfig = ({file, path, themes, mode, name, notation=JSONC, replacer}) => {
 	fs.readFile(file, 'utf8', (err, data) => {
 		if (err) console.error(`${name} error: ${err}`);
 		let conf = notation.parse(data);
@@ -31,40 +32,40 @@ let updateConfig = ({file, path, themes, mode, name, notation=JSON, replacer}) =
 }
 
 let toggle = {
-	// Requires EnhancedDiscord to be installed and for Discord to be
-	// started with the command line argument '--remote-debugging-port=1666'.
+	// Requirements:
+	// - Have Powercord installed (https://powercord.dev)
+	// - Have my Lightswitch plugin installed (https://github.com/katacarbix/discord-stuff#lightswitch)
+	// - Start Discord with the command line argument '--remote-debugging-port=1666'.
 	discord: async mode => {
 		const CDP = require('chrome-remote-interface');
-		CDP({port: 1666}, (client) => {
-			client.Runtime.evaluate({expression: `EDApi.findModuleByProps('updateLocalSettings').updateRemoteSettings({theme: '${mode}'})`});
-			console.log('changed discord appearance');
+		CDP({port: 1666}, async (client) => {
+			await client.Runtime.evaluate({expression: `Lightswitch.set('${mode}')`});
 			client.close();
+			console.log('changed discord appearance');
 		}).on('error', (err) => {
 			console.error(`discord console error: ${err}`);
 		});
 	},
 
-	/* // Update micro's configuration
-	micro: async mode => {
-		let themes = {
-			'dark': 'monokai',
-			'light': 'simple'
-		}
-		let file = '/home/reese/.config/micro/settings.json';
-		updateConfig({file, path:'colorscheme', name:'micro settings', themes, mode});
-	}, */
+	// Update micro's configuration
+	// micro: async mode => {
+	// 	let themes = {
+	// 		'dark': 'monokai',
+	// 		'light': 'simple'
+	// 	}
+	// 	let file = '/home/reese/.config/micro/settings.json';
+	// 	updateConfig({file, path:'colorscheme', name:'micro settings', themes, mode});
+	// },
 
-	/* // Update Sublime Text's configuration
+	// Update Sublime Text's configuration
 	sublime: async mode => {
 		let themes = {
-			'dark': 'Packages/Base16 Color Schemes/Themes/base16-unikitty-dark.tmTheme',
-			'light': 'Packages/Base16 Color Schemes/Themes/base16-summerfruit-light.tmTheme'
+			'dark': 'Packages/User/Letty-tmTheme/Letty Aurora.tmTheme',
+			'light': 'Packages/User/Letty-tmTheme/Letty Snow.tmTheme'
 		}
 		let prefs = '/home/reese/.config/sublime-text-3/Packages/User/Preferences.sublime-settings';
-		let mdown = '/home/reese/.config/sublime-text-3/Packages/User/Markdown.sublime-settings';
 		updateConfig({file:prefs, path:'color_scheme', name:'sublime preferences', themes, mode});
-		updateConfig({file:mdown, path:'color_scheme', name:'sublime markdown preferences', themes, mode});
-	} */
+	}
 }
 
 let main = (mode, apps) => {

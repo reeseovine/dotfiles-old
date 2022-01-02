@@ -4,6 +4,7 @@
     "eofnewline": false,
     "fastdirty": true,
     "indentchar": "\t",
+    "mkparents": true,
     "pluginchannels": [
         "https://raw.githubusercontent.com/micro-editor/plugin-channel/master/channel.json"
     ],

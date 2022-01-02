@@ -1,12 +1,12 @@
 {
-	"color_scheme": "auto",
-	"caret_style": "blink",
+	"color_scheme": "Packages/User/Letty-tmTheme/Letty Aurora.tmTheme",
+	"caret_style": "smooth",
 	"drag_text": false,
-	"draw_white_space": "none",
+	"draw_white_space": "selection",
 	"ensure_newline_at_eof_on_save": true,
+	"word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?_",
 	"font_face": "FiraCode Nerd Font",
-	"font_options":
-	[
+	"font_options": [
 		"ss01",
 		"ss02",
 		"ss03",
@@ -15,25 +15,45 @@
 		"ss07",
 		"gray_antialias"
 	],
-	"font_size": 13,
+	"font_size": 15,
 	"highlight_line": true,
-	"ignored_packages":
-	[
+	"ignored_packages": [
+		"AppleScript",
 		"JavaScript",
-		"Vintage",
+		"Vintage"
 	],
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,
 	"preview_on_click": false,
-	"scroll_speed": 0.333333,
+	"scroll_speed": 0.25,
 	"show_definitions": false,
 	"show_full_path": false,
-	"theme": "auto",
+	"theme": "gruvbox.sublime-theme",
 	"trim_automatic_white_space": false,
-	"ui_scale": 1.1,
+	"shift_tab_unindent": true,
 	"word_wrap": true,
+	"fade_fold_buttons": true,
+	"indent_to_bracket": true,
+	"auto_complete_delay": 200,
+	"auto_complete_cycle": true,
 	"dark_theme": "gruvbox.sublime-theme",
 	"light_theme": "gruvbox.sublime-theme",
-	"dark_color_scheme": "Packages/Base16 Color Schemes/Themes/base16-unikitty-dark.tmTheme",
-	"light_color_scheme": "Packages/Base16 Color Schemes/Themes/base16-summerfruit-light.tmTheme",
+	"sublime_merge_path": "/home/reese/Programs/bin/GitAhead",
+	"dark_color_scheme": "Packages/User/Letty-tmTheme/Letty Aurora.tmTheme",
+	"light_color_scheme": "Packages/User/Letty-tmTheme/Letty Snow.tmTheme",
+	"mde.italic_marker_asterisk": true,
+	"mde.list_indent_bullets": [
+		"-",
+		"*",
+		"+"
+	],
+	"mde.lint": {
+		"md003": "atx",
+		"md029": "ordered",
+		"disable": [
+			"md013",
+			"md026"
+		]
+	},
+	"mde.auto_fold_link.enabled": false
 }

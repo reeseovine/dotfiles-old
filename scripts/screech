@@ -1,25 +1,83 @@
 #!/usr/bin/env bash
 
-# takes screenshots in both X and Wayland desktops
+# easy screenshot tool for both X and Wayland
 # kinda sorta based on swayshot - https://gitlab.com/radio_rogal/swayshot
 
-shot_path="$HOME/Pictures/Screenshots"
-shot_file="$shot_path/$(date -Iseconds).png"
+# Dependencies:
+#   for both:
+#     - curl (upload to hosting site)
+#     - libnotify (desktop notifications)
+#   for Wayland:
+#     - sway (window manager/compositor)
+#     - grim (screenshot tool)
+#     - slurp (area selection)
+#     - jq (jquery parser)
+#     - wl-copy (clipboard tool)
+#   for X11:
+#     - maim (screenshot tool)
+#     - slop (area selector)(dependency of maim)
+#     - xclip (clipboard tool)
+#     - xdotool (X11 interface)
 
+# Configuration
+shot_dir="$HOME/Pictures/Screenshots"          	# screenshots folder
+shot_name="screech_$(date +'%Y-%m-%d %H-%M-%S').png"   	# file name to save as
 
-# determine the right clipboard handler to use
-copy_cmd () {
-	cmd='&>/dev/null; echo "no compatible clipboarder present on this system."'
-	if [ $WAYLAND_DISPLAY ] && type wl-copy >/dev/null 2>&1; then
-		cmd='- | wl-copy -t image/png'
-	elif [ -z $WAYLAND_DISPLAY ] && type xclip &>/dev/null; then
-		cmd='| xclip -selection clipboard -t image/png'
+# these parameters are for a small image hosting page on my home webserver. you
+# will most likely need to change these and/or the upload_and_copy_url function
+# if you want to use this feature.
+uploader_base_url="https://i.example.com/"     	# base url of image host for -upload
+uploader_script_path="upload.php"              	# image host upload page
+uploader_key="YOUR_KEY_HERE"                   	# image host api key
+source "$HOME/.screech_secrets"                 # import the actual config values ;)
+
+# notification handler
+notify () {
+	if [ -t 0 ] || [ quiet ]; then
+		echo $@
+	else
+		notify-send -i desktop "$1" "$2"
 	fi
-	echo $cmd
+}
+
+# save image data to file
+# stdin: image data
+save_to_file () {
+	cat - > "$shot_dir/$shot_name"
+	notify "Screenshot saved!" "$shot_dir/$shot_name"
+}
+
+# determine the right clipboard handler to use and copy data to clipboard
+# stdin: image data
+# args: type of data (png, txt)(default png)
+copy_to_clipboard () {
+	if [ $WAYLAND_DISPLAY ] && type wl-copy >/dev/null 2>&1; then
+		cat - | wl-copy $([ "$1" = "txt" ] || echo "-t image/png")
+	elif [ -z $WAYLAND_DISPLAY ] && type xclip >/dev/null 2>&1; then
+		cat - | xclip -selection clipboard $([ "$1" = "txt" ] || echo "-t image/png")
+	else
+		cat - &>/dev/null
+		notify "Copy failed!" "No compatible clipboarder present on this system."
+		return 1
+	fi
+}
+
+# upload screenshot to self-hosted uploader script and copy the URL
+# stdin: image data
+upload_and_copy_url () {
+	result=$(cat - | curl -F "file=@-;filename=img.png" -F "key=$uploader_key" -F "action=up" "$uploader_base_url$uploader_script_path")
+	if [ $? -ne 0 ]; then
+		notify "Upload failed!" $result
+		return 1
+	fi
+	echo -n "$result" | copy_to_clipboard txt
+	notify "Uploaded successfully!" "Check your clipboard for the link."
+	return 0
 }
 
 # get the currently active window
-focused_window () {
+# stdout: window id
+get_focused_window () {
 	if [ $WAYLAND_DISPLAY ]; then
 		# jq filter for finding sway's active window
 		declare -r filter='
@@ -36,57 +94,103 @@ focused_window () {
 	fi
 }
 
+# stdout: image data
 capture_screen () {
 	if [ $WAYLAND_DISPLAY ]; then
-		swaymsg --type get_outputs --raw | jq --raw-output '.[] | select(.focused) | .name' | grim -o - $@
+		swaymsg --type get_outputs --raw | jq --raw-output '.[] | select(.focused) | .name' | grim -o -
 	else
-		maim -u $@
+		options=$($cursor && echo -n "" || echo -n "-u")
+		maim $options | cat -
 	fi
 }
 capture_window () {
 	if [ $WAYLAND_DISPLAY ]; then
-		grim -g $(focused_window) $@
+		grim -g $(get_focused_window) -
 	else
-		maim -ui $(focused_window) $@
+		options=$($cursor && echo -n "-i" || echo -n "-ui")
+		maim $options $(get_focused_window) | cat -
 	fi
 }
 capture_area () {
 	if [ $WAYLAND_DISPLAY ]; then
-		slurp -b '#00000000' -c '#808080ff' -s '#00000000' -w 1 -d | grim -g - $@
+		slurp -b '#00000000' -c '#808080ff' -s '#00000000' -w 1 -d | grim -g -
 	else
-		maim -us -c 0.5,0.5,0.5 $@
+		options=$($cursor && echo -n "-s" || echo -n "-us")
+		maim $options -c 0.5,0.5,0.5 | cat -
 	fi
 }
 
 show_help () {
 	echo "screech - Take screenshots in Wayland (sway) and X11."
-	echo "Usage: screech [option]"
+	echo "Usage: screech [option(s)]"
 	echo ""
 	echo "Options"
-	echo "  -copy     Copy the resulting screenshot to the clipboard."
-	echo "  -screen   Take a screenshot of the entire screen."
-	echo "  -window   Take a screenshot of the current window."
-	echo "  -area     Use your mouse to select an area to take a screenshot of."
+	echo "  Any of:"
+	echo "    -save     Save the screenshot to your computer."
+	echo "    -copy     Copy the screenshot to the clipboard."
+	echo "    -upload   Post the screenshot to a hosting site and copy the link"
+	echo "              (takes precedence over -copy)."
+	echo "    -cursor   Include mouse cursor."
+	echo "    -quiet    Don't send desktop notifications."
+	echo "  One of:"
+	echo "    -screen   (default) Take a screenshot of the entire screen."
+	echo "    -window   Take a screenshot of the current window."
+	echo "    -area     Use your mouse to select an area to take a screenshot of."
 }
 
+if [ $# -eq 0 ]; then
+	show_help
+	exit
+fi
+
+save=false
 copy=false
+upload=false
+
 mode='screen'
+
+cursor=false
+quiet=false
+
 while(($#)); do
 	case "$1" in
+		-save )
+			save=true ;;
 		-copy )
 			copy=true ;;
+		-upload )
+			upload=true ;;
 		-screen )
 			mode='screen' ;;
 		-window )
 			mode='window' ;;
 		-area )
 			mode='area' ;;
-		* )
+		-cursor )
+			cursor=true ;;
+		-quiet )
+			quiet=true ;;
+		-h | -help | --help )
 			show_help
 			exit ;;
+		\; ) ;;
+		* )
+			echo "Unexpected argument: $1"
+			show_help
+			exit 1 ;;
 	esac
 	shift
 done
 
-# echo -e "capture_$mode $($copy && copy_cmd || $shot_file)"
-eval "capture_$mode $($copy && copy_cmd || $shot_file)"
+# create temporary file to store image data
+# (bash can't store raw data in variables easily)
+temp_file=$(mktemp)
+trap 'rm -f "$temp_file"' EXIT
+
+# capture region
+eval "capture_$mode" > $temp_file
+
+# perform action(s)
+$save && save_to_file < $temp_file
+$copy && copy_to_clipboard < $temp_file
+$upload && upload_and_copy_url < $temp_file

@@ -2,7 +2,7 @@
 @import url('addressbar.css');
 @import url('pywalfox.css');
 
-:root {
+* {
 	font-family: Roboto, sans-serif !important;
 }
 

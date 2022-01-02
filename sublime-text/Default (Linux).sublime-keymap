@@ -1,13 +1,23 @@
 [
+	{ "keys": ["ctrl+alt+s"], "command": "save_all", "args": { "async": true } },
 	{ "keys": ["ctrl+shift+t"], "command": "reopen_last_file" },
 	{ "keys": ["ctrl+alt+t"], "command": "open_terminal" },
-	{ "keys": ["ctrl+shift+alt+t"], "command": "open_terminal_project_folder" },
 	{ "keys": ["ctrl+alt+m"], "command": "toggle_menu"},
 	{ "keys": ["ctrl+\\"], "command": "toggle_side_bar" },
 	{ "keys": ["ctrl+up"], "command": "swap_line_up" },
 	{ "keys": ["ctrl+down"], "command": "swap_line_down" },
 	{ "keys": ["shift+delete"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
 	
+	// Markdown table formatter
+	{
+        "keys": ["ctrl+alt+shift+t"],
+        "command": "markdown_table_format",
+        "context": [
+             {"key": "selector", "operator": "equal", "operand": "text.html.markdown"}
+        ]
+    },
+
+
 	// Emmet shortcuts
 	// Expand abbreviation
 	{
@@ -23,11 +33,11 @@
 	},
 
 	// Wrap with Abbreviation
-	// {
-	//     "keys": ["shift+ctrl+g"],
-	//     "command": "emmet_wrap_with_abbreviation",
-	//     "context": [{"key": "setting.is_widget",  "operand": false }]
-	// },
+	{
+	    "keys": ["shift+ctrl+g"],
+	    "command": "emmet_wrap_with_abbreviation",
+	    "context": [{"key": "setting.is_widget",  "operand": false }]
+	},
 
 	// Balance Outward
 	// {

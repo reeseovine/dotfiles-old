@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# generate randomized strings and copy to clipboard
+
+bytes=$(rofi -dmenu -p 'bytes' -lines 0)
+if [ -z "$bytes" ]; then exit; fi
+encoding=$(echo -n $'hex\nbase64' | rofi -dmenu -p 'encoding' -lines 2)
+if [ -z "$encoding" ]; then exit; fi
+
+openssl rand -$encoding $bytes | tr -d '\n' | xclip -selection clipboard

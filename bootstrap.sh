@@ -4,22 +4,37 @@
 #       NOT WELL TESTED!!
 #
 # I just made this in like a day and have not extensively tested it yet. You can try running it but I can't guarantee that it'll work and/or won't fuck up your computer.
+#
+# Requirements:
+#   bash
+#   git
+#   pacman
+#   ln (and a filesystem which can handle symbolic links)
+#   sudo (and the privilege to use it)
 
+
+FMT_WIDTH=$([ $COLUMNS -lt 90 ] && echo $COLUMNS || echo 90)
+user=$(whoami)
 
 echo
 echo "*~*~*~*~*~*~*~*~*~*~*~*~*~*~*"
 echo "{ katacarbix's dotfiles  <3 }"
 echo "*~*~*~*~*~*~*~*~*~*~*~*~*~*~*"
 echo
-echo "this script will clone my dotfiles repo and install a few things to get you started on a fresh linux installation. you should always open scripts in a text editor before running them to verify there's nothing malicious or misconfigured. make sure you're running it as your user (NOT root), sudo is installed, and you are a sudoer. it may ask you a few times for your password." | fmt
+echo "this script will clone my dotfiles repo and install a few things to get you started on a fresh linux installation. you should always open scripts in a text editor before running them to verify there's nothing malicious or misconfigured. make sure you're running it as your user (NOT root), sudo is installed, and you are a sudoer. it may ask you a few times for your password." | fmt -w $FMT_WIDTH
 echo
+if [ "$user" = "root" ]; then
+	echo "don't run this script as root!!"
+	echo "exiting."
+	exit 1
+fi
 read -e -p "press ENTER to continue..."
 echo
 echo "what type of environment should this machine have?"
-echo "[0: minimal] [1: headless/console-only] [2: basic GUI] [3: full desktop]"
+echo "[0: minimal] [1: full console] [2: basic GUI] [3: full desktop]"
 read -e -p "[default: 1] > " -a MACHINE_ENV
 if [[ -z $MACHINE_ENV ]]; then MACHINE_ENV=1; fi
-echo "clone and symbolically link dotfiles for the selected environment? WARNING: this will overwrite any configurations and dotfiles you currently have in your home directory." | fmt
+echo "clone and symbolically link dotfiles for the selected environment? WARNING: this will overwrite any configurations and dotfiles you currently have in your home directory." | fmt -w $FMT_WIDTH
 read -e -p "[Y/n] > " -a LINK_DOTS
 read -e -p "install Docker? [y/N] > " -a INSTALL_DOCKER
 read -e -p "install VM utilities? [y/N] > " -a INSTALL_KVM
@@ -45,8 +60,6 @@ PACMAN_BASIC=(
 	man-db
 	micro
 	ncurses
-	nodejs
-	npm
 	nss-mdns
 	openssh
 	polkit
@@ -57,6 +70,7 @@ PACMAN_BASIC=(
 	ruby
 	xclip
 	xorg-xauth
+	zoxide
 )
 PACMAN_CONSOLE=(
 	bat
@@ -75,7 +89,10 @@ PACMAN_CONSOLE=(
 	lynx
 	ncdu
 	nmap
+	nodejs
+	npm
 	pv
+	rclone
 	restic
 	speedtest-cli
 	thefuck
@@ -84,7 +101,6 @@ PACMAN_CONSOLE=(
 	xdo
 	xdotool
 	xsel
-	zoxide
 )
 PACMAN_GUI=(
 	baobab
@@ -116,7 +132,6 @@ PACMAN_DEV=(fontforge)
 PACMAN_GRAPHICS=(blender fontforge imagemagick inkscape)
 
 AUR_BASIC=(
-	autojump
 )
 AUR_CONSOLE=(
 	cbonsai
@@ -156,9 +171,17 @@ OMF_PKGS=(
 )
 
 
+rudimentary_h () {
+	url="$1"
+	base_path="$HOME/git/"
+	repo_path="$(echo $url | sed -Ee 's/^https:\/\/(.*)/\1/')"
+	git clone $url "$base_path$repo_path" >/dev/null 2&>1
+	echo "$base_path$repo_path"
+}
+
 install_progs () {
 	if ! command -v pacman; then
-		echo "you must be running a distro with Pacman as its package manager (Arch, Manjaro, etc.). unfortunately it would just take too much effort for me to maintain this script for every flavor of linux. if this error is a mistake, please open an issue here: https://github.com/katacarbix/dotfiles/issues" | fmt
+		echo "you must be running a distro with pacman as its package manager (Arch, Manjaro, etc.). unfortunately it would just take too much effort for me to maintain this script for every flavor of linux. if this error is a mistake and you DO have pacman, please open an issue here: https://github.com/katacarbix/dotfiles/issues" | fmt -w $FMT_WIDTH
 		exit 1
 	fi
 
@@ -182,39 +205,30 @@ install_progs () {
 	sudo pacman -Squ --noconfirm --needed ${TO_INSTALL[@]}
 
 
-	if [[ $INSTALL_DOCKER =~ \^[Yy] ]]; then
-		echo "configuring Docker..."
-		sudo groupadd docker
-		sudo usermod -aG docker $USER
-		sudo systemctl enable docker.service
-	fi
-
-
 	echo "installing git packages..."
 	# install minimal programs
 	if [[ -z $(command -v yay) ]]; then
-		git-get https://aur.archlinux.org/yay
-		cd $HOME/git/aur.archlinux.org/yay
+		cd $(rudimentary_h https://aur.archlinux.org/yay)
 		makepkg -si --noconfirm --needed
 	fi
-	git-get https://github.com/zimbatm/h
+	rudimentary_h https://github.com/zimbatm/h >/dev/null
 	ln -sf $HOME/git/github.com/zimbatm/h/h $HOME/.local/bin
 	# console programs
-	if [[ $MACHINE_ENV -ge 1 ]]; then
-		echo
-	fi
+	# if [[ $MACHINE_ENV -ge 1 ]]; then
+
+	# fi
 	# basic GUI
 	if [[ $MACHINE_ENV -ge 2 ]]; then
-		git-get https://github.com/piroor/tweet.sh
+		rudimentary_h https://github.com/piroor/tweet.sh >/dev/null
 		ln -s $HOME/git/github.com/piroor/tweet.sh/tweet.sh $HOME/.local/bin
 
-		git-get https://github.com/fdw/rofi-clipster
+		rudimentary_h https://github.com/fdw/rofi-clipster >/dev/null
 		pip install $HOME/git/github.com/fdw/rofi-clipster
 	fi
 	# full desktop
-	if [[ $MACHINE_ENV -eq 3 ]]; then
-		echo
-	fi
+	# if [[ $MACHINE_ENV -eq 3 ]]; then
+
+	# fi
 
 
 	echo "installing AUR packages..."
@@ -251,8 +265,7 @@ install_progs () {
 
 link_dotfiles () {
 	echo "cloning dotfiles repo..."
-	git-get https://github.com/katacarbix/dotfiles.git
-	DOTFILES_PATH=$HOME/git/github.com/katacarbix/dotfiles
+	DOTFILES_PATH=$(rudimentary_h https://github.com/katacarbix/dotfiles)
 	git submodule update --init $DOTFILES_PATH
 
 	echo "making symbolic links..."
@@ -276,7 +289,7 @@ link_dotfiles () {
 	if [[ $MACHINE_ENV -ge 2 ]]; then
 		ln -sf $DOTFILES_PATH/clipster $HOME_CFG
 		ln -sf $DOTFILES_PATH/dunst $HOME_CFG
-		# ln -sf $DOTFILES_PATH/firefox $HOME/.mozilla/firefox/*.default-release/chrome
+		ln -sf $DOTFILES_PATH/firefox $HOME/.mozilla/firefox/*.default-release/chrome
 		ln -sf $DOTFILES_PATH/i3 $HOME_CFG
 		ln -sf $DOTFILES_PATH/rofi $HOME_CFG
 		ln -sf $DOTFILES_PATH/misc/.xinitrc $HOME
@@ -299,8 +312,15 @@ link_dotfiles () {
 }
 
 system_tweaks () {
-	# Enable my locale (en_US.UTF-8)
-	cat /etc/locale.gen | sed -Ee 's/^#(en_US.UTF-8 UTF-8)$/\1/g' > /etc/locale.gen
+	if [[ $INSTALL_DOCKER =~ \^[Yy] ]]; then
+		echo "configuring Docker..."
+		groupadd docker
+		usermod -aG docker $user
+		systemctl enable --now docker.service
+	fi
+
+	# Set my locale (en_US.UTF-8)
+	sed -Ee 's/^# (en_US.UTF-8 UTF-8)$/\1/g' -i /etc/locale.gen
 	echo "LANG=en_US.UTF-8" > /etc/locale.conf
 	locale-gen
 
@@ -314,27 +334,20 @@ main () {
 	# make sure git is installed and system is up to date
 	sudo pacman -Sqyu --noconfirm --needed git
 
-	# get git-get
-	git clone https://github.com/pietvanzoen/git-get $HOME/git/github.com/pietvanzoen/git-get
-	mkdir -p $HOME/.local/bin
-	export PATH=$PATH:$HOME/.local/bin
-	ln -sf $HOME/git/github.com/pietvanzoen/git-get/git-get $HOME/.local/bin
-	export GIT_PATH=$HOME/git
-
 	if [[ $LINK_DOTS =~ \^[^Nn] ]]; then
 		# clone the dotfiles repo and link what's needed
 		link_dotfiles
 	fi
 
+	# install programs
+	install_progs
+
 	# tweak system settings as root
 	export -f system_tweaks
 	su root -c "bash -c system_tweaks"
 
-	# install programs
-	install_progs
-
 	# change user's shell to fish
-	chsh $(which fish)
+	sudo chsh -s $(which fish) $user
 
 	echo "all done!"
 	read -e -p "would you like to reboot now? [y/N] > " -a DO_REBOOT

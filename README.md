@@ -62,10 +62,10 @@ Some of these refresh their colors automatically but most need to be told to ref
 ### [i3](i3/config)
 [i3-gaps](https://github.com/Airblader/i3) is a fork of the tiling window manager that adds the ability to create gaps between windows in tiling mode so your wallpaper can peek through. In addition to window styling, my config adds quite a few keyboard shortcuts for things like starting apps quickly, opening rofi menus, and taking screenshots.
 
-### [compton](misc/compton.conf)
-A small but powerful composition backend for X desktops. tryone144's [dual_kawase](https://github.com/tryone144/compton/tree/dual_kawase) branch adds a really nice strong blur behind windows. I gave most windows a subtle shadow too which just makes things look a little less flat.
+### [picom](picom/picom.conf)
+A small but powerful compositor for X desktops. I'm using [this fork](https://github.com/s0nny7/picom) that fixes one tiny issue with rounded corners in [ibhagwan's picom](https://github.com/ibhagwan/picom).
 
-Compton has the ability to make windows semi-transparent but I chose to forgo this feature in favor of creating transparent areas within some apps. I then turned off blurring in compton's config for any program that's opaque, because there's no reason to blur something I'm not even going to see.
+Compton has the ability to make windows semi-transparent but I chose to forgo this feature in favor of creating transparent areas within some apps. I then turned off blurring in compton's config for any program that's opaque, because there's no reason to do work for something that I'm not even going to see.
 
 ### [polybar](polybar)
 A status bar with easy access to scripts and whatever else I need. There's the `main` bar, and one called `secondary` which is stripped down for multi-monitor setups. The [`polybar`](scripts/polybar) script detects monitors and places these bars automatically.
@@ -83,7 +83,7 @@ Contains templates for programs to import the colors and handmade color schemes 
 I'm using the [Pywalfox](https://github.com/Frewacom/pywalfox) extension + a few UI tweaks in my `userChrome.css` and `userContent.css`. I'm also using everything in my [`userstyles` repo](https://github.com/katacarbix/userstyles) with the [Stylus](https://github.com/openstyles/stylus) extension.
 
 ### [Sublime Text](sublime-text)
-*Symlinked as ~/.config/sublime-text-3/Packages/User*
+*Symlinked as \~/.config/sublime-text-3/Packages/User*
 I have yet to create a UI theme that matches the rest of my desktop, so for now I'm using the [gruvbox](https://packagecontrol.io/packages/gruvbox) theme. It works with any color scheme, not just gruvbox.
 
 ### Discord
@@ -126,7 +126,7 @@ A TUI file manager. It's highly customizable but I found that there isn't much t
 
 
 ### [Scripts](scripts)
-*Symlinked as ~/scripts*  
+*Symlinked as \~/scripts*  
 *Included in $PATH*
 
 All of the scripts below were either written by me or borrowed from someone else and modified for my use case. I don't want to reupload unmodified scripts, so for those, check out the section near the end with links to other scripts and packages that I find useful.
@@ -214,7 +214,7 @@ I didn't include the ability to create multiple backups or schedule them, but I 
 ~~_**BUG:** Does not report errors correctly._~~ Fixed!
 
 #### Scripts you should know about that weren't mentioned elsewhere
-*Located in ~/.local/bin/ or installed using a package manager*
+*Located in \~/.local/bin/ or installed using a package manager*
 
 [**Bitwarden**](https://bitwarden.com/), [**rbw**](https://github.com/doy/rbw), and [**rofi-rbw**](https://github.com/fdw/rofi-rbw)  
 Open-source password manager with apps and extensions for many platforms.
@@ -248,7 +248,7 @@ Quickly navigates your filesystem by keeping a record of your most-visited direc
 - [`lightdm-mini-greeter.conf`](misc/libinput-gestures.conf) *Symlinked in /etc/lightdm/* - Config file for [lightdm-mini-greeter](https://github.com/prikhi/lightdm-mini-greeter).
 - [`logid.cfg`](misc/logid.cfg) *Symlinked in /etc/* - Gesture and button mapping for Logitech mice using [logiops](https://github.com/PixlOne/logiops).
 - [`.nanorc`](misc/.nanorc) *Symlinked in ~* - Config for the `nano` text editor. I don't use it often but it's nice to keep this on hand.
-- [`rofimoji.rc`](misc/rofimoji.rc) *Symlinked in ~/.config/* - Config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
+- [`rofimoji.rc`](misc/rofimoji.rc) *Symlinked in \~/.config/* - Config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
 
 
 ## Package lists

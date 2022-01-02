@@ -1,0 +1,38 @@
+[{
+	"id": "side-bar-files-open-with",
+	"children": [
+		{
+			"caption": "Glimpse",
+			"id": "side-bar-files-open-with-glimpse",
+			"command": "side_bar_files_open_with",
+			"args": {
+				"paths": [],
+				"application": "glimpse-editor",
+				"extensions": "xcf|psd|png|jpg|tif|tiff|ico|bmp",
+				"args": []
+			}
+		},
+		{
+			"caption": "Inkscape",
+			"id": "side-bar-files-open-with-inkscape",
+			"command": "side_bar_files_open_with",
+			"args": {
+				"paths": [],
+				"application": "inkscape",
+				"extensions": "svg|ai|png|jpg|tif|tiff|ico|bmp",
+				"args": []
+			}
+		},
+		{
+			"caption": "VLC",
+			"id": "side-bar-files-open-with-vlc",
+			"command": "side_bar_files_open_with",
+			"args": {
+				"paths": [],
+				"application": "/usr/bin/vlc --started-from-file",
+				"extensions": "mp4|m4v|mkv|m3u|m3u8|ts|mov|avi|mp3",
+				"args": []
+			}
+		}
+	]
+}]

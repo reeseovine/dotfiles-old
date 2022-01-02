@@ -16,5 +16,5 @@ alias subl="sublime_text"
 
 alias haste="haste-client -d https://haste.seaofvoic.es"
 
-alias pipes="pipes.sh -f 60 -s 15 -r 4000 -R"
+alias pipes="pipes-rs"
 alias bonsai="cbonsai -S"

@@ -1,31 +1,36 @@
 #!/usr/bin/env bash
 
 source ~/.cache/wal/colors.sh
+i3lock_bg="/tmp/i3lock_bg.png"
 
 i3lock \
-	--color="00000066" \
+	--image $i3lock_bg \
+	--fill \
+\
+	--pointer=default \
 	--indicator \
 \
 	--pass-media-keys \
 	--pass-screen-keys \
 	--pass-power-keys \
 \
-	--verifcolor="${foreground/'#'}ff" \
-	--wrongcolor="${color1/'#'}ff" \
+	--verif-color="${foreground/'#'}ff" \
+	--wrong-color="${color1/'#'}ff" \
 \
-	--insidecolor="00000000" \
-	--insidevercolor="00000000" \
-	--insidewrongcolor="00000000" \
+	--inside-color="00000000" \
+	--insidever-color="00000000" \
+	--insidewrong-color="00000000" \
 \
-	--ringcolor="${foreground/'#'}ff" \
-	--ringvercolor="${color2/'#'}ff" \
-	--ringwrongcolor="${color3/'#'}ff" \
+	--ring-color="${foreground/'#'}ff" \
+	--ringver-color="${color2/'#'}ff" \
+	--ringwrong-color="${color3/'#'}ff" \
 \
-	--keyhlcolor="${color2/'#'}ff" \
-	--bshlcolor="${color5/'#'}ff" \
+	--keyhl-color="${color2/'#'}ff" \
+	--bshl-color="${color5/'#'}ff" \
 \
-	--separatorcolor="${foreground/'#'}ff" \
+	--separator-color="${foreground/'#'}ff" \
 	--line-uses-inside \
 \
 	--ring-width=18 \
-#	--no-verify \
+	--ignore-empty-password \
+	# --no-verify

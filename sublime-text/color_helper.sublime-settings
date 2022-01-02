@@ -1,0 +1,6 @@
+// Settings in here override those in "ColorHelper/color_helper.sublime-settings",
+
+{
+	"click_color_box_to_pick": "color_picker",
+	"use_os_color_picker": true
+}

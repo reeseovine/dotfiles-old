@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+KITTY_ID=655
+lock_script="/home/reese/scripts/lock"
+
+case "$1" in
+	start )
+		term_art=(
+			"pipes-rs"
+			"cbonsai -li -L36 -M6 --seed=\$(date +'%N')"
+			"cmatrix -ark"
+			"asciiquarium"
+		)
+		KITTY_ID=$KITTY_ID kitty-popup fullscreen -c "${term_art[RANDOM%${#term_art[@]}]}"
+		;;
+	stop )
+		kitty @ --to unix:/tmp/kitty-popup_$KITTY_ID close-window
+		;;
+	watch )
+		xidlehook --not-when-fullscreen \
+			--timer 900 \
+				"$(readlink -f $0) start" \
+				"$(readlink -f $0) stop" \
+			--timer 900 \
+				"" \
+				"$lock_script && $(readlink -f $0) stop" \
+			--timer 1800 \
+				"$lock_script && $(readlink -f $0) stop && systemctl suspend" \
+				"" \
+			--socket /tmp/xidlehook.socket
+		;;
+esac

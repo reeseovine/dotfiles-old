@@ -7,6 +7,10 @@
 }
 #tabbrowser-tabs {
 	--user-tab-rounding: 0px;
+	padding: 0 12px;
+}
+#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
+    margin-inline-start: 8px !important;
 }
 toolbar .toolbarbutton-1 > .toolbarbutton-icon {
 	border-radius: 0 !important;
@@ -19,9 +23,10 @@ toolbar .toolbarbutton-1 > .toolbarbutton-icon {
 @media (-moz-proton) {
 	.tab-background {
 		border-radius: var(--user-tab-rounding) var(--user-tab-rounding) 0px 0px !important;
-		margin-block: 1px 0 !important;
+		box-shadow: none !important;
+		margin-block: 0 0 !important;
 	}
-	#scrollbutton-up, #scrollbutton-down { /* 6/10/2021 */
+	#scrollbutton-up, #scrollbutton-down {
 		border-top-width: 1px !important;
 		border-bottom-width: 0 !important;
 	}

@@ -127,8 +127,8 @@ bindsym $alt+r mode "resize"
 
 
 # Borders
-for_window [class="^.*"] border pixel 2
-smart_borders on
+for_window [class="^.*"] border pixel 0
+#smart_borders on
 
 # Set colors from Xresources
 # Change 'color1' and 'color2' to whatever colors you want i3 to use from the generated scheme.
@@ -149,7 +149,7 @@ client.unfocused        $bg		$bg		$fg   	$bg		$bg
 client.urgent           $ur		$ur		$white 	$ur		$ur
 client.placeholder      $bg		$bg		$fg   	$bg		$bg
 
-gaps inner 15
+gaps inner 8
 gaps outer 0
 
 # Always focus window when activated
@@ -163,8 +163,6 @@ for_window [class="Thunderbird" instance="Calendar"] floating enable
 for_window [class="Thunderbird" title="TbSync account manager"] floating enable
 
 # Move certain windows to their workspaces when opening
-for_window [class="Sublime_text"] move container to workspace 2; workspace 2
-for_window [class="Firefox"] move container to workspace 3; workspace 3
 for_window [class="discord"] move container to workspace 4; workspace 4
 for_window [class="Caprine"] move container to workspace 5; workspace 5
 for_window [class="Glimpse"] move container to workspace 6; workspace 6
@@ -172,7 +170,6 @@ for_window [class="Inkscape"] move container to workspace 6; workspace 6
 for_window [class="Steam"] move container to workspace 7; workspace 7
 for_window [class="itch"] move container to workspace 7; workspace 7
 for_window [class="^Minecraft.*"] move container to workspace 7; workspace 7
-for_window [class="Joplin"] move container to workspace 9; workspace 9
 for_window [class="Thunderbird" instance="Mail"] move container to workspace 10; workspace 10
 
 
@@ -203,7 +200,7 @@ bindsym $alt+Shift+f exec --no-startup-id kitty pypy /usr/bin/ranger
 bindsym $alt+Shift+g exec --no-startup-id glimpse-editor
 
 # rofi menus
-bindsym $sup+space exec --no-startup-id rofi -show drun -drun-display-format {name} -disable-history
+bindsym $sup+space exec --no-startup-id rofi -show drun -config ~/.config/rofi/launchpad.rasi # -drun-display-format {name} -disable-history
 bindsym $sup+Tab exec --no-startup-id rofi -show window -width 50
 bindsym $sup+Escape exec --no-startup-id ~/scripts/rofi/power
 bindsym XF86PowerOff exec --no-startup-id ~/scripts/rofi/power
@@ -213,6 +210,7 @@ bindsym $sup+b exec --no-startup-id ~/scripts/rofi/backupctl
 bindsym $sup+c exec --no-startup-id rofi-clipster
 bindsym $sup+d exec --no-startup-id ~/scripts/rofi/wiktionary
 bindsym $sup+e exec --no-startup-id rofimoji
+bindsym $sup+g exec --no-startup-id ~/scripts/rofi/generator
 bindsym $sup+n exec --no-startup-id rofimoji --prompt="icon" --files nerd_font
 bindsym $sup+m exec --no-startup-id ~/scripts/rofi/usb
 bindsym $sup+p exec --no-startup-id rofi-rbw
@@ -222,12 +220,15 @@ bindsym $sup+t exec --no-startup-id ~/scripts/rofi/tweet
 bindsym $sup+u exec --no-startup-id rofimoji --prompt="unichr" --files all
 
 # macOS-like screenshots
-bindsym $sup+Shift+2			exec --no-startup-id maim -ui $(xdotool getactivewindow) ~/Pictures/Screenshots/$(date -Iseconds).png
-bindsym $sup+Control+Shift+2	exec --no-startup-id maim -ui $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym $sup+Shift+3			exec --no-startup-id maim -u ~/Pictures/Screenshots/$(date -Iseconds).png
-bindsym $sup+Control+Shift+3	exec --no-startup-id maim -u | xclip -selection clipboard -t image/png
-bindsym $sup+Shift+4			exec --no-startup-id maim -us ~/Pictures/Screenshots/$(date -Iseconds).png
-bindsym $sup+Control+Shift+4	exec --no-startup-id maim -us | xclip -selection clipboard -t image/png
+bindsym $sup+Shift+2            exec --no-startup-id screech -window -save
+bindsym $sup+Control+Shift+2    exec --no-startup-id screech -window -copy
+bindsym $sup+Control+2          exec --no-startup-id screech -window -upload
+bindsym $sup+Shift+3            exec --no-startup-id screech -screen -save
+bindsym $sup+Control+Shift+3    exec --no-startup-id screech -screen -copy
+bindsym $sup+Control+3          exec --no-startup-id screech -screen -upload
+bindsym $sup+Shift+4            exec --no-startup-id screech -area -save
+bindsym $sup+Control+Shift+4    exec --no-startup-id screech -area -copy
+bindsym $sup+Control+4          exec --no-startup-id screech -area -upload
 
 
 # Startup
@@ -236,8 +237,8 @@ bindsym $sup+Control+Shift+4	exec --no-startup-id maim -us | xclip -selection cl
 exec --no-startup-id compton -b
 # Disable screensaver
 exec --no-startup-id xset -dpms s off
-# ...and use xidlehook instead
-exec --no-startup-id xidlehook --not-when-fullscreen --timer 1200 '$HOME/scripts/lock' '' --timer 3600 'systemctl suspend' '' --socket /tmp/xidlehook.socket
+# ...and use my screensaver script instead
+exec --no-startup-id ~/scripts/screensaver watch
 # Enable touchpad gestures
 exec --no-startup-id libinput-gestures-setup start
 # Clipboard manager
@@ -251,6 +252,7 @@ exec --no-startup-id redshift -P
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-tray
 exec --no-startup-id gtk-launch org.kde.kdeconnect.nonplasma
+exec --no-startup-id gtk-launch piavpn
 # GUI programs
 exec --no-startup-id ~/scripts/startup-apps
 exec_always --no-startup-id ~/scripts/rebar

@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/reese/Pictures/Wallpapers/dark/img_9653_.png",
+    "alpha": "100",
+    "special": {
+        "background": "#181521",
+        "foreground": "#c5c4c7",
+        "cursor": "#c5c4c7"
+    },
+    "colors": {
+        "color0": "#181521",
+        "color1": "#5f39ac",
+        "color2": "#8539bf",
+        "color3": "#b1419d",
+        "color4": "#cb4198",
+        "color5": "#ec625a",
+        "color6": "#ff8f4e",
+        "color7": "#e5e4e7",
+        "color8": "#514f58",
+        "color9": "#5f39ac",
+        "color10": "#8539bf",
+        "color11": "#b1419d",
+        "color12": "#cb4198",
+        "color13": "#ec625a",
+        "color14": "#ff8f4e",
+        "color15": "#e5e4e7"
+    }
+}

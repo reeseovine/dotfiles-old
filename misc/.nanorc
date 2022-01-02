@@ -5,7 +5,6 @@ set linenumbers
 #set mouse
 #set nohelp
 set regexp
-set smooth
 set softwrap
 set tabsize 4
 

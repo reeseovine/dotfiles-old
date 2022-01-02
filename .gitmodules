@@ -4,8 +4,8 @@
 [submodule "afetch"]
 	path = afetch
 	url = https://github.com/katacarbix/afetch.git
-[submodule "micro/plug/micro-quoter"]
-	path = micro/plug/micro-quoter
+[submodule "micro/plug/quoter"]
+	path = micro/plug/quoter
 	url = https://github.com/deusnefum/micro-quoter.git
 [submodule "ranger/plugins/zoxide"]
 	path = ranger/plugins/zoxide

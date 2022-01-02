@@ -29,7 +29,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "400x5-10+40"
+    geometry = "400x8-16+46"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = no
@@ -41,7 +41,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 30
+    transparency = 20
 
     # The height of the entire notification.  If the height is smaller
     # than the font height and padding combined, it will be raised
@@ -54,10 +54,10 @@
     separator_height = 1
 
     # Padding between text and separator.
-    padding = 12
+    padding = 16
 
     # Horizontal padding.
-    horizontal_padding = 12
+    horizontal_padding = 16
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
@@ -72,7 +72,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = "#666666"
+    separator_color = "auto"
 
     # Sort messages by urgency.
     sort = yes
@@ -222,7 +222,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 4
+    corner_radius = 0
 
     ### Legacy
 
@@ -281,20 +281,20 @@
     #history = ctrl+grave
 
     # Context menu.
-    #context = ctrl+shift+period
+    context = ctrl+shift+period
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#ffffff"
-    foreground = "#000000"
+    foreground = "#333333"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_normal]
     background = "#ffffff"
-    foreground = "#000000"
+    foreground = "#333333"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon

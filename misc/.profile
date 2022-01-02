@@ -29,7 +29,7 @@ fi
 
 
 # Add dirs to $PATH
-export PATH="$PATH:$HOME/Programs/processing-3.5.4/:$HOME/Programs/platform-tools/:$HOME/Programs/sublime_text/:$HOME/go/bin/:$HOME/git/gitlab.com/katacarbix/dotfiles/scripts/"
+export PATH="$PATH:$HOME/Programs/bin:$HOME/Programs/platform-tools:$HOME/go/bin:$HOME/git/gitlab.com/katacarbix/dotfiles/scripts:/opt/piavpn/bin"
 
 # Register SSH keys
 eval "$(ssh-agent -s)" &>/dev/null
@@ -45,15 +45,15 @@ export NODE_PATH=/usr/lib/node_modules/
 export QT_QPA_PLATFORMTHEME=gtk2
 export SUDO_ASKPASS=$HOME/scripts/rofi/askpass
 
-# git-get path
-export GIT_PATH=$HOME/git/
-
-# Android SDK
+# Android development
 export ANDROID_HOME=$HOME/Programs/android-sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export USE_CCACHE=1
+export CCACHE_EXEC=/usr/bin/ccache
+export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"
 
 # Cargo (rust package manager)
 source "$HOME/.cargo/env"

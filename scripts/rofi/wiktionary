@@ -51,8 +51,7 @@ def copy(text): # Copy text to the clipboard
 		.communicate(input=text.encode('utf-8'))
 
 def open(word): # Open link in browser
-	# TODO: replace 'en' with language specified at start
-	url = "https://en.wiktionary.org/wiki/" + re.sub(r'\s', '_', word)
+	url = "https://wiktionary.org/wiki/" + re.sub(r'\s', '_', word)
 	Popen(args=['xdg-open', url]).communicate()
 
 def lookup(query):

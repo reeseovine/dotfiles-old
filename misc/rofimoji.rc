@@ -2,4 +2,4 @@ prompt = emoji
 files = [emojis]
 max-recent = 0
 #direction = ltr
-rofi-args = -no-show-icons -width 50
+selector-args = -no-show-icons -width 50
