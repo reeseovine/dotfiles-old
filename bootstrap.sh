@@ -18,7 +18,7 @@ user=$(whoami)
 
 echo
 echo "*~*~*~*~*~*~*~*~*~*~*~*~*~*~*"
-echo "{ katacarbix's dotfiles  <3 }"
+echo "{ katacarbix's dotfiles <3  }"
 echo "*~*~*~*~*~*~*~*~*~*~*~*~*~*~*"
 echo
 echo "this script will clone my dotfiles repo and install a few things to get you started on a fresh linux installation. you should always open scripts in a text editor before running them to verify there's nothing malicious or misconfigured. make sure you're running it as your user (NOT root), sudo is installed, and you are a sudoer. it may ask you a few times for your password." | fmt -w $FMT_WIDTH

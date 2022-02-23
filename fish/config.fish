@@ -18,4 +18,6 @@ set -g theme_nerd_fonts yes
 set -g fish_term24bit 1
 
 # Load zoxide
-zoxide init fish | source
+if test "$USER" != "root"
+    zoxide init fish | source
+end

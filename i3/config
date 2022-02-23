@@ -165,7 +165,7 @@ for_window [class="Thunderbird" title="TbSync account manager"] floating enable
 # Move certain windows to their workspaces when opening
 for_window [class="discord"] move container to workspace 4; workspace 4
 for_window [class="Caprine"] move container to workspace 5; workspace 5
-for_window [class="Glimpse"] move container to workspace 6; workspace 6
+for_window [class="Gimp"] move container to workspace 6; workspace 6
 for_window [class="Inkscape"] move container to workspace 6; workspace 6
 for_window [class="Steam"] move container to workspace 7; workspace 7
 for_window [class="itch"] move container to workspace 7; workspace 7
@@ -197,7 +197,8 @@ bindsym XF86MonBrightnessDown exec light -U 5
 bindsym $alt+Shift+s exec --no-startup-id /home/reese/Programs/sublime_text/sublime_text
 bindsym $alt+Shift+b exec --no-startup-id gtk-launch firefox
 bindsym $alt+Shift+f exec --no-startup-id kitty pypy /usr/bin/ranger
-bindsym $alt+Shift+g exec --no-startup-id glimpse-editor
+bindsym $alt+Shift+g exec --no-startup-id gtk-launch gimp
+bindsym $alt+Shift+i exec --no-startup-id inkscape
 
 # rofi menus
 bindsym $sup+space exec --no-startup-id rofi -show drun -config ~/.config/rofi/launchpad.rasi # -drun-display-format {name} -disable-history
@@ -218,6 +219,7 @@ bindsym $sup+r exec --no-startup-id rofi -show run -disable-history
 bindsym $sup+s exec --no-startup-id rofi -show ssh
 bindsym $sup+t exec --no-startup-id ~/scripts/rofi/tweet
 bindsym $sup+u exec --no-startup-id rofimoji --prompt="unichr" --files all
+bindsym $sup+x exec --no-startup-id ~/scripts/rofi/displayout
 
 # macOS-like screenshots
 bindsym $sup+Shift+2            exec --no-startup-id screech -window -save

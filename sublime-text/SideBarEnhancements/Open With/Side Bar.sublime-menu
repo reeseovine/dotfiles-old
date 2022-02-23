@@ -1,14 +1,15 @@
 [{
+	"caption": "Open with...",
 	"id": "side-bar-files-open-with",
 	"children": [
 		{
-			"caption": "Glimpse",
-			"id": "side-bar-files-open-with-glimpse",
+			"caption": "GIMP",
+			"id": "side-bar-files-open-with-gimp",
 			"command": "side_bar_files_open_with",
 			"args": {
 				"paths": [],
-				"application": "glimpse-editor",
-				"extensions": "xcf|psd|png|jpg|tif|tiff|ico|bmp",
+				"application": "gimp",
+				"extensions": "png|jpg|jpeg|tif|tiff|ico|bmp",
 				"args": []
 			}
 		},

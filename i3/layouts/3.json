@@ -1,9 +1,9 @@
 {
-	"name": "Firefox",
-	"layout": "tabbed",
-	"type": "con",
-	"nodes": [
-		{
+	// "name": "Firefox",
+	// "layout": "tabbed",
+	// "type": "con",
+	// "nodes": [
+	// 	{
 			"name": "Firefox",
 			"swallows": [
 				{
@@ -12,6 +12,6 @@
 				}
 			],
 			"type": "con"
-		}
-	]
+	// 	}
+	// ]
 }

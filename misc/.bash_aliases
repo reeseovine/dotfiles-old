@@ -8,6 +8,14 @@ alias cwd="pwd"
 alias please="sudo"
 alias sus="sudo -Es"
 
+alias dd="sudo dd status=progress"
+
+alias ga="git add . && git status"
+alias gd="git status"
+alias gc="git commit -m"
+alias gr="git remote -v"
+alias gp="git push"
+
 alias icat="kitty +kitten icat"
 alias ranger="pypy /usr/bin/ranger"
 alias finder="ranger"

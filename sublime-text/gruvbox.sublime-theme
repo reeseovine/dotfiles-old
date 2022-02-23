@@ -3,11 +3,5 @@
 	"variables": {
 
 	},
-	"rules": [
-		{
-			"class": "tab_label",
-			"font.face": "Roboto",
-			"font.size": 14
-		}
-	]
+	"rules": []
 }

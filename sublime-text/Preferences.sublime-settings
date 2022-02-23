@@ -1,5 +1,5 @@
 {
-	"color_scheme": "Packages/User/Letty-tmTheme/Letty Aurora.tmTheme",
+	"color_scheme": "Packages/User/Letty-tmTheme/Letty Snow.tmTheme",
 	"caret_style": "smooth",
 	"drag_text": false,
 	"draw_white_space": "selection",
@@ -20,6 +20,7 @@
 	"ignored_packages": [
 		"AppleScript",
 		"JavaScript",
+		"SideBarMenuAdvanced",
 		"Vintage"
 	],
 	"line_padding_bottom": 1,
@@ -41,6 +42,13 @@
 	"sublime_merge_path": "/home/reese/Programs/bin/GitAhead",
 	"dark_color_scheme": "Packages/User/Letty-tmTheme/Letty Aurora.tmTheme",
 	"light_color_scheme": "Packages/User/Letty-tmTheme/Letty Snow.tmTheme",
+	"gruvbox_sidebar_indent_s": true,
+	"gruvbox_sidebar_font_size_14": true,
+	"gruvbox_tabs_font_size_14": true,
+	"gruvbox_buttons_font_size_12": true,
+	"gruvbox_disable_borders": true,
+	"gruvbox_folder_icons_plus_minus": true,
+	"gruvbox_iconset_midstroke": true,
 	"mde.italic_marker_asterisk": true,
 	"mde.list_indent_bullets": [
 		"-",

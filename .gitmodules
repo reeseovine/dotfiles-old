@@ -1,9 +1,12 @@
-[submodule "micro/plug/editorconfig"]
-	path = micro/plug/editorconfig
-	url = https://github.com/10sr/editorconfig-micro
 [submodule "afetch"]
 	path = afetch
 	url = https://github.com/katacarbix/afetch.git
+[submodule "scripts"]
+	path = scripts
+	url = https://github.com/katacarbix/shell-scripts.git
+[submodule "micro/plug/editorconfig"]
+	path = micro/plug/editorconfig
+	url = https://github.com/10sr/editorconfig-micro.git
 [submodule "micro/plug/quoter"]
 	path = micro/plug/quoter
 	url = https://github.com/deusnefum/micro-quoter.git
