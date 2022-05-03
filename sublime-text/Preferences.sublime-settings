@@ -15,7 +15,7 @@
 		"ss07",
 		"gray_antialias"
 	],
-	"font_size": 15,
+	"font_size": 16,
 	"highlight_line": true,
 	"ignored_packages": [
 		"AppleScript",

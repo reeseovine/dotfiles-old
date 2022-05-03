@@ -1,0 +1,108 @@
+{
+	"border": "normal",
+	"current_border_width": -1,
+	"floating": "auto_off",
+	"fullscreen_mode": 0,
+	"geometry": {
+		"x": 0,
+		"y": 0,
+		"width": 0,
+		"height": 0
+	},
+	"layout": "splith",
+	"marks": [],
+	"name": "4",
+	"orientation": "horizontal",
+	"percent": 0.125,
+	"scratchpad_state": "none",
+	"sticky": false,
+	"type": "workspace",
+	"workspace_layout": "default",
+	"nodes": [
+		{
+			"border": "pixel",
+			"current_border_width": 0,
+			"floating": "auto_off",
+			"fullscreen_mode": 0,
+			"geometry": {
+				"x": 8,
+				"y": 30,
+				"width": 1904,
+				"height": 1042
+			},
+			"layout": "splith",
+			"marks": [],
+			"name": "Discord",
+			"orientation": "none",
+			"percent": 1.0,
+			"scratchpad_state": "none",
+			"sticky": false,
+			"type": "con",
+			"workspace_layout": "default",
+			"swallows": [
+				{
+					"class": "^discord$",
+					"instance": "^discord$"
+				}
+			]
+		}
+	],
+	"floating_nodes": [
+		{
+			"border": "normal",
+			"current_border_width": -1,
+			"floating": "auto_off",
+			"fullscreen_mode": 0,
+			"geometry": {
+				"x": 0,
+				"y": 0,
+				"width": 0,
+				"height": 0
+			},
+			"layout": "splith",
+			"marks": [],
+			"name": null,
+			"orientation": "horizontal",
+			"percent": null,
+			"scratchpad_state": "none",
+			"sticky": false,
+			"type": "floating_con",
+			"workspace_layout": "default",
+			"rect": {
+				"x": 860,
+				"y": 196,
+				"width": 1720,
+				"height": 1080
+			},
+			"nodes": [
+				{
+					"border": "pixel",
+					"current_border_width": 0,
+					"floating": "user_on",
+					"fullscreen_mode": 0,
+					"geometry": {
+						"x": 8,
+						"y": 30,
+						"width": 1904,
+						"height": 1042
+					},
+					"layout": "splith",
+					"marks": [],
+					"name": "Discord Updater",
+					"orientation": "none",
+					"percent": 1.0,
+					"scratchpad_state": "none",
+					"sticky": false,
+					"type": "con",
+					"workspace_layout": "default",
+					"swallows": [
+						{
+							"class": "^discord$",
+							"instance": "^discord$"
+						}
+					]
+				}
+			]
+		}
+	]
+}

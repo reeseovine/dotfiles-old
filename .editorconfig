@@ -10,15 +10,15 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[package.json]
-indent_style = space
-indent_size = 2
-
 [*.md]
 indent_style = space
 indent_size = 2
 trim_trailing_whitespace = false
 
-[*.{yml,yaml,toml}]
+[{package.json,package-lock.json}]
 indent_style = space
 indent_size = 2
+
+[*.yuck]
+indent_style = space
+indent_size = 4

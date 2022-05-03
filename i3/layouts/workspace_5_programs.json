@@ -1,0 +1,8 @@
+[
+  {
+    "command": [
+      "/opt/Caprine/caprine"
+    ],
+    "working_directory": "/home/reese"
+  }
+]

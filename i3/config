@@ -77,6 +77,7 @@ bindsym $alt+7 workspace number $ws7
 bindsym $alt+8 workspace number $ws8
 bindsym $alt+9 workspace number $ws9
 bindsym $alt+0 workspace number $ws10
+bindsym $alt+minus scratchpad show
 
 # move focused container to workspace
 bindsym $alt+Shift+1 move container to workspace number $ws1
@@ -89,6 +90,7 @@ bindsym $alt+Shift+7 move container to workspace number $ws7
 bindsym $alt+Shift+8 move container to workspace number $ws8
 bindsym $alt+Shift+9 move container to workspace number $ws9
 bindsym $alt+Shift+0 move container to workspace number $ws10
+bindsym $alt+Shift+minus move scratchpad
 
 # switch to the previous or next workspace with [ and ]
 bindcode $alt+34 workspace prev
@@ -105,25 +107,25 @@ bindsym $alt+Shift+r restart
 bindsym $alt+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+#mode "resize" {
+#        # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+#        # Pressing left will shrink the window’s width.
+#        # Pressing right will grow the window’s width.
+#        # Pressing up will shrink the window’s height.
+#        # Pressing down will grow the window’s height.
+#        bindsym Left resize shrink width 10 px or 10 ppt
+#        bindsym Down resize grow height 10 px or 10 ppt
+#        bindsym Up resize shrink height 10 px or 10 ppt
+#        bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape or $alt+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $alt+r mode "default"
-}
+#        # back to normal: Enter or Escape or $alt+r
+#        bindsym Return mode "default"
+#        bindsym Escape mode "default"
+#        bindsym $alt+r mode "default"
+#}
 
-bindsym $alt+r mode "resize"
+#bindsym $alt+r mode "resize"
 
 
 # Borders
@@ -152,15 +154,12 @@ client.placeholder      $bg		$bg		$fg   	$bg		$bg
 gaps inner 8
 gaps outer 0
 
-# Always focus window when activated
+# Always focus certain apps when activated
 focus_on_window_activation focus
 
 # Always float certain windows
-for_window [class="processing-core-PApplet"] floating enable
-for_window [class="Thunderbird" instance="Msgcompose"] floating enable
-for_window [class="Thunderbird" title="Address Book"] floating enable
-for_window [class="Thunderbird" instance="Calendar"] floating enable
-for_window [class="Thunderbird" title="TbSync account manager"] floating enable
+for_window [class="processing-.*"] floating enable
+for_window [class="Thunderbird"] floating enable
 
 # Move certain windows to their workspaces when opening
 for_window [class="discord"] move container to workspace 4; workspace 4
@@ -170,7 +169,6 @@ for_window [class="Inkscape"] move container to workspace 6; workspace 6
 for_window [class="Steam"] move container to workspace 7; workspace 7
 for_window [class="itch"] move container to workspace 7; workspace 7
 for_window [class="^Minecraft.*"] move container to workspace 7; workspace 7
-for_window [class="Thunderbird" instance="Mail"] move container to workspace 10; workspace 10
 
 
 # [L]ock
@@ -214,7 +212,7 @@ bindsym $sup+e exec --no-startup-id rofimoji
 bindsym $sup+g exec --no-startup-id ~/scripts/rofi/generator
 bindsym $sup+n exec --no-startup-id rofimoji --prompt="icon" --files nerd_font
 bindsym $sup+m exec --no-startup-id ~/scripts/rofi/usb
-bindsym $sup+p exec --no-startup-id rofi-rbw
+bindsym $sup+p exec --no-startup-id rbw sync && rofi-rbw
 bindsym $sup+r exec --no-startup-id rofi -show run -disable-history
 bindsym $sup+s exec --no-startup-id rofi -show ssh
 bindsym $sup+t exec --no-startup-id ~/scripts/rofi/tweet
@@ -236,7 +234,7 @@ bindsym $sup+Control+4          exec --no-startup-id screech -area -upload
 # Startup
 
 # Start compositor
-exec --no-startup-id compton -b
+exec --no-startup-id picom -b
 # Disable screensaver
 exec --no-startup-id xset -dpms s off
 # ...and use my screensaver script instead
@@ -253,10 +251,10 @@ exec --no-startup-id ~/scripts/battery-notify
 exec --no-startup-id redshift -P
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-tray
-exec --no-startup-id gtk-launch org.kde.kdeconnect.nonplasma
-exec --no-startup-id gtk-launch piavpn
-# GUI programs
-exec --no-startup-id ~/scripts/startup-apps
-exec_always --no-startup-id ~/scripts/rebar
+#exec --no-startup-id gtk-launch org.kde.kdeconnect.nonplasma
+exec --no-startup-id eww open main
 # Set wallpaper and colors
-exec --no-startup-id ~/scripts/pywal -a
+exec --no-startup-id ~/scripts/wal.py -m auto_loop
+
+# Restore programs and their layout
+exec --no-startup-id find /home/reese/.i3/i3-resurrect/ -name 'workspace_*_layout.json' | sed -Ee 's/^.*\/workspace_(.*)_layout.json$/\1/g' | xargs -n1 i3-resurrect restore -w

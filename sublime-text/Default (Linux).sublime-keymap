@@ -153,6 +153,10 @@
 	    "command": "emmet_rename_tag"
 	},
 	
+
+	//JSPrettier
+	{ "keys": ["ctrl+alt+f"], "command": "js_prettier" },
+
 	
 	// Workspace layouts
 	
@@ -191,23 +195,13 @@
 		"command": "set_layout",
 		"args":
 		{
-			"cols": [0.0, 0.25, 0.5, 0.75, 1.0],
-			"rows": [0.0, 1.0],
-			"cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1], [3, 0, 4, 1]]
-		}
-	},
-	{
-		"keys": ["ctrl+alt+8"],
-		"command": "set_layout",
-		"args":
-		{
 			"cols": [0.0, 1.0],
 			"rows": [0.0, 0.5, 1.0],
 			"cells": [[0, 0, 1, 1], [0, 1, 1, 2]]
 		}
 	},
 	{
-		"keys": ["ctrl+alt+9"],
+		"keys": ["ctrl+alt+5"],
 		"command": "set_layout",
 		"args":
 		{
@@ -217,7 +211,47 @@
 		}
 	},
 	{
-		"keys": ["ctrl+alt+5"],
+		"keys": ["ctrl+alt+6"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.5, 1.0],
+			"rows": [0.0, 0.5, 1.0],
+			"cells": [[0, 0, 1, 2], [1, 0, 2, 1], [2, 0, 2, 2]]
+		}
+	},
+	{
+		"keys": ["ctrl+alt+7"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.5, 1.0],
+			"rows": [0.0, 0.5, 1.0],
+			"cells": [[0, 0, 1, 1], [0, 1, 1, 2], [1, 0, 2, 2]]
+		}
+	},
+	{
+		"keys": ["ctrl+alt+8"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.5, 1.0],
+			"rows": [0.0, 0.5, 1.0],
+			"cells": [[0, 0, 1, 1], [1, 0, 2, 1], [0, 1, 2, 2]]
+		}
+	},
+	{
+		"keys": ["ctrl+alt+9"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.5, 1.0],
+			"rows": [0.0, 0.5, 1.0],
+			"cells": [[0, 0, 2, 1], [1, 0, 1, 2], [1, 1, 2, 2]]
+		}
+	},
+	{
+		"keys": ["ctrl+alt+0"],
 		"command": "set_layout",
 		"args":
 		{
@@ -229,5 +263,10 @@
 				[0, 1, 1, 2], [1, 1, 2, 2]
 			]
 		}
-	}
+	},
+
+
+	// Terminus
+	{ "keys": ["shift+alt+t"], "command": "terminus_open" },
+	{ "keys": ["ctrl+shift+alt+t"], "command": "toggle_terminus_panel" },
 ]

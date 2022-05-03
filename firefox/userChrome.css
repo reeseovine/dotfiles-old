@@ -2,10 +2,6 @@
 @import url('addressbar.css');
 @import url('pywalfox.css');
 
-* {
-	font-family: Roboto, sans-serif !important;
-}
-
 /* Get rid of ugly borders */
 #navigator-toolbox {
 	border: none !important;

@@ -11,7 +11,7 @@
 	--pywalfox-darker-background: rgba(0, 0, 0, 0.4);
 	--pywalfox-padding: 4px 8px;
 	font-size: var(--pywalfox-font-size) !important;
-	font-family: Roboto, sans-serif !important;
+	font-family: Inter, Roboto, sans-serif !important;
 }
 
 /* Disable default appearance of certain elements to be able to override shadow DOM attributes */
@@ -25,7 +25,7 @@ button, search-textbox, menuseparator {
 }
 
 /* Background color on hover in right-click context menus */
-menu[_moz-menuactive="true"], menuitem[_moz-menuactive="true"] {
+/*menu[_moz-menuactive="true"], menuitem[_moz-menuactive="true"] {
 	-moz-appearance: none !important;
 	background-color: var(--pywalfox-background) !important;
 	color: white !important;
@@ -36,7 +36,7 @@ menu[disabled="true"],
 menuitem[disabled="true"],
 menucaption[disabled="true"] {
 	color: gray !important;
-}
+}*/
 
 /* Separators in dropwdown menus */
 menuseparator {

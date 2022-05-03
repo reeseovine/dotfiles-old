@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/reese/Pictures/Wallpapers/ultrawide/dark/nordsea.png",
+    "alpha": "100",
+    "special": {
+        "background": "#191f2a",
+        "foreground": "#eceff4",
+        "cursor": "#d8dee9"
+    },
+    "colors": {
+        "color0": "#191f2a",
+        "color1": "#b48ead",
+        "color2": "#88c0d0",
+        "color3": "#a3be8c",
+        "color4": "#ebcb8b",
+        "color5": "#d08770",
+        "color6": "#bf616a",
+        "color7": "#eceff4",
+        "color8": "#4c566a",
+        "color9": "#b48ead",
+        "color10": "#88c0d0",
+        "color11": "#a3be8c",
+        "color12": "#ebcb8b",
+        "color13": "#d08770",
+        "color14": "#bf616a",
+        "color15": "#d8dee9"
+    }
+}

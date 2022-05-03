@@ -1,0 +1,173 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/syntax.html
+file_extensions:
+  - yuck
+scope: source.yuck
+
+
+### TODO ###
+# - Make it aware of context
+#   - Widget/variable name should only be valid after widget/variable keyword
+#   - Property definitions should only be valid after defwidget name
+#   - Widget properties should not be valid after content has started, but be aware properties can have their own content
+
+
+contexts:
+  group_start:
+    - match: '\('
+      scope: punctuation.section.group.begin.yuck
+      push: group
+
+  expression_start:
+    - match: '\{'
+      scope: punctuation.definition.template-expression.begin.yuck
+      push: expression
+
+  main:
+    - include: comments
+    - include: group_start
+
+  group:
+    - include: comments
+    - include: literals
+    - include: group_start
+    - include: expression_start
+
+    - meta_scope: meta.group.yuck
+    - match: '\)'
+      scope: punctuation.section.group.end.yuck
+      pop: true
+
+    # Keywords
+    - match: '\b(defwidget|defwindow|defpoll|defvar|deflisten)\b'
+      scope: keyword.control.yuck
+      push:
+        - match: '[\w\-_]+'
+          scope: meta.definition.variable.yuck
+          pop: true
+    - match: '\b(geometry|struts|include)\b'
+      scope: keyword.control.yuck
+
+    # Builtin widgets
+    - match: '\b(combo-box-text|expander|revealer|checkbox|color-button|color-chooser|scale|progress|input|button|image|box|centerbox|eventbox|label|literal|calendar|circular-progress|graph)\b'
+      scope: support.function.yuck
+
+    # Custom widget/variable names
+    - match: '[\w\-_]+'
+      scope: entity.name.function.yuck
+
+    # Widget property definitions
+    - match: '\['
+      scope: punctuation.definition.parameters.begin.yuck
+      push:
+        - meta_scope: meta.parameters.yuck
+        - match: '(?<!\w)\?(?=\w)'
+          scope: keyword.operator.optional.yuck
+        - match: '[\w\-_]+'
+          scope: variable.parameter.yuck
+        - match: '\]'
+          scope: punctuation.definition.parameters.end.yuck
+          pop: true
+
+    # Widget properties
+    - match: ':[\w\-_]+'
+      scope: variable.parameter.yuck
+
+  expression:
+    - include: literals
+    - include: expression_start
+
+    - meta_scope: meta.template.expression.yuck
+    - match: '\}'
+      scope: punctuation.definition.template-expression.end.yuck
+      pop: true
+
+    # Simple math
+    - match: '[-+*/%]'
+      scope: keyword.operator.arithmetic.yuck
+
+    # Comparison
+    - match: '(==|!=|<=?|>=?)'
+      scope: keyword.operator.comparison.yuck
+
+    # Boolean operations
+    - match: '(\|\||&&|!)'
+      scope: keyword.operator.logical.yuck
+
+    # Conditional operators
+    - match: '(\?\:?|:)'
+      scope: keyword.operator.ternary.yuck
+
+    # TODO: Fix this so that it only matches what it needs to
+    # JSON access
+    # - match: '[\w\d_\.\[\]]+'
+    #   scope: variable.other.readWrite.yuck
+
+    # Functions
+    - match: '\b(round|replace)\b'
+      scope: support.function.builtin.yuck
+      push:
+        - include: expression
+        - match: '\('
+          scope: meta.brace.round.yuck
+        - match: '\)'
+          scope: meta.brace.round.yuck
+          pop: true
+
+  comments:
+    - match: ';'
+      scope: punctuation.definition.comment.yuck
+      push:
+        - meta_scope: comment.line.yuck
+        - match: $
+          pop: true
+
+  literals:
+    # Strings
+    - match: '"'
+      scope: punctuation.definition.string.begin.yuck
+      push:
+        - meta_scope: string.quoted.double.yuck
+        - match: '\\.'
+          scope: constant.character.escape.yuck
+        - match: '\$\{'
+          scope: punctuation.definition.template-expression.begin.yuck
+          push: expression
+        - match: '"'
+          scope: punctuation.definition.string.end.yuck
+          pop: true
+    - match: "'"
+      scope: punctuation.definition.string.begin.yuck
+      push:
+        - meta_scope: string.quoted.single.yuck
+        - match: '\\.'
+          scope: constant.character.escape.yuck
+        - match: '\$\{'
+          scope: punctuation.definition.template-expression.begin.yuck
+          push: expression
+        - match: "'"
+          scope: punctuation.definition.string.end.yuck
+          pop: true
+    - match: '`'
+      scope: punctuation.definition.string.begin.yuck
+      push:
+        - meta_scope: string.quoted.backtick.yuck
+        - match: '\\.'
+          scope: constant.character.escape.yuck
+        - match: '\$\{'
+          scope: punctuation.definition.template-expression.begin.yuck
+          push: expression
+        - match: '`'
+          scope: punctuation.definition.string.end.yuck
+          pop: true
+
+    # Numbers
+    - match: '[-+]?\d*\.?\d*%([eE][-+]?\d+)?'
+      scope: constant.numeric.yuck
+    - match: '[-+]?0x[0-9A-F]*\.?[0-9A-F]*'
+      scope: constant.numeric.yuck
+
+    # Booleans
+    - match: "(false|true)"
+      scope: "constant.language.boolean.yuck"

@@ -6,3 +6,6 @@ QT_QPA_PLATFORMTHEME=gtk2
 
 # Start polkit agent
 /usr/lib/polkit-gnome-authentication-agent-1 &
+
+# Apply Xmodmap
+xmodmap ~/.Xmodmap

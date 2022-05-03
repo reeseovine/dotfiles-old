@@ -1,0 +1,27 @@
+{
+  "wallpaper": "/home/reese/Pictures/Wallpapers/ultrawide/light/marek-piwnicki-t5v4RsuWSsg-unsplash.jpg",
+  "alpha": "100",
+  "special": {
+    "background": "#fafaf9",
+    "foreground": "#3e3e3e",
+    "cursor": "#3e3e3e"
+  },
+  "colors": {
+    "color0": "#fafaf9",
+    "color1": "#74563a",
+    "color2": "#9e845f",
+    "color3": "#55541e",
+    "color4": "#bab655",
+    "color5": "#55541e",
+    "color6": "#aab1bb",
+    "color7": "#3e3e3e",
+    "color8": "#bbbbba",
+    "color9": "#74563a",
+    "color10": "#9e845f",
+    "color11": "#55541e",
+    "color12": "#bab655",
+    "color13": "#55541e",
+    "color14": "#aab1bb",
+    "color15": "#3e3e3e"
+  }
+}

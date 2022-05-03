@@ -29,7 +29,7 @@ fi
 
 
 # Add dirs to $PATH
-export PATH="$PATH:$HOME/Programs/bin:$HOME/Programs/platform-tools:$HOME/go/bin:$HOME/git/gitlab.com/katacarbix/dotfiles/scripts:/opt/piavpn/bin"
+export PATH="$PATH:$HOME/Programs/bin:$HOME/Programs/platform-tools:$HOME/go/bin:$HOME/git/gitlab.com/katacarbix/dotfiles/scripts:/opt/piavpn/bin:$HOME/.rbenv/bin"
 
 # Register SSH keys
 eval "$(ssh-agent -s)" &>/dev/null
@@ -44,6 +44,7 @@ export PAGER=less
 export NODE_PATH=/usr/lib/node_modules/
 export QT_QPA_PLATFORMTHEME=gtk2
 export SUDO_ASKPASS=$HOME/scripts/rofi/askpass
+export ET_NO_TELEMETRY=true
 
 # Android development
 export ANDROID_HOME=$HOME/Programs/android-sdk
@@ -57,6 +58,9 @@ export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G
 
 # Cargo (rust package manager)
 source "$HOME/.cargo/env"
+
+# Ruby env
+eval "$(rbenv init -)"
 
 # Set cursor shape to BEAM
 printf "\033[6 q"

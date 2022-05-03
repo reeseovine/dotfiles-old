@@ -1,0 +1,9 @@
+[
+  {
+    "command": [
+      "/home/reese/Programs/sublime_text/sublime_text",
+      "--detached"
+    ],
+    "working_directory": "/home/reese"
+  }
+]

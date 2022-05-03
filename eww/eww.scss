@@ -1,0 +1,43 @@
+@import '/home/reese/.cache/wal/colors.scss';
+
+* {
+	all: unset;
+}
+
+// Global Styles
+window {
+	background-color: rgba($background, 60%);
+	color: $foreground;
+	font-family: "FiraCode Nerd Font", Feather;
+	font-size: 16px;
+}
+
+.section {
+	margin-left: 24px;
+	margin-right: 24px;
+}
+
+.workspace {
+	&.active {
+		color: $color4;
+	}
+	&.empty {
+		color: rgba($foreground, 50%);
+	}
+}
+
+// Status colors
+.good {
+	color: adjust-color(change-color($color1, $hue: 134deg), $saturation: 20%);
+}
+.warning {
+	color: adjust-color(change-color($color1, $hue: 10deg), $saturation: 20%);
+}
+.critical {
+	background-color: adjust-color(change-color($color1, $hue: 10deg), $saturation: 20%);
+}
+
+.label {
+	padding-left: 12px;
+	padding-right: 12px;
+}

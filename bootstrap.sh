@@ -299,6 +299,7 @@ link_dotfiles () {
 
 	# full desktop
 	if [[ $MACHINE_ENV -eq 3 ]]; then
+		ln -sf $DOTFILES_PATH/eww $HOME_CFG
 		ln -sf $DOTFILES_PATH/polybar $HOME_CFG
 		ln -sf $DOTFILES_PATH/sublime-text $HOME_CFG/sublime-text-3/Packages/User
 		ln -sf $DOTFILES_PATH/wal $HOME_CFG

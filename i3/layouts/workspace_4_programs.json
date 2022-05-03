@@ -1,0 +1,9 @@
+[
+  {
+    "command": [
+      "/usr/share/discord-canary/DiscordCanary",
+      "--remote-debugging-port=1666"
+    ],
+    "working_directory": "/usr/bin"
+  }
+]
