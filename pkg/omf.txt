@@ -1,7 +1,0 @@
-bass
-bobthefish
-colorman
-foreign-env
-nvm
-omf
-virtualfish

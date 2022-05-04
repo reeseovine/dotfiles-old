@@ -13,7 +13,7 @@ alias sus="sudo -Es"
 alias dd="sudo dd bs=4M status=progress"
 
 alias ga="git add . && git status"
-alias gc="git commit -av"
+alias gc="git commit -v"
 alias gl="git log --oneline --no-decorate"
 alias gp="git push"
 alias gr="git remote -v"

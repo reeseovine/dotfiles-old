@@ -1,9 +1,11 @@
 # dotfiles
-These are most of the configuration files I use to get my setup to look and behave how it does. Here are some notable things about them. (Screenshots coming soon-ish)
+These are most of the configuration files I use to get my setup to look and behave how it does. Here are some notable things about them.
+
+![screenshot of my desktop with some windows open](screenshot.png)
 
 The directories in the root of the repository (*not* files such as this README) have symlinks pointing to them with the same names, located in `~/.config/`, unless stated otherwise. The files in the root are mostly there for repo management.
 
-There is also an [`archive` branch](https://github.com/katacarbix/dotfiles/tree/archive) that contains interesting stuff for apps that I don't use anymore including Atom and Vivaldi. It's worth checking out if you don't see what you're looking for in here.
+There is also a [`graveyard`](#graveyard) section at the end that contains interesting stuff for apps that I don't use anymore including Atom and Vivaldi, in case you don't see something you're looking for.
 
 <table>
   <tr>
@@ -16,7 +18,6 @@ There is also an [`archive` branch](https://github.com/katacarbix/dotfiles/tree/
 - [Glamor](#glamor)
   * [i3](#i3)
   * [picom](#picom)
-  * [polybar](#polybar)
   * [dunst](#dunst)
   * [rofi](#rofi)
   * [wal](#wal)
@@ -28,9 +29,15 @@ There is also an [`archive` branch](https://github.com/katacarbix/dotfiles/tree/
   * [kitty](#kitty)
   * [fish](#fish)
   * [ranger](#ranger)
-    + [Programs you should know about that weren't mentioned elsewhere](#programs-you-should-know-about-that-werent-mentioned-elsewhere)
+- [Scripts](#scripts)
+- [Programs you should know about that weren't mentioned elsewhere](#programs-you-should-know-about-that-werent-mentioned-elsewhere)
 - [Miscellanea](#miscellanea)
-- [Package lists](#package-lists)
+- [Graveyard](#graveyard)
+  * [Abricotine](#abricotine)
+  * [Atom](#atom)
+  * [polybar](#polybar)
+  * [Vivaldi](#vivaldi)
+  * [zsh](#zsh)
 
 </details>
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -52,7 +59,7 @@ There is also an [`archive` branch](https://github.com/katacarbix/dotfiles/tree/
 - the RGB keyboard in my laptop  
   (still trying to make it work on my not-programmable-over-USB keyboard...)
 
-Some of these refresh their colors automatically but most need to be told to refresh either by [a script](scripts/pywal) or by [a parent program](https://github.com/katacarbix/dotfiles/blob/bb6a9675db69ca6dacb3486502b54762e22f9585/i3/config#L278).
+Some of these refresh their colors automatically but most need to be told to refresh either by [a script](scripts/pywal) or by [a parent program](https://github.com/reeseovine/dotfiles/blob/bb6a9675db69ca6dacb3486502b54762e22f9585/i3/config#L278).
 
 
 ## Glamor
@@ -64,9 +71,6 @@ A small but powerful compositor for X desktops. I'm using [this fork](https://gi
 
 Compton has the ability to make windows semi-transparent but I chose to forgo this feature in favor of creating transparent areas within some apps. I then turned off blurring in compton's config for any program that's opaque, because there's no reason to do work for something that I'm not even going to see.
 
-### [polybar](polybar)
-A status bar with easy access to scripts and whatever else I need. There's the `main` bar, and one called `secondary` which is stripped down for multi-monitor setups. The [`polybar`](scripts/polybar) script detects monitors and places these bars automatically.
-
 ### [dunst](dunst/dunstrc)
 A notification daemon that displays desktop notifications. Its appearance is pretty extensively customizable, but sadly one thing it can't do is background transparency so it has to be applied to the entire notification. Luckily it's not too noticeable (in my opinion). It doesn't use colors from wal because I think it looks better without them.
 
@@ -77,7 +81,7 @@ Mostly just preferences for behavior rather than appearance, which is taken care
 Contains templates for programs to import the colors and handmade color schemes for some wallpapers.
 
 ### [Firefox](firefox)
-I'm using the [Pywalfox](https://github.com/Frewacom/pywalfox) extension + a few UI tweaks in my `userChrome.css` and `userContent.css`. I'm also using everything in my [`userstyles` repo](https://github.com/katacarbix/userstyles) with the [Stylus](https://github.com/openstyles/stylus) extension.
+I'm using the [Pywalfox](https://github.com/Frewacom/pywalfox) extension + a few UI tweaks in my `userChrome.css` and `userContent.css`. I'm also using everything in my [`userstyles` repo](https://github.com/reeseovine/userstyles) with the [Stylus](https://github.com/openstyles/stylus) extension.
 
 ### [Sublime Text](sublime-text)
 *Symlinked as \~/.config/sublime-text-3/Packages/User*
@@ -98,7 +102,7 @@ First I installed [EnhancedDiscord](https://github.com/joe27g/EnhancedDiscord) f
 7. Open Discord, go to Settings, scroll down to Advanced, and disable Hardware Acceleration.
 
 I modified the application entry to use the command line argument `--remote-debugging-port=1666` which allows [the `lightswitch` script](scripts/lightswitch) to switch between light and dark mode.
-I'm using the pywal variant of my [Bliss theme](https://github.com/katacarbix/discord-stuff/) which gets recompiled by the pywal script.
+I'm using the pywal variant of my [Bliss theme](https://github.com/reeseovine/discord-stuff/) which gets recompiled by the pywal script.
 
 ### Fonts
 The sans-serif font I use is [Roboto](https://github.com/googlefonts/roboto). I use a [Nerd Font](https://github.com/ryanoasis/nerd-fonts)-patched version of [Fira Code](https://github.com/tonsky/FiraCode), a monospaced programming font, in my terminal and code editor. I have an older version of it installed as well because [the newer version doesn't look right in polybar](https://github.com/polybar/polybar/issues/991).
@@ -122,9 +126,9 @@ I'm using [oh my fish](https://github.com/oh-my-fish/oh-my-fish) with the `bobth
 A TUI file manager. It's highly customizable but I found that there isn't much that I really needed to change to make it work well. There's a bit of a learning curve to it but there are plenty of helpful resources you can find.
 
 ## Scripts
-*The shell scripts which were previously found here are now located in [this repo](https://github.com/katacarbix/shell-scripts)!*
+*The shell scripts which were previously found here are now located in [this repo](https://github.com/reeseovine/shell-scripts)!*
 
-#### Programs you should know about that weren't mentioned elsewhere
+## Programs you should know about that weren't mentioned elsewhere
 *Located in \~/.local/bin/ or installed using a package manager*
 
 [**Bitwarden**](https://bitwarden.com/), [**rbw**](https://github.com/doy/rbw), and [**rofi-rbw**](https://github.com/fdw/rofi-rbw)  
@@ -162,12 +166,34 @@ Quickly navigates your filesystem by keeping a record of your most-visited direc
 - [`rofimoji.rc`](misc/rofimoji.rc) *Symlinked in \~/.config/* - Config for [rofimoji](https://github.com/fdw/rofimoji), a Unicode character picker.
 
 
-## Package lists
-There are a few lists of packages installed by different package managers; most of them reside in [`pkg/`](pkg). The lists are as follows:
+## Graveyard
 
-- [Aptitude](pkg/apt.txt)
-- [Cargo (Rust)](pkg/cargo.txt)
-- [Git](pkg/git.txt) - these are built from source (when needed) and installed globally.
-- [NPM (NodeJS)](package.json) - (under "dependencies")
-- [Oh My Fish](pkg/omf.txt)
-- [Pip (Python)](pkg/pip.txt)
+These used to be part of my setup but have since been replaced or superseded. Links go to the file or directory at the last commit it existed in.
+
+### [Abricotine](https://github.com/reeseovine/dotfiles/tree/478ccfac46873f887dd86cc26ef51896212deca7/abricotine)
+*Symlinked as ~/.config/Abricotine/app*
+
+Markdown editor with custom theme support. No transparency out of the box but could probably be modified in the same way as Atom, though I like it better opaque. My wal theme is based on the default dark theme. I haven't figured out how to make it refresh the theme automatically yet so it must be done manually (ctrl+F5).
+
+### [Atom](https://github.com/reeseovine/dotfiles/tree/5d37fdf7cae8477866f3e4d911f401a1a0c75185/atom)
+*Symlinked as ~/.atom*
+
+Because it does not support transparent themes out of the box (on Linux, at least), I needed to make a quick modification to its internals. Don't worry, it doesn't involve building anything from source. Here are the steps I followed:
+0. Make sure you have `npm`, then install `asar` with `sudo npm i -g asar`.
+1. Exit Atom completely.
+2. cd into `/usr/share/atom/resources/`, then unpack the main program with `sudo asar extract app.asar app.asar.extracted`. You must use `sudo` because it's in a write-protected directory.
+3. Open the file `app.asar.extracted/src/main-process/atom-window.js` in your text editor of choice (with root privileges).
+4. Around line 38 inside the `options` object and outside of the `webPreferences` object, add the line `transparent: true,` which will make the window background transparent. (I've also added `frame: false,` to mine which will hide the window title and menu bars. You don't have to.)
+5. Save this file, then package it back up in the terminal with `sudo asar pack app.asar.extracted app.asar`. If you did it correctly you should be able to start Atom again! You won't see a difference at first because...
+6. You need a theme that supports transparency! I'm using my [Fang](https://github.com/reeseovine/fang-ui) and [Wave](https://github.com/reeseovine/wave-ui) UI themes (dark and light mode, respectively). [native-ui](https://atom.io/themes/native-ui) works rather well too.
+
+I wrote some styles to go along with Fang/Wave in [my stylesheet](https://github.com/reeseovine/dotfiles/tree/5d37fdf7cae8477866f3e4d911f401a1a0c75185/atom/styles.less) that adds colors from pywal.
+
+### [polybar](https://github.com/reeseovine/dotfiles/tree/7d0cb94190865be18b33439af6032cbc68fbfedd/polybar)
+A status bar with easy access to scripts and whatever else I need. There's the `main` bar, and one called `secondary` which is stripped down for multi-monitor setups. The [`rebar`](https://github.com/reeseovine/shell-scripts/blob/e3c7d5f07ffd501b990d9756f6776f3c08404e94/rebar) script detects monitors and places these bars automatically.
+
+### Vivaldi
+Vivaldi can use [custom CSS](https://github.com/reeseovine/dotfiles/blob/478ccfac46873f887dd86cc26ef51896212deca7/vivaldi/common.css) with an [experimental toggle](https://forum.vivaldi.net/topic/37802/css-modifications-experimental-feature) which is nice, but it doesn't go so far as to be pywal-friendly without having to restart every time. Fortunately I can use [this script](https://github.com/reeseovine/dotfiles/blob/478ccfac46873f887dd86cc26ef51896212deca7/scripts/vivwal) (by [wismut on vivaldi.net](https://forum.vivaldi.net/topic/34521/linux-changing-theme-via-command-line/22?_=1597433612704) and slightly modified by me) to set the theme colors through a remote Chromium console. It's pretty clever honestly. Vivaldi must be started with the command `vivaldi --remote-debugging-port=9222` for this to work.
+
+### [zsh](https://github.com/reeseovine/dotfiles/blob/a9a48029a841bcfb61112c4153b24b875f49f6cb/.zshrc)
+Nothing special. Uses oh my zsh.
