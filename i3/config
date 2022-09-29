@@ -171,9 +171,6 @@ for_window [class="itch"] move container to workspace 7; workspace 7
 for_window [class="^Minecraft.*"] move container to workspace 7; workspace 7
 
 
-# [L]ock
-bindsym $alt+Shift+l exec ~/scripts/lock
-
 # Kill misbehaving window with alt+F4
 bindcode --release $alt+70 exec xkill
 
@@ -188,23 +185,23 @@ bindsym XF86KbdBrightnessUp exec kb-backlight -i 10
 bindsym XF86KbdBrightnessDown exec kb-backlight -d 10
 
 ## Screen backlight control
-bindsym XF86MonBrightnessUp exec light -A 5
-bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp exec brillo -A 5
+bindsym XF86MonBrightnessDown exec brillo -U 5
 
 # Application shortcuts
-bindsym $alt+Shift+s exec --no-startup-id /home/reese/Programs/sublime_text/sublime_text
+bindsym $alt+Shift+s exec --no-startup-id gtk-launch sublime_text
 bindsym $alt+Shift+b exec --no-startup-id gtk-launch firefox
-bindsym $alt+Shift+f exec --no-startup-id kitty pypy /usr/bin/ranger
+bindsym $alt+Shift+f exec --no-startup-id kitty ranger
 bindsym $alt+Shift+g exec --no-startup-id gtk-launch gimp
 bindsym $alt+Shift+i exec --no-startup-id inkscape
 
 # rofi menus
-bindsym $sup+space exec --no-startup-id rofi -show drun -config ~/.config/rofi/launchpad.rasi # -drun-display-format {name} -disable-history
-bindsym $sup+Tab exec --no-startup-id rofi -show window -width 50
+bindsym $sup+space exec --no-startup-id rofi -show drun -config ~/.config/rofi/drun.rasi
+bindsym $sup+Tab exec --no-startup-id rofi -show window
 bindsym $sup+Escape exec --no-startup-id ~/scripts/rofi/power
 bindsym XF86PowerOff exec --no-startup-id ~/scripts/rofi/power
-bindsym $sup+slash exec --no-startup-id rofi -show file-browser -width 1000 -columns 3 -scroll-method 0
-bindsym $sup+equal exec --no-startup-id rofi -show calc -lines 0 -no-show-match -no-sort -no-history -calc-command "echo -n '{result}'" -kb-accept-custom Return -kb-accept-entry Control+Return | clipster -c
+bindsym $sup+slash exec --no-startup-id rofi -show filebrowser -width 1000 -columns 3 -scroll-method 0
+bindsym $sup+equal exec --no-startup-id "rofi -show calc -no-persist-history -calc-command 'echo -n {result} | xclip -selection clipboard' -kb-accept-custom Return -kb-accept-entry Control+Return -no-fixed-num-lines -theme+mainbox+children '[inputbar,message]'"
 bindsym $sup+b exec --no-startup-id ~/scripts/rofi/backupctl
 bindsym $sup+c exec --no-startup-id rofi-clipster
 bindsym $sup+d exec --no-startup-id ~/scripts/rofi/wiktionary
@@ -212,12 +209,13 @@ bindsym $sup+e exec --no-startup-id rofimoji
 bindsym $sup+g exec --no-startup-id ~/scripts/rofi/generator
 bindsym $sup+n exec --no-startup-id rofimoji --prompt="icon" --files nerd_font
 bindsym $sup+m exec --no-startup-id ~/scripts/rofi/usb
-bindsym $sup+p exec --no-startup-id rbw sync && rofi-rbw
+bindsym $sup+p exec --no-startup-id pa-rofi
 bindsym $sup+r exec --no-startup-id rofi -show run -disable-history
 bindsym $sup+s exec --no-startup-id rofi -show ssh
-bindsym $sup+t exec --no-startup-id ~/scripts/rofi/tweet
-bindsym $sup+u exec --no-startup-id rofimoji --prompt="unichr" --files all
-bindsym $sup+x exec --no-startup-id ~/scripts/rofi/displayout
+bindsym $sup+t exec --no-startup-id ~/scripts/rofi/toot
+bindsym $sup+u exec --no-startup-id rofimoji --prompt="unichr" --files all --no-frecency
+bindsym $sup+v exec --no-startup-id ~/git/git.seaofvoic.es/reese/rofi-mullvad/main.py
+
 
 # macOS-like screenshots
 bindsym $sup+Shift+2            exec --no-startup-id screech -window -save
@@ -230,9 +228,14 @@ bindsym $sup+Shift+4            exec --no-startup-id screech -area -save
 bindsym $sup+Control+Shift+4    exec --no-startup-id screech -area -copy
 bindsym $sup+Control+4          exec --no-startup-id screech -area -upload
 
+# helpful bindings
+bindsym $sup+x exec --no-startup-id autorandr
+
 
 # Startup
 
+# Use autorandr to detect and set monitor layout
+exec --no-startup-id autorandr --cycle
 # Start compositor
 exec --no-startup-id picom -b
 # Disable screensaver
@@ -257,4 +260,4 @@ exec --no-startup-id eww open main
 exec --no-startup-id ~/scripts/wal.py -m auto_loop
 
 # Restore programs and their layout
-exec --no-startup-id find /home/reese/.i3/i3-resurrect/ -name 'workspace_*_layout.json' | sed -Ee 's/^.*\/workspace_(.*)_layout.json$/\1/g' | xargs -n1 i3-resurrect restore -w
+#exec --no-startup-id find /home/reese/.i3/i3-resurrect/ -name 'workspace_*_layout.json' | sed -Ee 's/^.*\/workspace_(.*)_layout.json$/\1/g' | xargs -n1 i3-resurrect restore -w

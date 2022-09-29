@@ -265,7 +265,7 @@ install_progs () {
 
 link_dotfiles () {
 	echo "cloning dotfiles repo..."
-	DOTFILES_PATH=$(rudimentary_h https://github.com/katacarbix/dotfiles)
+	DOTFILES_PATH=$(rudimentary_h https://gitlab.com/katacarbix/dotfiles)
 	git submodule update --init $DOTFILES_PATH
 
 	echo "making symbolic links..."

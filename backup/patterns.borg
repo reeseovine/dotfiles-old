@@ -1,0 +1,50 @@
+P sh
+R /
+- *
+
+## no-no
+! /proc
+
+#+ home/reese
+
+## global config
++ etc
+
+
+## temporary
+#- home/*/Downloads
+#re:.*/\.?cache$
+#re:.*/trash$
+#- **/lost+found
+
+## big
+#- home/*/Backup
+#- home/*/Games
+#- home/*/git
+#- home/*/os-images
+#- home/*/qemu-vms
+#- home/*/Torrents
+#- home/*/VirtualBox VMs
+
+## include
++ home/reese/.age
++ home/reese/.gitconfig
++ home/reese/.config/sublime-text-3
++ home/reese/.local/bin
++ home/reese/.local/share/applications
++ home/reese/.local/share/fish
++ home/reese/.local/share/fonts
++ home/reese/.local/share/ranger
++ home/reese/.local/share/rofimoji
++ home/reese/.local/share/zoxide
++ home/reese/.secrets
++ home/reese/.ssh
++ home/reese/Documents/3D models
++ home/reese/Documents/backup-codes
++ home/reese/Documents/literature
++ home/reese/Documents/Manuals
++ home/reese/Documents/SSI
++ home/reese/Documents/taxes
++ home/reese/Documents/Ts&Cs
++ home/reese/Pictures/Art
++ home/reese/syncthing

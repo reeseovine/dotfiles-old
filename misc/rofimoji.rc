@@ -1,5 +1,5 @@
 prompt = emoji
 files = [emojis]
 max-recent = 0
-#direction = ltr
-selector-args = -no-show-icons -width 50
+action = copy
+selector-args = -width 50 -theme-str 'window {font:"FiraCode Nerd Font 14";}'

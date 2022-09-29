@@ -1,3 +1,5 @@
+cat $HOME/.cache/wal/sequences
+
 # stuff for all shells
 if test -e ~/.profile
 	fenv source ~/.profile

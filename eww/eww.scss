@@ -1,4 +1,22 @@
 @import '/home/reese/.cache/wal/colors.scss';
+@import 'mixins';
+
+$red: adjust-color(change-color($color1, $hue: 10deg), $saturation: 20%);
+$orange: adjust-color(change-color($color1, $hue: 20deg), $saturation: 20%);
+$yellow: adjust-color(change-color($color1, $hue: 60deg), $saturation: 20%, $lightness: -10%);
+$green: adjust-color(change-color($color1, $hue: 134deg), $saturation: 20%, $lightness: -15%);
+$cyan: adjust-color(change-color($color1, $hue: 170deg), $saturation: 20%, $lightness: -15%);
+$blue: adjust-color(change-color($color1, $hue: 210deg), $saturation: 20%);
+$lavender: adjust-color(change-color($color1, $hue: 250deg), $saturation: 20%, $lightness: 10%);
+$pink: adjust-color(change-color($color1, $hue: 300deg), $saturation: 20%, $lightness: 10%);
+
+$color-good: $green;
+$color-warn: $yellow;
+$color-bad: $red;
+
+$fg-muted: rgba($foreground, 0.6);
+$accent: $color4;
+$on-accent: contrast($color4, $foreground, $background);
 
 * {
 	all: unset;
@@ -6,38 +24,73 @@
 
 // Global Styles
 window {
-	background-color: rgba($background, 60%);
 	color: $foreground;
 	font-family: "FiraCode Nerd Font", Feather;
 	font-size: 16px;
 }
 
-.section {
-	margin-left: 24px;
-	margin-right: 24px;
-}
-
-.workspace {
-	&.active {
-		color: $color4;
-	}
-	&.empty {
-		color: rgba($foreground, 50%);
-	}
-}
-
 // Status colors
 .good {
-	color: adjust-color(change-color($color1, $hue: 134deg), $saturation: 20%);
+	color: $color-good;
 }
-.warning {
-	color: adjust-color(change-color($color1, $hue: 10deg), $saturation: 20%);
+.warn {
+	color: $color-warn;
+}
+.bad {
+	color: $color-bad;
 }
 .critical {
-	background-color: adjust-color(change-color($color1, $hue: 10deg), $saturation: 20%);
+	background-color: $color-bad;
 }
 
 .label {
 	padding-left: 12px;
 	padding-right: 12px;
+}
+
+.section {
+	margin-left: 18px;
+	margin-right: 18px;
+}
+
+.workspace {
+	margin: 0 2px;
+
+	&.active {
+		border-radius: 50%;
+		background-color: $accent;
+		color: $on-accent;
+	}
+	&.empty {
+		color: $fg-muted;
+	}
+
+	.label {
+		padding: 0 8.5px;
+	}
+}
+
+
+// Weather
+.wx-cloud { color: $fg-muted; }
+.wx-thunder { color: $yellow; }
+.wx-light_rain { color: $lavender; }
+.wx-heavy_rain { color: $blue; }
+// .wx-snow { color: #ffffff; }
+.wx-fog { color: $fg-muted; }
+.wx-tornado { color: $pink; }
+.wx-sun { color: $cyan; }
+.wx-moon { color: $cyan; }
+.wx-err { color: $color-bad; }
+.wx-wind { color: $orange; }
+.temp-cold { color: $blue; }
+.temp-hot { color: $orange; }
+// .temp-normal { color: #ffffff; }
+
+
+
+// Bar-specific styles
+
+.main {
+	background-color: rgba($background, 60%);
 }

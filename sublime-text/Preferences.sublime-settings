@@ -1,5 +1,6 @@
 {
-	"color_scheme": "Packages/User/Letty-tmTheme/Letty Snow.tmTheme",
+	"update_check": false,
+	"color_scheme": "Packages/User/Letty-tmTheme/Letty Moon.tmTheme",
 	"caret_style": "smooth",
 	"drag_text": false,
 	"draw_white_space": "selection",
@@ -15,7 +16,7 @@
 		"ss07",
 		"gray_antialias"
 	],
-	"font_size": 16,
+	"font_size": 17,
 	"highlight_line": true,
 	"ignored_packages": [
 		"AppleScript",
@@ -39,13 +40,13 @@
 	"auto_complete_cycle": true,
 	"dark_theme": "gruvbox.sublime-theme",
 	"light_theme": "gruvbox.sublime-theme",
-	"sublime_merge_path": "/home/reese/Programs/bin/GitAhead",
+	"sublime_merge_path": "/usr/bin/gitahead",
 	"dark_color_scheme": "Packages/User/Letty-tmTheme/Letty Aurora.tmTheme",
 	"light_color_scheme": "Packages/User/Letty-tmTheme/Letty Snow.tmTheme",
 	"gruvbox_sidebar_indent_s": true,
-	"gruvbox_sidebar_font_size_14": true,
-	"gruvbox_tabs_font_size_14": true,
-	"gruvbox_buttons_font_size_12": true,
+	"gruvbox_sidebar_font_size_16": true,
+	"gruvbox_tabs_font_size_15": true,
+	"gruvbox_buttons_font_size_14": true,
 	"gruvbox_disable_borders": true,
 	"gruvbox_folder_icons_plus_minus": true,
 	"gruvbox_iconset_midstroke": true,
@@ -61,7 +62,7 @@
 		"disable": [
 			"md013",
 			"md026"
-		]
+		],
 	},
-	"mde.auto_fold_link.enabled": false
+	"mde.auto_fold_link.enabled": false,
 }

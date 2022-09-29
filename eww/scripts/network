@@ -1,0 +1,82 @@
+#!/bin/sh
+
+ICON_WIFI="﬉"
+ICON_ETH=""
+ICON_BT=""
+
+network_print() {
+	connection_list=$(nmcli -t -f name,type,device,state connection show --order name --active 2>/dev/null | grep -vE ':(bridge|wireguard):')
+	printf "(box :space-evenly false :vexpand true "
+
+	if [ -n "$connection_list" ] && [ "$(echo "$connection_list" | wc -l)" -gt 0  ]; then
+		echo "$connection_list" | while read -r line; do
+			description=$(echo "$line" | sed -e 's/\\:/-/g' | cut -d ':' -f 1)
+			type=$(echo "$line" | sed -e 's/\\:/-/g' | cut -d ':' -f 2)
+			device=$(echo "$line" | sed -e 's/\\:/-/g' | cut -d ':' -f 3)
+			state=$(echo "$line" | sed -e 's/\\:/-/g' | cut -d ':' -f 4)
+			class=""
+
+			if [ "$state" = "activated" ]; then
+				if [ "$type" = "802-11-wireless" ]; then
+					icon=$ICON_WIFI
+
+					signal=$(nmcli -t -f in-use,signal device wifi list ifname "$device" | grep "\*" | cut -d ':' -f 2)
+					if [ "$signal" -lt 33 ]; then
+						class="bad"
+					elif [ "$signal" -lt 66 ]; then
+						class="warn"
+					else
+						class="good"
+					fi
+				elif [ "$type" = "802-3-ethernet" ]; then
+					icon=$ICON_ETH
+
+					speed="$(cat /sys/class/net/"$device"/speed)"
+					if [ "$speed" -ne -1 ]; then
+						if [ "$speed" -ge 1000 ]; then
+							speed="$((($speed + 500) / 1000)) Gbps"
+						else
+							speed="$speed Mbps"
+						fi
+						description="$speed"
+					fi
+
+				elif [ "$type" = "bluetooth" ]; then
+					icon=$ICON_BT
+				fi
+			fi
+
+			printf "(label :class 'label %s' :tooltip '%s' :text '%s')" "$class" "$description" "$icon"
+		done
+	fi
+	printf ")"
+}
+
+# network_update() {
+# 	pid=$(cat "$path_pid")
+
+# 	if [ "$pid" != "" ]; then
+# 		kill -10 "$pid"
+# 	fi
+# }
+
+# path_pid="/tmp/polybar-network-networkmanager.pid"
+
+# case "$1" in
+# 	--update)
+# 		network_update
+# 		;;
+# 	*)
+		# echo $$ > $path_pid
+
+		# trap exit INT
+		# trap "echo" USR1
+
+		# while true; do
+			network_print
+
+			# sleep 10 &
+			# wait
+		# done
+# 		;;
+# esac

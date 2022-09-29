@@ -1,15 +1,27 @@
+@theme "~/.cache/wal/rofi.rasi"
+
 configuration {
-	theme: "~/.cache/wal/colors.rasi";
-	modi: "window,drun,run,ssh,file-browser";
-	width: 30;
-	lines: 12;
-	font: "FiraCode Nerd Font 13";
+	modi: "window,drun,run,ssh,calc,filebrowser";
+	font: "FiraCode Nerd Font 12";
 	show-icons: true;
 	hide-scrollbar: true;
 	terminal: "kitty";
-	ssh-command: "{terminal} ssh-et -X {host}";
+	ssh-command: "{terminal} ssh -Y {host}";
 	run-command: "{cmd}";
 	run-shell-command: "{terminal} --hold {cmd}";
-	sort: false;
+	sort: true;
 	scroll-method: 1;
+	sidebar-mode: false;
+
+	window-format: "{c}		{t}";
+	drun-display-format: "{name}";
+
+	display-calc: "";
+	display-drun: "";
+	display-filebrowser: "";
+	display-run: "";
+	display-ssh: "";
+	display-window: "缾";
+
+	parse-known-hosts: false;
 }

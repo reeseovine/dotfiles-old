@@ -9,3 +9,4 @@ QT_QPA_PLATFORMTHEME=gtk2
 
 # Apply Xmodmap
 xmodmap ~/.Xmodmap
+xset r rate 500 60

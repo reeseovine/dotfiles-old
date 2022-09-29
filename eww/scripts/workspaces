@@ -7,7 +7,7 @@ while [ 1 ]; do
 	workspaces=''
 	ws_empty=($(i3-msg -t get_workspaces | jq -r '[.[].name] as $ws | [range(1;11)] | map(. as $i | $ws | index([$i | tostring]) | not) | .[]'))
 	for i in {0..9}; do
-		workspaces="${workspaces}(button :class 'workspace$([ $i == $ws_active ] && echo " active")$([ "${ws_empty[$i]}" == 'true' ] && echo " empty")' :onclick 'i3-msg workspace $(($i+1))' (label :class 'label' :text '${ws_labels[$i]}')) "
+		[ "${ws_empty[$i]}" == 'true' ] || workspaces="${workspaces}(button :class 'workspace$([ $i == $ws_active ] && echo " active")$([ "${ws_empty[$i]}" == 'true' ] && echo " empty")' :onclick 'i3-msg workspace $(($i+1))' (label :class 'label' :text '${ws_labels[$i]}')) "
 	done
 	echo "(box :class 'section workspaces' :space-evenly true :vexpand true ${workspaces})"
 

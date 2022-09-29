@@ -1,0 +1,28 @@
+@import "~/.config/rofi/config.rasi"
+
+configuration {
+	font: "FiraCode Nerd Font 24";
+	show-icons: false;
+	fixed-num-lines: false;
+}
+
+window {
+	width: 457px;
+}
+
+mainbox {
+	children: [listview];
+}
+
+listview {
+	layout: horizontal;
+}
+	element {
+		padding: 0.5em;
+	}
+		element-text {
+		    expand: true;
+		    horizontal-align: 0.5;
+		    vertical-align: 0.5;
+		    margin: 0 0.1em;
+    	}

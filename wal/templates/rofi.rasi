@@ -1,0 +1,92 @@
+* {{
+	background: {background};
+	background-focus: {color1};
+	background-special: {color3};
+	foreground: {foreground};
+	foreground-muted: {foreground};
+	foreground-special: {background};
+	foreground-special-muted: {color8};
+
+	transparency: "real";
+	background-color: transparent;
+	text-color: @foreground;
+}}
+
+window {{
+	background-color: @background;
+	padding: 24px;
+	width: 1200px;
+}}
+
+	mainbox {{
+		spacing: 14px;
+		children: [ inputbar, message, listview ];
+	}}
+
+		inputbar {{
+			spacing: 5px;
+			padding: 3px;
+			border-radius: 100%;
+			border: 2px;
+			border-color: @background-special;
+			children: [ prompt, entry ];
+		}}
+			prompt {{
+				padding: 10px 15px;
+				background-color: @background-special;
+				text-color: @foreground-special;
+				border-radius: 100%;
+			}}
+			entry {{
+				padding: 10px;
+				text-color: @foreground;
+				placeholder-color: @foreground-muted;
+			}}
+
+		message {{
+			padding: 0 10px;
+		}}
+
+		listview {{
+			columns: 1;
+			lines: 15;
+			scrollbar: false;
+			cycle: true;
+			dynamic: false;
+			layout: vertical;
+			fixed-columns: true;
+			text-color: @foreground-muted;
+		}}
+			element {{
+				padding: 10px;
+				spacing: 10px;
+				text-color: @foreground-muted;
+			}}
+			element.selected {{
+				background-color: @background-focus;
+				text-color: @foreground-special;
+				border-radius: 100%;
+			}}
+				element-icon {{
+					text-color: inherit;
+				}}
+				element-text {{
+					text-color: inherit;
+					expand: true;
+				}}
+
+
+		mode-switcher {{
+			expand: false;
+			padding: 3px;
+		}}
+			button {{
+				expand: false;
+				padding: 10px 15px;
+				text-color: @foreground-muted;
+				border-radius: 100%;
+			}}
+			button.selected.normal {{
+				background-color: @background-special;
+				text-color: @foreground-special;
+			}}

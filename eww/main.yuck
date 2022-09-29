@@ -1,0 +1,250 @@
+(defpoll weather_label
+    :interval '30m'
+    'scripts/weather'
+)
+(defwidget weather []
+    (literal :content weather_label)
+    ;(button
+        ;:onclick '/home/reese/scripts/kitty-popup floating 73 29 -c "wego -f nerd; read -n 1 -p \'\'; exit"'
+        ;(label :class 'label'
+        ;    :text '${weather_label}'
+        ;)
+    ;)
+)
+
+(defpoll moon_label
+    :interval '6h'
+    'scripts/moon'
+)
+(defwidget moon []
+    (button
+        :onclick '/home/reese/scripts/kitty-popup floating 65 24 -c "pyphoon-lolcat | head -n 23; read -n 1 -p \'\'; exit"'
+        (label :class 'label'
+            :text '${moon_label}'
+        )
+    )
+)
+
+(defwidget cpu []
+    (label :class 'label'
+        :text 'CPU ${round(EWW_CPU.avg, 0)}%'
+    )
+)
+
+(defwidget ram []
+    (label :class 'label'
+        :text 'RAM ${round(EWW_RAM.used_mem_perc, 0)}%'
+    )
+)
+
+(defwidget temp [temp_avg]
+    (label
+        :class "label ${temp_avg < 80 ? 'normal' : temp_avg < 90 ? 'bad' : 'critical'}"
+        :text  "${temp_avg < 80 ? '﨎' : ''} ${temp_avg}°c"
+    )
+)
+(defwidget temperature []
+    (temp :temp_avg '${round((EWW_TEMPS.CORE_0+EWW_TEMPS.CORE_1+EWW_TEMPS.CORE_2+EWW_TEMPS.CORE_3+EWW_TEMPS.CORE_4+EWW_TEMPS.CORE_5)/6, 0)}')
+)
+
+(defwidget net_down []
+    (label :class 'label'
+        :text ' ${round((EWW_NET.enp2s0.NET_DOWN+EWW_NET.wlp3s0.NET_DOWN)*8/1024, 1)}k'
+    )
+)
+(defwidget net_up []
+    (label :class 'label'
+        :text ' ${round((EWW_NET.enp2s0.NET_UP+EWW_NET.wlp3s0.NET_UP)*8/1024, 1)}k'
+    )
+)
+
+(deflisten workspaces 'scripts/workspaces')
+(defwidget i3 []
+    (literal :content workspaces)
+)
+
+;(deflisten tray_icons :initial '' 'killall eww-tray && eww-tray')
+;(defwidget tray []
+;    (literal :content "(box :class 'tray' :orientation 'h' :vexpand true :space-evenly true ${tray_icons})")
+;)
+
+(defpoll kdec_label
+    :interval '10s'
+    'scripts/kdeconnect -d'
+)
+(defwidget kdeconnect []
+    (literal :content kdec_label)
+)
+
+(defpoll vpn_status
+    :interval '1s'
+    'mullvad status'
+)
+(defwidget vpn []
+    (button
+        :onclick 'python3 /home/reese/git/git.cyberia.club/reese/rofi-mullvad/main.py &'
+        :class   {vpn_status == 'Disconnected' ? 'bad' : 'good'}
+        :tooltip {vpn_status}
+        (label :class 'label'
+            :text '嬨'
+        )
+    )
+)
+
+(defpoll dnd_active :interval '1s' 'dunstctl is-paused')
+(defwidget dnd []
+    (button
+        :onclick 'dunstctl set-paused toggle'
+        :class   {dnd_active == "true" ? 'bad' : ''}
+        :tooltip 'Notifications are ${dnd_active == "true" ? "paused" : "active"}.'
+        (label :class 'label'
+            :text 'ﮖ'
+        )
+    )
+)
+
+(defwidget pywal []
+    (button
+        :onclick 'wal.py -m auto'
+        :timeout '10s'
+        (label :class 'label'
+            :text ''
+        )
+    )
+)
+
+(defpoll networks :interval "10s" 'scripts/network')
+(defwidget network []
+    (literal :content networks)
+)
+
+(defpoll WLAN_CLASS :interval "1m" "scripts/wifi --CLASS")
+(defpoll WLAN_SSID :interval "1m" "scripts/wifi --SSID")
+(defpoll WLAN_ICON :interval "1m" "scripts/wifi --ICON")
+(defwidget wifi []
+    (button
+        :class WLAN_CLASS
+        :onclick '/home/reese/scripts/rofi/wifi'
+        :tooltip WLAN_SSID
+        (label :class 'label'
+            :text WLAN_ICON
+        )
+    )
+)
+
+(defwidget battery [bat]
+    (label
+        :class "label ${
+            bat.status == 'Discharging' && bat.capacity <= 10
+                ? 'bad'
+                : (bat.status == 'Charging' && bat.capacity > 95) || bat.status == 'Full'
+                    ? 'good'
+                    : ''}"
+        :text "${
+            bat.status == 'Discharging'
+                ? bat.capacity <= 5 ? ''
+                : bat.capacity <= 15 ? ''
+                : bat.capacity <= 25 ? ''
+                : bat.capacity <= 35 ? ''
+                : bat.capacity <= 45 ? ''
+                : bat.capacity <= 55 ? ''
+                : bat.capacity <= 65 ? ''
+                : bat.capacity <= 75 ? ''
+                : bat.capacity <= 85 ? ''
+                : bat.capacity <= 95 ? ''
+                : ''
+            : bat.status == 'Charging'
+                ? ''
+            : ''} ${bat.capacity}%"
+    )
+)
+
+(defpoll br_screen_val :interval '5s' 'brillo | cut -d. -f1')
+(defwidget br_screen []
+    (eventbox
+        :onscroll 'scripts/brightness {}'
+        (label :class 'label'
+            :text ''
+            :tooltip '${br_screen_val}%'
+        )
+    )
+)
+
+(defpoll date_label :interval '1s'
+    'date "+%A, %B %d — %I:%M:%S %p"'
+)
+(defwidget date []
+    (label :class 'label'
+        :text '${date_label}'
+    )
+)
+
+(defwidget lavalamp []
+    (button
+        :onclick 'fish -c hass state toggle light.lava_lamp'
+        (label :class 'label'
+            :text 'ﳓ'
+        )
+    )
+)
+
+
+(defvar show_sys false)
+(defwindow main
+    :monitor 0
+    :geometry (geometry
+        :x '0%'
+        :y '0%'
+        :width '100%'
+        :height '32px'
+        :anchor 'top center')
+    :stacking 'fg'
+    :reserve (struts :distance '32px' :side 'top')
+    :wm-ignore false
+    
+    ;:exclusive true
+
+    (centerbox :orientation 'h'
+        (box :class 'section' :halign 'start' :space-evenly false
+            (button
+                :onclick 'eww update show_sys=${!show_sys}'
+                {show_sys ? 'ﴯ' : '龍'}
+            )
+
+            (revealer
+                :transition 'slideleft'
+                :reveal show_sys
+                :duration '300ms'
+                (box :class 'section' :space-evenly false
+                    (net_up)
+                    (net_down)
+                    ;(temperature)
+                    (ram)
+                    (cpu)
+                )
+            )
+
+            (revealer
+                :transition 'slideleft'
+                :reveal {!show_sys}
+                :duration '300ms'
+                (box :class 'section' :space-evenly false
+                    (battery :bat '${EWW_BATTERY.BAT0}')
+                    (br_screen)
+                    (network)
+                    (vpn)
+                    (dnd)
+                    (pywal)
+                    ;(kdeconnect)
+                    (lavalamp)
+                )
+            )
+        )
+        (i3)
+        (box :class 'section' :halign 'end' :space-evenly false
+            (weather)
+            (moon)
+            (date)
+        )
+    )
+)

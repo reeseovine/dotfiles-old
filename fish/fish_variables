@@ -1,6 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR __fish_initialized:3100
+SETUVAR __fish_initialized:3400
 SETUVAR __tf_func:function\x20__tf_alias\x20\x2dd\x20\x22Correct\x20your\x20previous\x20console\x20command\x22\x3b\x20\x20set\x20\x2dl\x20fucked_up_command\x20\x24history\x5b1\x5d\x3b\x20\x20env\x20TF_SHELL\x3dfish\x20TF_ALIAS\x3d__tf_alias\x20PYTHONIOENCODING\x3dutf\x2d8\x20thefuck\x20\x24fucked_up_command\x20THEFUCK_ARGUMENT_PLACEHOLDER\x20\x24argv\x20\x7c\x20read\x20\x2dl\x20unfucked_command\x3b\x20\x20if\x20\x5b\x20\x22\x24unfucked_command\x22\x20\x21\x3d\x20\x22\x22\x20\x5d\x3b\x20\x20\x20\x20eval\x20\x24unfucked_command\x3b\x20\x20\x20\x20builtin\x20history\x20delete\x20\x2d\x2dexact\x20\x2d\x2dcase\x2dsensitive\x20\x2d\x2d\x20\x24fucked_up_command\x3b\x20\x20\x20\x20builtin\x20history\x20merge\x20\x5e\x20/dev/null\x3b\x20\x20end\x3bend\x3b
 SETUVAR __tf_vers:The\x20Fuck\x203\x2e29\x20using\x20Python\x203\x2e8\x2e5\x20and\x20Fish\x20Shell\x203\x2e2\x2e2
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:/home/reese/\x2econfig/fish/functions/fisher\x2efish\x1e/home/reese/\x2econfig/fish/completions/fisher\x2efish
@@ -16,6 +16,7 @@ SETUVAR fish_color_error:af5faf
 SETUVAR fish_color_escape:00a6b2
 SETUVAR fish_color_history_current:normal
 SETUVAR fish_color_host:normal
+SETUVAR fish_color_host_remote:yellow
 SETUVAR fish_color_match:normal
 SETUVAR fish_color_normal:normal
 SETUVAR fish_color_operator:00a6b2
@@ -24,6 +25,7 @@ SETUVAR fish_color_quote:875fff
 SETUVAR fish_color_redirection:00afaf
 SETUVAR fish_color_search_match:ffff00
 SETUVAR fish_color_selection:c0c0c0
+SETUVAR fish_color_status:red
 SETUVAR fish_color_user:00ff00
 SETUVAR fish_color_valid_path:normal
 SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell
@@ -32,3 +34,4 @@ SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+SETUVAR fish_pager_color_selected_background:\x2dr

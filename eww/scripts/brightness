@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+echo $1
+
+if [ "$1" = "up" ]; then
+	brillo -U 1
+else
+	brillo -A 1
+fi

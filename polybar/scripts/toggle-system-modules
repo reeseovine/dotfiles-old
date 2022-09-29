@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-modules=(weather moon minecraft kdeconnect cpu memory temperature network publicip)
-for mod in "${modules[@]}"; do
-	polybar-msg action "#$mod.module_toggle"
-done

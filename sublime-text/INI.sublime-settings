@@ -1,6 +1,7 @@
 {
 	"extensions":
 	[
-		"ini"
-	]
+		"ini",
+		"dunstrc",
+	],
 }

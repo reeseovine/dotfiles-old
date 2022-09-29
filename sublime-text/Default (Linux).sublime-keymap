@@ -8,6 +8,8 @@
 	{ "keys": ["ctrl+down"], "command": "swap_line_down" },
 	{ "keys": ["shift+delete"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
 	
+	{ "keys": ["insert"], "command": "" },
+
 	// Markdown table formatter
 	{
         "keys": ["ctrl+alt+shift+t"],
